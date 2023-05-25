@@ -1,0 +1,5 @@
+{
+  "resource": true,
+  "name": "impart",
+  "server": "https://github.com/impart-security/pulumi-impart/releases"
+}

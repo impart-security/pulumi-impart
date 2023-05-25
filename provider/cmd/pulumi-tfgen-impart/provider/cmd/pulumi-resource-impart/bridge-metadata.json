@@ -1,0 +1,27 @@
+{
+    "renames": {
+        "resources": {
+            "impart:index/binding:Binding": "impart_binding",
+            "impart:index/ruleScript:RuleScript": "impart_rule_script",
+            "impart:index/spec:Spec": "impart_spec"
+        },
+        "functions": {
+            "impart:index/getSpec:GetSpec": "impart_spec"
+        },
+        "renamedProperties": {
+            "impart:index/binding:Binding": {
+                "basePath": "base_path",
+                "specId": "spec_id",
+                "upstreamOrigin": "upstream_origin"
+            },
+            "impart:index/ruleScript:RuleScript": {
+                "sourceFile": "source_file",
+                "sourceHash": "source_hash"
+            },
+            "impart:index/spec:Spec": {
+                "sourceFile": "source_file",
+                "sourceHash": "source_hash"
+            }
+        }
+    }
+}
