@@ -112,7 +112,6 @@ jobs:
           access: "public"
           token: ${{ env.NPM_TOKEN }}
           package: ${{github.workspace}}/sdk/nodejs/bin/package.json
-          dry-run: true
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
         run: |

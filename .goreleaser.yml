@@ -14,6 +14,8 @@ builds:
       - arm64
     goos:
       - linux
+      - darwin
+      - windows
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
       - -X github.com/impart-security/pulumi-impart/provider/pkg/version.Version={{.Tag }}
