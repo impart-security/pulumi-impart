@@ -58,6 +58,7 @@ func Provider() pf.ProviderInfo {
 		License:           "Apache-2.0",
 		Homepage:          "https://www.impart.security/",
 		GitHubOrg:         "impart-security",
+		LogoURL:           "https://raw.githubusercontent.com/impart-security/pulumi-impart/main/docs/impart-blue.svg",
 		Repository:        "https://github.com/impart-security/pulumi-impart",
 		PluginDownloadURL: "https://github.com/impart-security/pulumi-impart/releases",
 		Publisher:         "Impart Security",

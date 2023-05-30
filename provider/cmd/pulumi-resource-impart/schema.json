@@ -10,6 +10,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`impart` Terraform Provider](https://github.com/impart-security/terraform-provider-impart).",
     "repository": "https://github.com/impart-security/pulumi-impart",
+    "logoUrl": "https://raw.githubusercontent.com/impart-security/pulumi-impart/main/docs/impart-blue.svg",
     "pluginDownloadURL": "https://github.com/impart-security/pulumi-impart/releases",
     "publisher": "Impart Security",
     "meta": {
