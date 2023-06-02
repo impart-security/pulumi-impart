@@ -1,4 +1,3 @@
-
 ---
 title: Impart Installation & Configuration
 meta_desc: Information on how to install the Impart provider.
@@ -27,7 +26,6 @@ Use `pulumi config set impart:<option> --secret`.
 | `endpoint` | Optional          | The API URL used for Impart service. The default is `https://api.impartsecurity.net.` (environment: `IMPART_ENDPOINT`). |
 
 {{% notes type="warning" %}}
-You should use the `--secret` flag to encrypt the config values using your secret provider. For more information on this, view the [Pulumi Configuration Secrets](https://www.pulumi.com/docs/intro/concepts/secrets/#secrets) section in the Pulumi docs.
+You should use the `--secret` flag to encrypt the config values using your secret provider. For more information on this, view the [Pulumi Configuration Secrets](https://www.pulumi.com/docs/concepts/secrets/#secrets) section in the Pulumi docs.
 {{% /notes %}}
-
 

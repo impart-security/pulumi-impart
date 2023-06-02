@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.3] - 2023-06-03
+
+### Fixed
+
+- Fixed registry docs
+
+## [0.1.2] - 2023-06-02
+
+### Added
+
+- Changelog
+
 ## [0.1.1] - 2023-05-30
 
 ### Added
