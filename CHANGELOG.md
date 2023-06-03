@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.4] - 2023-06-05
+
+### Fixed
+
+- Fixed plugin download url
+
 ## [0.1.3] - 2023-06-03
 
 ### Fixed

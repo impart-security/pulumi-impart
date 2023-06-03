@@ -53,6 +53,7 @@ func makeResource(mod string, res string) tokens.Type {
 func Provider() pf.ProviderInfo {
 	info := tfbridge.ProviderInfo{
 		Name:              "impart",
+		DisplayName:       "Impart",
 		Keywords:          []string{"pulumi", "impart", "category/infrastructure"},
 		Version:           version.Version,
 		License:           "Apache-2.0",
@@ -60,7 +61,7 @@ func Provider() pf.ProviderInfo {
 		GitHubOrg:         "impart-security",
 		LogoURL:           "https://raw.githubusercontent.com/impart-security/pulumi-impart/main/docs/impart-blue.svg",
 		Repository:        "https://github.com/impart-security/pulumi-impart",
-		PluginDownloadURL: "https://github.com/impart-security/pulumi-impart/releases",
+		PluginDownloadURL: "github://api.github.com/impart-security/pulumi-impart",
 		Publisher:         "Impart Security",
 		Description:       "A Pulumi package for creating and managing Impart resources.",
 		Config: map[string]*tfbridge.SchemaInfo{
