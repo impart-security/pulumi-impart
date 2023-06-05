@@ -50,7 +50,7 @@ export function getVersion(): string {
 
 /** @internal */
 export function resourceOptsDefaults(): any {
-    return { version: getVersion(), pluginDownloadURL: "github://api.github.com/impart-security/pulumi-impart" };
+    return { version: getVersion(), pluginDownloadURL: "github://api.github.com/impart-security" };
 }
 
 /** @internal */

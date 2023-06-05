@@ -1,6 +1,6 @@
 {
     "name": "impart",
-    "displayName": "Impart",
+    "displayName": "Impart Security",
     "description": "A Pulumi package for creating and managing Impart resources.",
     "keywords": [
         "pulumi",
@@ -12,7 +12,7 @@
     "attribution": "This Pulumi package is based on the [`impart` Terraform Provider](https://github.com/impart-security/terraform-provider-impart).",
     "repository": "https://github.com/impart-security/pulumi-impart",
     "logoUrl": "https://raw.githubusercontent.com/impart-security/pulumi-impart/main/docs/impart-blue.svg",
-    "pluginDownloadURL": "github://api.github.com/impart-security/pulumi-impart",
+    "pluginDownloadURL": "github://api.github.com/impart-security",
     "publisher": "Impart Security",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"

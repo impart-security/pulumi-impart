@@ -88,14 +88,14 @@ func isZero(v interface{}) bool {
 
 // pkgResourceDefaultOpts provides package level defaults to pulumi.OptionResource.
 func pkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOption {
-	defaults := []pulumi.ResourceOption{pulumi.PluginDownloadURL("github://api.github.com/impart-security/pulumi-impart")}
+	defaults := []pulumi.ResourceOption{pulumi.PluginDownloadURL("github://api.github.com/impart-security")}
 
 	return append(defaults, opts...)
 }
 
 // pkgInvokeDefaultOpts provides package level defaults to pulumi.OptionInvoke.
 func pkgInvokeDefaultOpts(opts []pulumi.InvokeOption) []pulumi.InvokeOption {
-	defaults := []pulumi.InvokeOption{pulumi.PluginDownloadURL("github://api.github.com/impart-security/pulumi-impart")}
+	defaults := []pulumi.InvokeOption{pulumi.PluginDownloadURL("github://api.github.com/impart-security")}
 
 	return append(defaults, opts...)
 }

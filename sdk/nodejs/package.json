@@ -25,6 +25,6 @@
     "pulumi": {
         "resource": true,
         "name": "impart",
-        "server": "github://api.github.com/impart-security/pulumi-impart"
+        "server": "github://api.github.com/impart-security"
     }
 }
