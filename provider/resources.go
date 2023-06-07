@@ -52,8 +52,8 @@ func makeResource(mod string, res string) tokens.Type {
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() pf.ProviderInfo {
 	info := tfbridge.ProviderInfo{
-		Name:              "impart",
-		DisplayName:       "Impart Security",
+		Name: "impart",
+		// DisplayName:       "Impart Security",
 		Keywords:          []string{"pulumi", "impart", "category/infrastructure"},
 		Version:           version.Version,
 		License:           "Apache-2.0",

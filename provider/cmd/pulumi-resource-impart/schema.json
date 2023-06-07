@@ -1,6 +1,5 @@
 {
     "name": "impart",
-    "displayName": "Impart Security",
     "description": "A Pulumi package for creating and managing Impart resources.",
     "keywords": [
         "pulumi",

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.6] - 2023-06-07
+
+### Changed
+
+- Undo display name and title change
+
 ## [0.1.5] - 2023-06-05
 
 ### Changed
