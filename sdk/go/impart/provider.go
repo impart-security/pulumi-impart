@@ -31,10 +31,14 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.Endpoint == nil {
-		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "IMPART_ENDPOINT").(string))
+		if d := getEnvOrDefault(nil, nil, "IMPART_ENDPOINT"); d != nil {
+			args.Endpoint = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Token == nil {
-		args.Token = pulumi.StringPtr(getEnvOrDefault("", nil, "IMPART_TOKEN").(string))
+		if d := getEnvOrDefault(nil, nil, "IMPART_TOKEN"); d != nil {
+			args.Token = pulumi.StringPtr(d.(string))
+		}
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider

@@ -50,10 +50,11 @@ func makeResource(mod string, res string) tokens.Type {
 }
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
-func Provider() pf.ProviderInfo {
-	info := tfbridge.ProviderInfo{
-		Name: "impart",
-		// DisplayName:       "Impart Security",
+func Provider() tfbridge.ProviderInfo {
+	return tfbridge.ProviderInfo{
+		P:                 pf.ShimProvider(shim.NewProvider()),
+		Name:              "impart",
+		DisplayName:       "Impart Security",
 		Keywords:          []string{"pulumi", "impart", "category/infrastructure"},
 		Version:           version.Version,
 		License:           "Apache-2.0",
@@ -109,10 +110,5 @@ func Provider() pf.ProviderInfo {
 			// no overlay files.
 			// Overlay: &tfbridge.OverlayInfo{},
 		},
-	}
-
-	return pf.ProviderInfo{
-		ProviderInfo: info,
-		NewProvider:  shim.NewProvider,
 	}
 }

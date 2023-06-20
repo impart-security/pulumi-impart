@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7] - 2023-06-20
+
+### Changed
+
+- Updated docs layout
+- Fixed terraform provider bridge
+
 ## [0.1.6] - 2023-06-07
 
 ### Changed

@@ -14,7 +14,11 @@ func GetEndpoint(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "IMPART_ENDPOINT").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "IMPART_ENDPOINT"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The Impart api token
@@ -23,5 +27,9 @@ func GetToken(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "IMPART_TOKEN").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "IMPART_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
 }

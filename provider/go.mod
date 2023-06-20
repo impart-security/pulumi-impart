@@ -6,9 +6,9 @@ replace github.com/impart-security/terraform-provider-impart/shim => ./shim
 
 require (
 	github.com/impart-security/terraform-provider-impart/shim v0.0.0
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.10.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.48.0
-	github.com/pulumi/pulumi/sdk/v3 v3.68.0
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.12.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.50.1
+	github.com/pulumi/pulumi/sdk/v3 v3.71.0
 )
 
 require (
@@ -30,6 +30,7 @@ require (
 	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
 	github.com/Azure/go-autorest/autorest/to v0.4.0 // indirect
 	github.com/AzureAD/microsoft-authentication-library-for-go v1.0.0 // indirect
+	github.com/BurntSushi/toml v1.2.1 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver/v3 v3.2.1 // indirect
 	github.com/Masterminds/sprig/v3 v3.2.3 // indirect
@@ -162,10 +163,10 @@ require (
 	github.com/pkg/term v1.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/posener/complete v1.2.3 // indirect
-	github.com/pulumi/pulumi-java/pkg v0.9.3 // indirect
+	github.com/pulumi/pulumi-java/pkg v0.9.4 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.4 // indirect
 	github.com/pulumi/pulumi-yaml v1.1.1 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.68.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.71.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/rogpeppe/go-internal v1.10.0 // indirect
