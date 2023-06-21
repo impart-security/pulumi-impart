@@ -59,7 +59,6 @@ build_sdks:: install_plugins provider build_nodejs build_go # build all the sdks
 
 build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:: install_plugins tfgen # build the node sdk
-	$(WORKING_DIR)/bin/$(TFGEN) nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
 	cd sdk/nodejs/ && \
         yarn install && \
         yarn run tsc && \
@@ -88,7 +87,6 @@ build_dotnet:: install_plugins tfgen # build the dotnet sdk
         dotnet build /p:Version=${DOTNET_VERSION}
 
 build_go:: install_plugins tfgen # build the go sdk
-	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
 
 lint_provider:: provider # lint the provider code
 	cd provider && golangci-lint run -c ../.golangci.yml
