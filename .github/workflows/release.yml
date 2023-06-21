@@ -12,7 +12,7 @@ env:
   PROVIDER: "impart"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  PUBLISH_NPM: true
+  PUBLISH_NPM: false
   NPM_REGISTRY_URL: https://registry.npmjs.org
   # NUGET_PUBLISH_KEY: ${{ YOUR NUGET PUBLISH KEY HERE }}
   # NUGET_FEED_URL: https://api.nuget.org/v3/index.json
