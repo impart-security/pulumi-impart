@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/impart-security/pulumi-impart/sdk/go/impart/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -76,7 +77,7 @@ func NewSpec(ctx *pulumi.Context,
 	if args.SourceFile == nil {
 		return nil, errors.New("invalid value for required argument 'SourceFile'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Spec
 	err := ctx.RegisterResource("impart:index/spec:Spec", name, args, &resource, opts...)
 	if err != nil {

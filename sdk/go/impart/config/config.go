@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/impart-security/pulumi-impart/sdk/go/impart/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // The Impart api endpoint
 func GetEndpoint(ctx *pulumi.Context) string {
@@ -15,7 +18,7 @@ func GetEndpoint(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "IMPART_ENDPOINT"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "IMPART_ENDPOINT"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -28,7 +31,7 @@ func GetToken(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "IMPART_TOKEN"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "IMPART_TOKEN"); d != nil {
 		value = d.(string)
 	}
 	return value

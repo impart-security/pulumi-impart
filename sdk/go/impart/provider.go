@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/impart-security/pulumi-impart/sdk/go/impart/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,16 +32,16 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.Endpoint == nil {
-		if d := getEnvOrDefault(nil, nil, "IMPART_ENDPOINT"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "IMPART_ENDPOINT"); d != nil {
 			args.Endpoint = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.Token == nil {
-		if d := getEnvOrDefault(nil, nil, "IMPART_TOKEN"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "IMPART_TOKEN"); d != nil {
 			args.Token = pulumi.StringPtr(d.(string))
 		}
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:impart", name, args, &resource, opts...)
 	if err != nil {

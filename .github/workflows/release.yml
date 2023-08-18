@@ -12,7 +12,7 @@ env:
   PROVIDER: "impart"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  PUBLISH_NPM: false
+  PUBLISH_NPM: true
   NPM_REGISTRY_URL: https://registry.npmjs.org
   # NUGET_PUBLISH_KEY: ${{ YOUR NUGET PUBLISH KEY HERE }}
   # NUGET_FEED_URL: https://api.nuget.org/v3/index.json
@@ -47,7 +47,7 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-          - 1.20.x
+          - 1.21.x
 
   publish_sdk:
     name: Publish SDKs
@@ -83,15 +83,15 @@ jobs:
           python-version: ${{matrix.pythonversion}}
       - name: Build SDK
         run: make build_${{ matrix.language }}
-      # - name: Check worktree clean
-      #   run: |
-      #     git update-index -q --refresh
-      #     if ! git diff-files --quiet; then
-      #         >&2 echo "error: working tree is not clean, aborting!"
-      #         git status
-      #         git diff
-      #         exit 1
-      #     fi
+      - name: Check worktree clean
+        run: |
+          git update-index -q --refresh
+          if ! git diff-files --quiet; then
+              >&2 echo "error: working tree is not clean, aborting!"
+              git status
+              git diff
+              exit 1
+          fi
       - name: Compress SDK folder
         run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }} .
       - name: Upload artifacts
@@ -123,7 +123,7 @@ jobs:
         dotnetversion:
           - 3.1.301
         goversion:
-          - 1.20.x
+          - 1.21.x
         language:
           - nodejs
           # - python

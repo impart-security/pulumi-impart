@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/impart-security/pulumi-impart/sdk/go/impart/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupSpec(ctx *pulumi.Context, args *LookupSpecArgs, opts ...pulumi.InvokeOption) (*LookupSpecResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSpecResult
 	err := ctx.Invoke("impart:index/getSpec:GetSpec", args, &rv, opts...)
 	if err != nil {

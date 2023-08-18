@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/impart-security/pulumi-impart/sdk/go/impart/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -81,7 +82,7 @@ func NewBinding(ctx *pulumi.Context,
 	if args.SpecId == nil {
 		return nil, errors.New("invalid value for required argument 'SpecId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Binding
 	err := ctx.RegisterResource("impart:index/binding:Binding", name, args, &resource, opts...)
 	if err != nil {

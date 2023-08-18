@@ -60,7 +60,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:           "Apache-2.0",
 		Homepage:          "https://www.impart.security/",
 		GitHubOrg:         "impart-security",
-		LogoURL:           "https://raw.githubusercontent.com/impart-security/pulumi-impart/main/docs/impart-blue.svg",
+		LogoURL:           "https://console.impartsecurity.net/logo-blue-black.svg",
 		Repository:        "https://github.com/impart-security/pulumi-impart",
 		PluginDownloadURL: "github://api.github.com/impart-security",
 		Publisher:         "Impart Security",
