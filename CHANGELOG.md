@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.9] - 2023-12-29
+
+### Changed
+
+- Updated deps
+
+## [0.1.8] - 2023-08-18
+
+### Changed
+
+- Updated deps
+- Updated docs
+
 ## [0.1.7] - 2023-06-20
 
 ### Changed

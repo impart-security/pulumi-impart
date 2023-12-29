@@ -7,7 +7,7 @@ on:
 
 permissions:
   contents: write
-
+  id-token: write # Required for https://docs.npmjs.com/generating-provenance-statements
 env:
   PROVIDER: "impart"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -112,6 +112,7 @@ jobs:
           access: "public"
           token: ${{ env.NPM_TOKEN }}
           package: ${{github.workspace}}/sdk/nodejs/bin/package.json
+          provenance: true
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
         run: |
