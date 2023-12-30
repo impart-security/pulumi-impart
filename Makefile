@@ -63,7 +63,6 @@ build_nodejs:: install_plugins tfgen # build the node sdk
 	cd sdk/nodejs/ && \
         yarn install && \
         yarn run tsc && \
-		cp -R scripts/ bin && \
         cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
 		sed -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json > ./bin/package.tmp.json && \
     mv ./bin/package.tmp.json ./bin/package.json
