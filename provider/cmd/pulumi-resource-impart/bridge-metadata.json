@@ -1,7 +1,8 @@
 {
     "renames": {
         "resources": {
-            "impart:index/binding:Binding": "impart_binding",
+            "impart:index/apiBinding:ApiBinding": "impart_api_binding",
+            "impart:index/logBinding:LogBinding": "impart_log_binding",
             "impart:index/ruleScript:RuleScript": "impart_rule_script",
             "impart:index/spec:Spec": "impart_spec"
         },
@@ -9,10 +10,20 @@
             "impart:index/getSpec:GetSpec": "impart_spec"
         },
         "renamedProperties": {
-            "impart:index/binding:Binding": {
+            "impart:index/apiBinding:ApiBinding": {
                 "basePath": "base_path",
+                "forwardedFors": "forwarded_for",
+                "forwardedHosts": "forwarded_host",
+                "forwardedIds": "forwarded_id",
+                "forwardedProtos": "forwarded_proto",
                 "specId": "spec_id",
-                "upstreamOrigin": "upstream_origin"
+                "upstreamOrigin": "upstream_origin",
+                "useForwarded": "use_forwarded"
+            },
+            "impart:index/logBinding:LogBinding": {
+                "grokPattern": "grok_pattern",
+                "logstreamId": "logstream_id",
+                "specId": "spec_id"
             },
             "impart:index/ruleScript:RuleScript": {
                 "sourceFile": "source_file",

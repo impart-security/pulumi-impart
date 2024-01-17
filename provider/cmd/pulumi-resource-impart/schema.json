@@ -99,24 +99,56 @@
         }
     },
     "resources": {
-        "impart:index/binding:Binding": {
-            "description": "Manage a binding.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new binding\nconst example = new impart.Binding(\"example\", {\n    name: \"binding_example\",\n    port: 443,\n    specId: resource.impart_spec.example.id,\n    hostname: \"example.com\",\n    basePath: \"/\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new binding\nexample = impart.Binding(\"example\",\n    name=\"binding_example\",\n    port=443,\n    spec_id=resource[\"impart_spec\"][\"example\"][\"id\"],\n    hostname=\"example.com\",\n    base_path=\"/\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new binding\n    var example = new Impart.Binding(\"example\", new()\n    {\n        Name = \"binding_example\",\n        Port = 443,\n        SpecId = resource.Impart_spec.Example.Id,\n        Hostname = \"example.com\",\n        BasePath = \"/\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewBinding(ctx, \"example\", \u0026impart.BindingArgs{\n\t\t\tName:     pulumi.String(\"binding_example\"),\n\t\t\tPort:     pulumi.Int(443),\n\t\t\tSpecId:   pulumi.Any(resource.Impart_spec.Example.Id),\n\t\t\tHostname: pulumi.String(\"example.com\"),\n\t\t\tBasePath: pulumi.String(\"/\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Binding;\nimport com.pulumi.impart.BindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Binding(\"example\", BindingArgs.builder()        \n            .name(\"binding_example\")\n            .port(443)\n            .specId(resource.impart_spec().example().id())\n            .hostname(\"example.com\")\n            .basePath(\"/\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new binding\n  example:\n    type: impart:Binding\n    properties:\n      name: binding_example\n      port: 443\n      specId: ${resource.impart_spec.example.id}\n      hostname: example.com\n      basePath: /\n```\n{{% /example %}}\n{{% /examples %}}",
+        "impart:index/apiBinding:ApiBinding": {
+            "description": "Manage an api binding.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new api binding\nconst example = new impart.ApiBinding(\"example\", {\n    name: \"api_binding_example\",\n    port: 443,\n    specId: resource.impart_spec.example.id,\n    hostname: \"example.com\",\n    basePath: \"/\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new api binding\nexample = impart.ApiBinding(\"example\",\n    name=\"api_binding_example\",\n    port=443,\n    spec_id=resource[\"impart_spec\"][\"example\"][\"id\"],\n    hostname=\"example.com\",\n    base_path=\"/\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new api binding\n    var example = new Impart.ApiBinding(\"example\", new()\n    {\n        Name = \"api_binding_example\",\n        Port = 443,\n        SpecId = resource.Impart_spec.Example.Id,\n        Hostname = \"example.com\",\n        BasePath = \"/\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewApiBinding(ctx, \"example\", \u0026impart.ApiBindingArgs{\n\t\t\tName:     pulumi.String(\"api_binding_example\"),\n\t\t\tPort:     pulumi.Int(443),\n\t\t\tSpecId:   pulumi.Any(resource.Impart_spec.Example.Id),\n\t\t\tHostname: pulumi.String(\"example.com\"),\n\t\t\tBasePath: pulumi.String(\"/\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ApiBinding;\nimport com.pulumi.impart.ApiBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ApiBinding(\"example\", ApiBindingArgs.builder()        \n            .name(\"api_binding_example\")\n            .port(443)\n            .specId(resource.impart_spec().example().id())\n            .hostname(\"example.com\")\n            .basePath(\"/\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new api binding\n  example:\n    type: impart:ApiBinding\n    properties:\n      name: api_binding_example\n      port: 443\n      specId: ${resource.impart_spec.example.id}\n      hostname: example.com\n      basePath: /\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "basePath": {
                     "type": "string",
-                    "description": "The base_path for this binding.\n"
+                    "description": "The base_path for this api binding.\n"
+                },
+                "forwardedFors": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The forwarded_for for this api binding.\n"
+                },
+                "forwardedHosts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The forwarded_host for this api binding.\n"
+                },
+                "forwardedIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The forwarded_id for this api binding.\n"
+                },
+                "forwardedProtos": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The forwarded_proto for this api binding.\n"
+                },
+                "hops": {
+                    "type": "integer",
+                    "description": "The hops for this api binding.\n"
                 },
                 "hostname": {
                     "type": "string",
-                    "description": "The hostname for this binding.\n"
+                    "description": "The hostname for this api binding.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name for this binding.\n"
+                    "description": "The name for this api binding.\n"
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port for this binding.\n"
+                    "description": "The port for this api binding.\n"
                 },
                 "specId": {
                     "type": "string",
@@ -124,7 +156,11 @@
                 },
                 "upstreamOrigin": {
                     "type": "string",
-                    "description": "The upstream_origin for this binding.\n"
+                    "description": "The upstream_origin for this api binding.\n"
+                },
+                "useForwarded": {
+                    "type": "boolean",
+                    "description": "The use_forwarded for this api binding.\n"
                 }
             },
             "required": [
@@ -137,19 +173,51 @@
             "inputProperties": {
                 "basePath": {
                     "type": "string",
-                    "description": "The base_path for this binding.\n"
+                    "description": "The base_path for this api binding.\n"
+                },
+                "forwardedFors": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The forwarded_for for this api binding.\n"
+                },
+                "forwardedHosts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The forwarded_host for this api binding.\n"
+                },
+                "forwardedIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The forwarded_id for this api binding.\n"
+                },
+                "forwardedProtos": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The forwarded_proto for this api binding.\n"
+                },
+                "hops": {
+                    "type": "integer",
+                    "description": "The hops for this api binding.\n"
                 },
                 "hostname": {
                     "type": "string",
-                    "description": "The hostname for this binding.\n"
+                    "description": "The hostname for this api binding.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name for this binding.\n"
+                    "description": "The name for this api binding.\n"
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port for this binding.\n"
+                    "description": "The port for this api binding.\n"
                 },
                 "specId": {
                     "type": "string",
@@ -157,7 +225,11 @@
                 },
                 "upstreamOrigin": {
                     "type": "string",
-                    "description": "The upstream_origin for this binding.\n"
+                    "description": "The upstream_origin for this api binding.\n"
+                },
+                "useForwarded": {
+                    "type": "boolean",
+                    "description": "The use_forwarded for this api binding.\n"
                 }
             },
             "requiredInputs": [
@@ -168,23 +240,55 @@
                 "specId"
             ],
             "stateInputs": {
-                "description": "Input properties used for looking up and filtering Binding resources.\n",
+                "description": "Input properties used for looking up and filtering ApiBinding resources.\n",
                 "properties": {
                     "basePath": {
                         "type": "string",
-                        "description": "The base_path for this binding.\n"
+                        "description": "The base_path for this api binding.\n"
+                    },
+                    "forwardedFors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The forwarded_for for this api binding.\n"
+                    },
+                    "forwardedHosts": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The forwarded_host for this api binding.\n"
+                    },
+                    "forwardedIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The forwarded_id for this api binding.\n"
+                    },
+                    "forwardedProtos": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The forwarded_proto for this api binding.\n"
+                    },
+                    "hops": {
+                        "type": "integer",
+                        "description": "The hops for this api binding.\n"
                     },
                     "hostname": {
                         "type": "string",
-                        "description": "The hostname for this binding.\n"
+                        "description": "The hostname for this api binding.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name for this binding.\n"
+                        "description": "The name for this api binding.\n"
                     },
                     "port": {
                         "type": "integer",
-                        "description": "The port for this binding.\n"
+                        "description": "The port for this api binding.\n"
                     },
                     "specId": {
                         "type": "string",
@@ -192,7 +296,82 @@
                     },
                     "upstreamOrigin": {
                         "type": "string",
-                        "description": "The upstream_origin for this binding.\n"
+                        "description": "The upstream_origin for this api binding.\n"
+                    },
+                    "useForwarded": {
+                        "type": "boolean",
+                        "description": "The use_forwarded for this api binding.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "impart:index/logBinding:LogBinding": {
+            "description": "Manage a log binding.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new log binding\nconst example = new impart.LogBinding(\"example\", {\n    grokPattern: `%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n`,\n    logstreamId: \"logstream_id\",\n    name: \"log_binding_example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new log binding\nexample = impart.LogBinding(\"example\",\n    grok_pattern=\"\"\"%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n\"\"\",\n    logstream_id=\"logstream_id\",\n    name=\"log_binding_example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new log binding\n    var example = new Impart.LogBinding(\"example\", new()\n    {\n        GrokPattern = @\"%{HTTPDATE:timestamp} \"\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\"\" (?:%{NUMBER:response_code}|-)\n  \n\",\n        LogstreamId = \"logstream_id\",\n        Name = \"log_binding_example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewLogBinding(ctx, \"example\", \u0026impart.LogBindingArgs{\n\t\t\tGrokPattern: pulumi.String(\"%{HTTPDATE:timestamp} \\\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\\\" (?:%{NUMBER:response_code}|-)\\n  \\n\"),\n\t\t\tLogstreamId: pulumi.String(\"logstream_id\"),\n\t\t\tName:        pulumi.String(\"log_binding_example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.LogBinding;\nimport com.pulumi.impart.LogBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new LogBinding(\"example\", LogBindingArgs.builder()        \n            .grokPattern(\"\"\"\n%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n            \"\"\")\n            .logstreamId(\"logstream_id\")\n            .name(\"log_binding_example\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new log binding\n  example:\n    type: impart:LogBinding\n    properties:\n      grokPattern: \"%{HTTPDATE:timestamp} \\\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\\\" (?:%{NUMBER:response_code}|-)\\n  \\n\"\n      logstreamId: logstream_id\n      name: log_binding_example\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "grokPattern": {
+                    "type": "string",
+                    "description": "The base_path for this log binding.\n"
+                },
+                "logstreamId": {
+                    "type": "string",
+                    "description": "The logstream id for this log binding.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name for this log binding.\n"
+                },
+                "specId": {
+                    "type": "string",
+                    "description": "The specification id.\n"
+                }
+            },
+            "required": [
+                "grokPattern",
+                "name",
+                "specId"
+            ],
+            "inputProperties": {
+                "grokPattern": {
+                    "type": "string",
+                    "description": "The base_path for this log binding.\n"
+                },
+                "logstreamId": {
+                    "type": "string",
+                    "description": "The logstream id for this log binding.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name for this log binding.\n"
+                },
+                "specId": {
+                    "type": "string",
+                    "description": "The specification id.\n"
+                }
+            },
+            "requiredInputs": [
+                "grokPattern",
+                "name",
+                "specId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LogBinding resources.\n",
+                "properties": {
+                    "grokPattern": {
+                        "type": "string",
+                        "description": "The base_path for this log binding.\n"
+                    },
+                    "logstreamId": {
+                        "type": "string",
+                        "description": "The logstream id for this log binding.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name for this log binding.\n"
+                    },
+                    "specId": {
+                        "type": "string",
+                        "description": "The specification id.\n"
                     }
                 },
                 "type": "object"

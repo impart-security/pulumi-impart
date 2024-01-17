@@ -1,5 +1,13 @@
-
 # Changelog
+
+## [0.2.0] - 2024-01-16
+
+### Changed
+
+- Fixed source hash validation
+- Renamed impart_binding to impart_api_binding
+- Added advanced optios to impart_api_binding
+- Added impart_log_binding
 
 ## [0.1.10] - 2023-12-30
 

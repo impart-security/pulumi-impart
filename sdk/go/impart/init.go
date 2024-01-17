@@ -21,8 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "impart:index/binding:Binding":
-		r = &Binding{}
+	case "impart:index/apiBinding:ApiBinding":
+		r = &ApiBinding{}
+	case "impart:index/logBinding:LogBinding":
+		r = &LogBinding{}
 	case "impart:index/ruleScript:RuleScript":
 		r = &RuleScript{}
 	case "impart:index/spec:Spec":
@@ -60,7 +62,12 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"impart",
-		"index/binding",
+		"index/apiBinding",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/logBinding",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -5,15 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { BindingArgs, BindingState } from "./binding";
-export type Binding = import("./binding").Binding;
-export const Binding: typeof import("./binding").Binding = null as any;
-utilities.lazyLoad(exports, ["Binding"], () => require("./binding"));
+export { ApiBindingArgs, ApiBindingState } from "./apiBinding";
+export type ApiBinding = import("./apiBinding").ApiBinding;
+export const ApiBinding: typeof import("./apiBinding").ApiBinding = null as any;
+utilities.lazyLoad(exports, ["ApiBinding"], () => require("./apiBinding"));
 
 export { GetSpecArgs, GetSpecResult, GetSpecOutputArgs } from "./getSpec";
 export const getSpec: typeof import("./getSpec").getSpec = null as any;
 export const getSpecOutput: typeof import("./getSpec").getSpecOutput = null as any;
 utilities.lazyLoad(exports, ["getSpec","getSpecOutput"], () => require("./getSpec"));
+
+export { LogBindingArgs, LogBindingState } from "./logBinding";
+export type LogBinding = import("./logBinding").LogBinding;
+export const LogBinding: typeof import("./logBinding").LogBinding = null as any;
+utilities.lazyLoad(exports, ["LogBinding"], () => require("./logBinding"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
@@ -42,8 +47,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "impart:index/binding:Binding":
-                return new Binding(name, <any>undefined, { urn })
+            case "impart:index/apiBinding:ApiBinding":
+                return new ApiBinding(name, <any>undefined, { urn })
+            case "impart:index/logBinding:LogBinding":
+                return new LogBinding(name, <any>undefined, { urn })
             case "impart:index/ruleScript:RuleScript":
                 return new RuleScript(name, <any>undefined, { urn })
             case "impart:index/spec:Spec":
@@ -53,7 +60,8 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("impart", "index/binding", _module)
+pulumi.runtime.registerResourceModule("impart", "index/apiBinding", _module)
+pulumi.runtime.registerResourceModule("impart", "index/logBinding", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleScript", _module)
 pulumi.runtime.registerResourceModule("impart", "index/spec", _module)
 pulumi.runtime.registerResourcePackage("impart", {

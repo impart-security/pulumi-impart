@@ -79,7 +79,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"impart_spec":        {Tok: makeResource(mainMod, "Spec")},
-			"impart_binding":     {Tok: makeResource(mainMod, "Binding")},
+			"impart_api_binding": {Tok: makeResource(mainMod, "ApiBinding")},
+			"impart_log_binding": {Tok: makeResource(mainMod, "LogBinding")},
 			"impart_rule_script": {Tok: makeResource(mainMod, "RuleScript")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
