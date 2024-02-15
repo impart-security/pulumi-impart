@@ -21,8 +21,8 @@
                 "useForwarded": "use_forwarded"
             },
             "impart:index/logBinding:LogBinding": {
-                "grokPattern": "grok_pattern",
                 "logstreamId": "logstream_id",
+                "patternType": "pattern_type",
                 "specId": "spec_id"
             },
             "impart:index/ruleScript:RuleScript": {

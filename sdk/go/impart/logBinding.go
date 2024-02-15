@@ -29,9 +29,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := impart.NewLogBinding(ctx, "example", &impart.LogBindingArgs{
-//				GrokPattern: pulumi.String("%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n"),
 //				LogstreamId: pulumi.String("logstream_id"),
 //				Name:        pulumi.String("log_binding_example"),
+//				Pattern:     pulumi.String("%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n"),
+//				PatternType: pulumi.String("grok"),
 //			})
 //			if err != nil {
 //				return err
@@ -44,12 +45,14 @@ import (
 type LogBinding struct {
 	pulumi.CustomResourceState
 
-	// The basePath for this log binding.
-	GrokPattern pulumi.StringOutput `pulumi:"grokPattern"`
 	// The logstream id for this log binding.
 	LogstreamId pulumi.StringPtrOutput `pulumi:"logstreamId"`
 	// The name for this log binding.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The grok/json pattern for this log binding.
+	Pattern pulumi.StringOutput `pulumi:"pattern"`
+	// The pattern type for this log binding. Accepted values: grok, json
+	PatternType pulumi.StringOutput `pulumi:"patternType"`
 	// The specification id.
 	SpecId pulumi.StringOutput `pulumi:"specId"`
 }
@@ -61,11 +64,14 @@ func NewLogBinding(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.GrokPattern == nil {
-		return nil, errors.New("invalid value for required argument 'GrokPattern'")
-	}
 	if args.Name == nil {
 		return nil, errors.New("invalid value for required argument 'Name'")
+	}
+	if args.Pattern == nil {
+		return nil, errors.New("invalid value for required argument 'Pattern'")
+	}
+	if args.PatternType == nil {
+		return nil, errors.New("invalid value for required argument 'PatternType'")
 	}
 	if args.SpecId == nil {
 		return nil, errors.New("invalid value for required argument 'SpecId'")
@@ -93,23 +99,27 @@ func GetLogBinding(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogBinding resources.
 type logBindingState struct {
-	// The basePath for this log binding.
-	GrokPattern *string `pulumi:"grokPattern"`
 	// The logstream id for this log binding.
 	LogstreamId *string `pulumi:"logstreamId"`
 	// The name for this log binding.
 	Name *string `pulumi:"name"`
+	// The grok/json pattern for this log binding.
+	Pattern *string `pulumi:"pattern"`
+	// The pattern type for this log binding. Accepted values: grok, json
+	PatternType *string `pulumi:"patternType"`
 	// The specification id.
 	SpecId *string `pulumi:"specId"`
 }
 
 type LogBindingState struct {
-	// The basePath for this log binding.
-	GrokPattern pulumi.StringPtrInput
 	// The logstream id for this log binding.
 	LogstreamId pulumi.StringPtrInput
 	// The name for this log binding.
 	Name pulumi.StringPtrInput
+	// The grok/json pattern for this log binding.
+	Pattern pulumi.StringPtrInput
+	// The pattern type for this log binding. Accepted values: grok, json
+	PatternType pulumi.StringPtrInput
 	// The specification id.
 	SpecId pulumi.StringPtrInput
 }
@@ -119,24 +129,28 @@ func (LogBindingState) ElementType() reflect.Type {
 }
 
 type logBindingArgs struct {
-	// The basePath for this log binding.
-	GrokPattern string `pulumi:"grokPattern"`
 	// The logstream id for this log binding.
 	LogstreamId *string `pulumi:"logstreamId"`
 	// The name for this log binding.
 	Name string `pulumi:"name"`
+	// The grok/json pattern for this log binding.
+	Pattern string `pulumi:"pattern"`
+	// The pattern type for this log binding. Accepted values: grok, json
+	PatternType string `pulumi:"patternType"`
 	// The specification id.
 	SpecId string `pulumi:"specId"`
 }
 
 // The set of arguments for constructing a LogBinding resource.
 type LogBindingArgs struct {
-	// The basePath for this log binding.
-	GrokPattern pulumi.StringInput
 	// The logstream id for this log binding.
 	LogstreamId pulumi.StringPtrInput
 	// The name for this log binding.
 	Name pulumi.StringInput
+	// The grok/json pattern for this log binding.
+	Pattern pulumi.StringInput
+	// The pattern type for this log binding. Accepted values: grok, json
+	PatternType pulumi.StringInput
 	// The specification id.
 	SpecId pulumi.StringInput
 }
@@ -228,11 +242,6 @@ func (o LogBindingOutput) ToLogBindingOutputWithContext(ctx context.Context) Log
 	return o
 }
 
-// The basePath for this log binding.
-func (o LogBindingOutput) GrokPattern() pulumi.StringOutput {
-	return o.ApplyT(func(v *LogBinding) pulumi.StringOutput { return v.GrokPattern }).(pulumi.StringOutput)
-}
-
 // The logstream id for this log binding.
 func (o LogBindingOutput) LogstreamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogBinding) pulumi.StringPtrOutput { return v.LogstreamId }).(pulumi.StringPtrOutput)
@@ -241,6 +250,16 @@ func (o LogBindingOutput) LogstreamId() pulumi.StringPtrOutput {
 // The name for this log binding.
 func (o LogBindingOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogBinding) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The grok/json pattern for this log binding.
+func (o LogBindingOutput) Pattern() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogBinding) pulumi.StringOutput { return v.Pattern }).(pulumi.StringOutput)
+}
+
+// The pattern type for this log binding. Accepted values: grok, json
+func (o LogBindingOutput) PatternType() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogBinding) pulumi.StringOutput { return v.PatternType }).(pulumi.StringOutput)
 }
 
 // The specification id.

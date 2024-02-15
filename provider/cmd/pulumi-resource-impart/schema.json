@@ -307,12 +307,8 @@
             }
         },
         "impart:index/logBinding:LogBinding": {
-            "description": "Manage a log binding.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new log binding\nconst example = new impart.LogBinding(\"example\", {\n    grokPattern: `%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n`,\n    logstreamId: \"logstream_id\",\n    name: \"log_binding_example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new log binding\nexample = impart.LogBinding(\"example\",\n    grok_pattern=\"\"\"%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n\"\"\",\n    logstream_id=\"logstream_id\",\n    name=\"log_binding_example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new log binding\n    var example = new Impart.LogBinding(\"example\", new()\n    {\n        GrokPattern = @\"%{HTTPDATE:timestamp} \"\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\"\" (?:%{NUMBER:response_code}|-)\n  \n\",\n        LogstreamId = \"logstream_id\",\n        Name = \"log_binding_example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewLogBinding(ctx, \"example\", \u0026impart.LogBindingArgs{\n\t\t\tGrokPattern: pulumi.String(\"%{HTTPDATE:timestamp} \\\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\\\" (?:%{NUMBER:response_code}|-)\\n  \\n\"),\n\t\t\tLogstreamId: pulumi.String(\"logstream_id\"),\n\t\t\tName:        pulumi.String(\"log_binding_example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.LogBinding;\nimport com.pulumi.impart.LogBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new LogBinding(\"example\", LogBindingArgs.builder()        \n            .grokPattern(\"\"\"\n%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n            \"\"\")\n            .logstreamId(\"logstream_id\")\n            .name(\"log_binding_example\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new log binding\n  example:\n    type: impart:LogBinding\n    properties:\n      grokPattern: \"%{HTTPDATE:timestamp} \\\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\\\" (?:%{NUMBER:response_code}|-)\\n  \\n\"\n      logstreamId: logstream_id\n      name: log_binding_example\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manage a log binding.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new log binding\nconst example = new impart.LogBinding(\"example\", {\n    logstreamId: \"logstream_id\",\n    name: \"log_binding_example\",\n    pattern: `%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n`,\n    patternType: \"grok\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new log binding\nexample = impart.LogBinding(\"example\",\n    logstream_id=\"logstream_id\",\n    name=\"log_binding_example\",\n    pattern=\"\"\"%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n\"\"\",\n    pattern_type=\"grok\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new log binding\n    var example = new Impart.LogBinding(\"example\", new()\n    {\n        LogstreamId = \"logstream_id\",\n        Name = \"log_binding_example\",\n        Pattern = @\"%{HTTPDATE:timestamp} \"\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\"\" (?:%{NUMBER:response_code}|-)\n  \n\",\n        PatternType = \"grok\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewLogBinding(ctx, \"example\", \u0026impart.LogBindingArgs{\n\t\t\tLogstreamId: pulumi.String(\"logstream_id\"),\n\t\t\tName:        pulumi.String(\"log_binding_example\"),\n\t\t\tPattern:     pulumi.String(\"%{HTTPDATE:timestamp} \\\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\\\" (?:%{NUMBER:response_code}|-)\\n  \\n\"),\n\t\t\tPatternType: pulumi.String(\"grok\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.LogBinding;\nimport com.pulumi.impart.LogBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new LogBinding(\"example\", LogBindingArgs.builder()        \n            .logstreamId(\"logstream_id\")\n            .name(\"log_binding_example\")\n            .pattern(\"\"\"\n%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n            \"\"\")\n            .patternType(\"grok\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new log binding\n  example:\n    type: impart:LogBinding\n    properties:\n      logstreamId: logstream_id\n      name: log_binding_example\n      pattern: \"%{HTTPDATE:timestamp} \\\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\\\" (?:%{NUMBER:response_code}|-)\\n  \\n\"\n      patternType: grok\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
-                "grokPattern": {
-                    "type": "string",
-                    "description": "The base_path for this log binding.\n"
-                },
                 "logstreamId": {
                     "type": "string",
                     "description": "The logstream id for this log binding.\n"
@@ -320,6 +316,14 @@
                 "name": {
                     "type": "string",
                     "description": "The name for this log binding.\n"
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "The grok/json pattern for this log binding.\n"
+                },
+                "patternType": {
+                    "type": "string",
+                    "description": "The pattern type for this log binding. Accepted values: grok, json\n"
                 },
                 "specId": {
                     "type": "string",
@@ -327,15 +331,12 @@
                 }
             },
             "required": [
-                "grokPattern",
                 "name",
+                "pattern",
+                "patternType",
                 "specId"
             ],
             "inputProperties": {
-                "grokPattern": {
-                    "type": "string",
-                    "description": "The base_path for this log binding.\n"
-                },
                 "logstreamId": {
                     "type": "string",
                     "description": "The logstream id for this log binding.\n"
@@ -344,23 +345,28 @@
                     "type": "string",
                     "description": "The name for this log binding.\n"
                 },
+                "pattern": {
+                    "type": "string",
+                    "description": "The grok/json pattern for this log binding.\n"
+                },
+                "patternType": {
+                    "type": "string",
+                    "description": "The pattern type for this log binding. Accepted values: grok, json\n"
+                },
                 "specId": {
                     "type": "string",
                     "description": "The specification id.\n"
                 }
             },
             "requiredInputs": [
-                "grokPattern",
                 "name",
+                "pattern",
+                "patternType",
                 "specId"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering LogBinding resources.\n",
                 "properties": {
-                    "grokPattern": {
-                        "type": "string",
-                        "description": "The base_path for this log binding.\n"
-                    },
                     "logstreamId": {
                         "type": "string",
                         "description": "The logstream id for this log binding.\n"
@@ -368,6 +374,14 @@
                     "name": {
                         "type": "string",
                         "description": "The name for this log binding.\n"
+                    },
+                    "pattern": {
+                        "type": "string",
+                        "description": "The grok/json pattern for this log binding.\n"
+                    },
+                    "patternType": {
+                        "type": "string",
+                        "description": "The pattern type for this log binding. Accepted values: grok, json\n"
                     },
                     "specId": {
                         "type": "string",
@@ -461,7 +475,7 @@
             }
         },
         "impart:index/spec:Spec": {
-            "description": "Manage a specification.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new specification\nconst example = new impart.Spec(\"example\", {\n    name: \"spec_example\",\n    sourceFile: `${path.module}/spec.yaml`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new specification\nexample = impart.Spec(\"example\",\n    name=\"spec_example\",\n    source_file=f\"{path['module']}/spec.yaml\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new specification\n    var example = new Impart.Spec(\"example\", new()\n    {\n        Name = \"spec_example\",\n        SourceFile = $\"{path.Module}/spec.yaml\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewSpec(ctx, \"example\", \u0026impart.SpecArgs{\n\t\t\tName:       pulumi.String(\"spec_example\"),\n\t\t\tSourceFile: pulumi.String(fmt.Sprintf(\"%v/spec.yaml\", path.Module)),\n\t\t\tSourceHash: pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Spec;\nimport com.pulumi.impart.SpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Spec(\"example\", SpecArgs.builder()        \n            .name(\"spec_example\")\n            .sourceFile(String.format(\"%s/spec.yaml\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new specification\n  example:\n    type: impart:Spec\n    properties:\n      name: spec_example\n      sourceFile: ${path.module}/spec.yaml\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#!/bin/bash\n\n```sh\n $ pulumi import impart:index/spec:Spec example \"\u003cid\u003e\"\n```\n\n ",
+            "description": "Manage a specification.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new specification\nconst example = new impart.Spec(\"example\", {\n    name: \"spec_example\",\n    sourceFile: `${path.module}/spec.yaml`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new specification\nexample = impart.Spec(\"example\",\n    name=\"spec_example\",\n    source_file=f\"{path['module']}/spec.yaml\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new specification\n    var example = new Impart.Spec(\"example\", new()\n    {\n        Name = \"spec_example\",\n        SourceFile = $\"{path.Module}/spec.yaml\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewSpec(ctx, \"example\", \u0026impart.SpecArgs{\n\t\t\tName:       pulumi.String(\"spec_example\"),\n\t\t\tSourceFile: pulumi.String(fmt.Sprintf(\"%v/spec.yaml\", path.Module)),\n\t\t\tSourceHash: pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Spec;\nimport com.pulumi.impart.SpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Spec(\"example\", SpecArgs.builder()        \n            .name(\"spec_example\")\n            .sourceFile(String.format(\"%s/spec.yaml\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new specification\n  example:\n    type: impart:Spec\n    properties:\n      name: spec_example\n      sourceFile: ${path.module}/spec.yaml\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#!/bin/bash\n\n ```sh\n $ pulumi import impart:index/spec:Spec example \"\u003cid\u003e\"\n```\n\n ",
             "properties": {
                 "name": {
                     "type": "string",

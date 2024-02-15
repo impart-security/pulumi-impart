@@ -15,11 +15,12 @@ import * as utilities from "./utilities";
  *
  * // Create a new log binding
  * const example = new impart.LogBinding("example", {
- *     grokPattern: `%{HTTPDATE:timestamp} "(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)" (?:%{NUMBER:response_code}|-)
- *   
- * `,
  *     logstreamId: "logstream_id",
  *     name: "log_binding_example",
+ *     pattern: `%{HTTPDATE:timestamp} "(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)" (?:%{NUMBER:response_code}|-)
+ *   
+ * `,
+ *     patternType: "grok",
  * });
  * ```
  */
@@ -52,10 +53,6 @@ export class LogBinding extends pulumi.CustomResource {
     }
 
     /**
-     * The basePath for this log binding.
-     */
-    public readonly grokPattern!: pulumi.Output<string>;
-    /**
      * The logstream id for this log binding.
      */
     public readonly logstreamId!: pulumi.Output<string | undefined>;
@@ -63,6 +60,14 @@ export class LogBinding extends pulumi.CustomResource {
      * The name for this log binding.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The grok/json pattern for this log binding.
+     */
+    public readonly pattern!: pulumi.Output<string>;
+    /**
+     * The pattern type for this log binding. Accepted values: grok, json
+     */
+    public readonly patternType!: pulumi.Output<string>;
     /**
      * The specification id.
      */
@@ -81,24 +86,29 @@ export class LogBinding extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogBindingState | undefined;
-            resourceInputs["grokPattern"] = state ? state.grokPattern : undefined;
             resourceInputs["logstreamId"] = state ? state.logstreamId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pattern"] = state ? state.pattern : undefined;
+            resourceInputs["patternType"] = state ? state.patternType : undefined;
             resourceInputs["specId"] = state ? state.specId : undefined;
         } else {
             const args = argsOrState as LogBindingArgs | undefined;
-            if ((!args || args.grokPattern === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'grokPattern'");
-            }
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
+            }
+            if ((!args || args.pattern === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'pattern'");
+            }
+            if ((!args || args.patternType === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'patternType'");
             }
             if ((!args || args.specId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'specId'");
             }
-            resourceInputs["grokPattern"] = args ? args.grokPattern : undefined;
             resourceInputs["logstreamId"] = args ? args.logstreamId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pattern"] = args ? args.pattern : undefined;
+            resourceInputs["patternType"] = args ? args.patternType : undefined;
             resourceInputs["specId"] = args ? args.specId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -111,10 +121,6 @@ export class LogBinding extends pulumi.CustomResource {
  */
 export interface LogBindingState {
     /**
-     * The basePath for this log binding.
-     */
-    grokPattern?: pulumi.Input<string>;
-    /**
      * The logstream id for this log binding.
      */
     logstreamId?: pulumi.Input<string>;
@@ -122,6 +128,14 @@ export interface LogBindingState {
      * The name for this log binding.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The grok/json pattern for this log binding.
+     */
+    pattern?: pulumi.Input<string>;
+    /**
+     * The pattern type for this log binding. Accepted values: grok, json
+     */
+    patternType?: pulumi.Input<string>;
     /**
      * The specification id.
      */
@@ -133,10 +147,6 @@ export interface LogBindingState {
  */
 export interface LogBindingArgs {
     /**
-     * The basePath for this log binding.
-     */
-    grokPattern: pulumi.Input<string>;
-    /**
      * The logstream id for this log binding.
      */
     logstreamId?: pulumi.Input<string>;
@@ -144,6 +154,14 @@ export interface LogBindingArgs {
      * The name for this log binding.
      */
     name: pulumi.Input<string>;
+    /**
+     * The grok/json pattern for this log binding.
+     */
+    pattern: pulumi.Input<string>;
+    /**
+     * The pattern type for this log binding. Accepted values: grok, json
+     */
+    patternType: pulumi.Input<string>;
     /**
      * The specification id.
      */

@@ -49,9 +49,7 @@ import (
 // #!/bin/bash
 //
 // ```sh
-//
-//	$ pulumi import impart:index/spec:Spec example "<id>"
-//
+// $ pulumi import impart:index/spec:Spec example "<id>"
 // ```
 type Spec struct {
 	pulumi.CustomResourceState

@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * #!/bin/bash
  *
  * ```sh
- *  $ pulumi import impart:index/spec:Spec example "<id>"
+ * $ pulumi import impart:index/spec:Spec example "<id>"
  * ```
  */
 export class Spec extends pulumi.CustomResource {
