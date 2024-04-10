@@ -1,13 +1,16 @@
 package impart
 
 import (
+	"context"
 	_ "embed"
 	"fmt"
 	"path/filepath"
 	"unicode"
 
+	"github.com/google/uuid"
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/impart-security/pulumi-impart/provider/pkg/version"
@@ -78,13 +81,20 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"impart_spec":        {Tok: makeResource(mainMod, "Spec")},
-			"impart_api_binding": {Tok: makeResource(mainMod, "ApiBinding")},
-			"impart_log_binding": {Tok: makeResource(mainMod, "LogBinding")},
-			"impart_rule_script": {Tok: makeResource(mainMod, "RuleScript")},
+			"impart_spec":                  {Tok: makeResource(mainMod, "Spec")},
+			"impart_api_binding":           {Tok: makeResource(mainMod, "ApiBinding")},
+			"impart_log_binding":           {Tok: makeResource(mainMod, "LogBinding")},
+			"impart_rule_script":           {Tok: makeResource(mainMod, "RuleScript")},
+			"impart_notification_template": {Tok: makeResource(mainMod, "NotificationTemplate")},
+			"impart_monitor":               {Tok: makeResource(mainMod, "Monitor")},
+			"impart_rule_script_dependencies": {
+				Tok:       makeResource(mainMod, "RuleScriptDependencies"),
+				ComputeID: computeRuleScriptDependenciesID,
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"impart_spec": {Tok: makeDataSource(mainMod, "GetSpec")},
+			"impart_spec":      {Tok: makeDataSource(mainMod, "GetSpec")},
+			"impart_connector": {Tok: makeDataSource(mainMod, "GetConnector")},
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(bridgeMetadata),
 		Golang: &tfbridge.GolangInfo{
@@ -110,6 +120,11 @@ func Provider() tfbridge.ProviderInfo {
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
 			// Overlay: &tfbridge.OverlayInfo{},
+			TypeScriptVersion: "^5.4.3",
 		},
 	}
+}
+
+func computeRuleScriptDependenciesID(_ context.Context, state resource.PropertyMap) (resource.ID, error) {
+	return resource.ID(uuid.New().String()), nil
 }

@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,6 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a new rule script
 //			_, err := impart.NewRuleScript(ctx, "example", &impart.RuleScriptArgs{
 //				Description: pulumi.String("Rule description"),
 //				Disabled:    pulumi.Bool(false),
@@ -45,6 +47,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type RuleScript struct {
 	pulumi.CustomResourceState
 

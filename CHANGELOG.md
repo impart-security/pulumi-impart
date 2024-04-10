@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.0] - 2024-04-10
+
+### Added
+
+- Monitor resource
+- Notification template resource
+- Connector resource
+- Rule script dependencies resource
+
 ## [0.3.0] - 2024-02-14
 
 ### Changed

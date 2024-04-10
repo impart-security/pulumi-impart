@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as impart from "@impart-security/pulumi-impart";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  *     sourceHash: "<sha256 hash for the source_file content>",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class RuleScript extends pulumi.CustomResource {
     /**

@@ -34,6 +34,7 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
+            "typescriptVersion": "^5.4.3",
             "compatibility": "tfbridge20",
             "disableUnionOutputTypes": true
         },
@@ -63,6 +64,87 @@
                     ]
                 }
             }
+        }
+    },
+    "types": {
+        "impart:index/MonitorCondition:MonitorCondition": {
+            "properties": {
+                "comparator": {
+                    "type": "string",
+                    "description": "Greater than, equal to, or less than (should be one of 'gt', 'lt', or 'eq')\n"
+                },
+                "delay": {
+                    "type": "integer",
+                    "description": "In milliseconds, the offset from now() for the time window.\n"
+                },
+                "details": {
+                    "$ref": "#/types/impart:index/MonitorConditionDetails:MonitorConditionDetails"
+                },
+                "threshold": {
+                    "type": "integer",
+                    "description": "Number of occurrences that need to execute to have this condition be true.\n"
+                },
+                "timePeriod": {
+                    "type": "integer",
+                    "description": "In milliseconds, the time span from now until when we should be counting events (for example, 60000 is all events in the last minute).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "comparator",
+                "delay",
+                "details",
+                "threshold",
+                "timePeriod"
+            ]
+        },
+        "impart:index/MonitorConditionDetails:MonitorConditionDetails": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "Strictly for event type monitors. A slug of the action the monitor is tracking.\n"
+                },
+                "actorType": {
+                    "type": "string",
+                    "description": "Strictly for event type monitors. A slug of the actor type the monitor is tracking.\n"
+                },
+                "subjectType": {
+                    "type": "string",
+                    "description": "Strictly for event type monitors. A slug of the subject type the monitor is tracking.\n"
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Strictly for metric type monitors. The tag the monitor is tracking.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of monitor (should be one of 'event' or 'metric'\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
+        "impart:index/RuleScriptDependenciesDependency:RuleScriptDependenciesDependency": {
+            "properties": {
+                "dependsOnRuleScriptIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IDs of the rule script this rule depends on.\n"
+                },
+                "ruleScriptId": {
+                    "type": "string",
+                    "description": "The ID of the rule script\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dependsOnRuleScriptIds",
+                "ruleScriptId"
+            ]
         }
     },
     "provider": {
@@ -100,7 +182,7 @@
     },
     "resources": {
         "impart:index/apiBinding:ApiBinding": {
-            "description": "Manage an api binding.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new api binding\nconst example = new impart.ApiBinding(\"example\", {\n    name: \"api_binding_example\",\n    port: 443,\n    specId: resource.impart_spec.example.id,\n    hostname: \"example.com\",\n    basePath: \"/\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new api binding\nexample = impart.ApiBinding(\"example\",\n    name=\"api_binding_example\",\n    port=443,\n    spec_id=resource[\"impart_spec\"][\"example\"][\"id\"],\n    hostname=\"example.com\",\n    base_path=\"/\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new api binding\n    var example = new Impart.ApiBinding(\"example\", new()\n    {\n        Name = \"api_binding_example\",\n        Port = 443,\n        SpecId = resource.Impart_spec.Example.Id,\n        Hostname = \"example.com\",\n        BasePath = \"/\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewApiBinding(ctx, \"example\", \u0026impart.ApiBindingArgs{\n\t\t\tName:     pulumi.String(\"api_binding_example\"),\n\t\t\tPort:     pulumi.Int(443),\n\t\t\tSpecId:   pulumi.Any(resource.Impart_spec.Example.Id),\n\t\t\tHostname: pulumi.String(\"example.com\"),\n\t\t\tBasePath: pulumi.String(\"/\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ApiBinding;\nimport com.pulumi.impart.ApiBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ApiBinding(\"example\", ApiBindingArgs.builder()        \n            .name(\"api_binding_example\")\n            .port(443)\n            .specId(resource.impart_spec().example().id())\n            .hostname(\"example.com\")\n            .basePath(\"/\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new api binding\n  example:\n    type: impart:ApiBinding\n    properties:\n      name: api_binding_example\n      port: 443\n      specId: ${resource.impart_spec.example.id}\n      hostname: example.com\n      basePath: /\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manage an api binding.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new api binding\nconst example = new impart.ApiBinding(\"example\", {\n    name: \"api_binding_example\",\n    port: 443,\n    specId: resource.impart_spec.example.id,\n    hostname: \"example.com\",\n    basePath: \"/\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new api binding\nexample = impart.ApiBinding(\"example\",\n    name=\"api_binding_example\",\n    port=443,\n    spec_id=resource[\"impart_spec\"][\"example\"][\"id\"],\n    hostname=\"example.com\",\n    base_path=\"/\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new api binding\n    var example = new Impart.ApiBinding(\"example\", new()\n    {\n        Name = \"api_binding_example\",\n        Port = 443,\n        SpecId = resource.Impart_spec.Example.Id,\n        Hostname = \"example.com\",\n        BasePath = \"/\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new api binding\n\t\t_, err := impart.NewApiBinding(ctx, \"example\", \u0026impart.ApiBindingArgs{\n\t\t\tName:     pulumi.String(\"api_binding_example\"),\n\t\t\tPort:     pulumi.Int(443),\n\t\t\tSpecId:   pulumi.Any(resource.Impart_spec.Example.Id),\n\t\t\tHostname: pulumi.String(\"example.com\"),\n\t\t\tBasePath: pulumi.String(\"/\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ApiBinding;\nimport com.pulumi.impart.ApiBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new api binding\n        var example = new ApiBinding(\"example\", ApiBindingArgs.builder()        \n            .name(\"api_binding_example\")\n            .port(443)\n            .specId(resource.impart_spec().example().id())\n            .hostname(\"example.com\")\n            .basePath(\"/\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new api binding\n  example:\n    type: impart:ApiBinding\n    properties:\n      name: api_binding_example\n      port: 443\n      specId: ${resource.impart_spec.example.id}\n      hostname: example.com\n      basePath: /\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "basePath": {
                     "type": "string",
@@ -307,7 +389,7 @@
             }
         },
         "impart:index/logBinding:LogBinding": {
-            "description": "Manage a log binding.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new log binding\nconst example = new impart.LogBinding(\"example\", {\n    logstreamId: \"logstream_id\",\n    name: \"log_binding_example\",\n    pattern: `%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n`,\n    patternType: \"grok\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new log binding\nexample = impart.LogBinding(\"example\",\n    logstream_id=\"logstream_id\",\n    name=\"log_binding_example\",\n    pattern=\"\"\"%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n\"\"\",\n    pattern_type=\"grok\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new log binding\n    var example = new Impart.LogBinding(\"example\", new()\n    {\n        LogstreamId = \"logstream_id\",\n        Name = \"log_binding_example\",\n        Pattern = @\"%{HTTPDATE:timestamp} \"\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\"\" (?:%{NUMBER:response_code}|-)\n  \n\",\n        PatternType = \"grok\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewLogBinding(ctx, \"example\", \u0026impart.LogBindingArgs{\n\t\t\tLogstreamId: pulumi.String(\"logstream_id\"),\n\t\t\tName:        pulumi.String(\"log_binding_example\"),\n\t\t\tPattern:     pulumi.String(\"%{HTTPDATE:timestamp} \\\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\\\" (?:%{NUMBER:response_code}|-)\\n  \\n\"),\n\t\t\tPatternType: pulumi.String(\"grok\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.LogBinding;\nimport com.pulumi.impart.LogBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new LogBinding(\"example\", LogBindingArgs.builder()        \n            .logstreamId(\"logstream_id\")\n            .name(\"log_binding_example\")\n            .pattern(\"\"\"\n%{HTTPDATE:timestamp} \"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\" (?:%{NUMBER:response_code}|-)\n  \n            \"\"\")\n            .patternType(\"grok\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new log binding\n  example:\n    type: impart:LogBinding\n    properties:\n      logstreamId: logstream_id\n      name: log_binding_example\n      pattern: \"%{HTTPDATE:timestamp} \\\"(?:%{WORD:http_method}|-) (?:%{GREEDYDATA:request}|-) (?:HTTP/%{NUMBER:httpversion}|-( )?)\\\" (?:%{NUMBER:response_code}|-)\\n  \\n\"\n      patternType: grok\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manage a log binding.\n\n",
             "properties": {
                 "logstreamId": {
                     "type": "string",
@@ -391,8 +473,195 @@
                 "type": "object"
             }
         },
+        "impart:index/monitor:Monitor": {
+            "description": "Manage a monitor.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Monitor;\nimport com.pulumi.impart.MonitorArgs;\nimport com.pulumi.impart.inputs.MonitorConditionArgs;\nimport com.pulumi.impart.inputs.MonitorConditionDetailsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new event monitor\n        var testEvent = new Monitor(\"testEvent\", MonitorArgs.builder()        \n            .name(\"terraform_event_monitor\")\n            .description(\"test event monitor\")\n            .notificationTemplateIds(resource.impart_notification_template().test().id())\n            .conditions(MonitorConditionArgs.builder()\n                .threshold(1)\n                .comparator(\"gt\")\n                .time_period(60000)\n                .delay(0)\n                .details(MonitorConditionDetailsArgs.builder()\n                    .type(\"event\")\n                    .action(\"api_access_token_created\")\n                    .subjectType(\"api_access_token_id\")\n                    .actorType(\"user_id\")\n                    .build())\n                .build())\n            .build());\n\n        // Create a new metric monitor\n        var testMetric = new Monitor(\"testMetric\", MonitorArgs.builder()        \n            .name(\"terraform_event_monitor\")\n            .description(\"test event monitor\")\n            .notificationTemplateIds(resource.impart_notification_template().test().id())\n            .conditions(MonitorConditionArgs.builder()\n                .threshold(1)\n                .comparator(\"lt\")\n                .time_period(60000)\n                .delay(0)\n                .details(MonitorConditionDetailsArgs.builder()\n                    .type(\"metric\")\n                    .tag(\"http-request\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new event monitor\n  testEvent:\n    type: impart:Monitor\n    properties:\n      name: terraform_event_monitor\n      description: test event monitor\n      notificationTemplateIds:\n        - ${resource.impart_notification_template.test.id}\n      conditions:\n        - threshold: 1\n          comparator: gt\n          time_period: 60000\n          delay: 0\n          details:\n            type: event\n            action: api_access_token_created\n            subjectType: api_access_token_id\n            actorType: user_id\n  # Create a new metric monitor\n  testMetric:\n    type: impart:Monitor\n    properties:\n      name: terraform_event_monitor\n      description: test event monitor\n      notificationTemplateIds:\n        - ${resource.impart_notification_template.test.id}\n      conditions:\n        - threshold: 1\n          comparator: lt\n          time_period: 60000\n          delay: 0\n          details:\n            type: metric\n            tag: http-request\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/impart:index/MonitorCondition:MonitorCondition"
+                    },
+                    "description": "An array of conditions for which the monitor will trigger.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description for this monitor.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name for this monitor.\n"
+                },
+                "notificationTemplateIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of notification template ids for the templates that will send notifications to their respective connectors.\n"
+                }
+            },
+            "required": [
+                "conditions",
+                "description",
+                "name",
+                "notificationTemplateIds"
+            ],
+            "inputProperties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/impart:index/MonitorCondition:MonitorCondition"
+                    },
+                    "description": "An array of conditions for which the monitor will trigger.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description for this monitor.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name for this monitor.\n"
+                },
+                "notificationTemplateIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of notification template ids for the templates that will send notifications to their respective connectors.\n"
+                }
+            },
+            "requiredInputs": [
+                "conditions",
+                "description",
+                "name",
+                "notificationTemplateIds"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Monitor resources.\n",
+                "properties": {
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/impart:index/MonitorCondition:MonitorCondition"
+                        },
+                        "description": "An array of conditions for which the monitor will trigger.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description for this monitor.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name for this monitor.\n"
+                    },
+                    "notificationTemplateIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "An array of notification template ids for the templates that will send notifications to their respective connectors.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "impart:index/notificationTemplate:NotificationTemplate": {
+            "description": "Manage an notification template.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new notification template\nconst example = new impart.NotificationTemplate(\"example\", {\n    name: \"notification_template_example\",\n    connectorId: resource.impart_connector.example_connector.id,\n    payload: \"This is a test message payload\",\n    subject: \"Test subject\",\n    destinations: [\"test-destination-id\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new notification template\nexample = impart.NotificationTemplate(\"example\",\n    name=\"notification_template_example\",\n    connector_id=resource[\"impart_connector\"][\"example_connector\"][\"id\"],\n    payload=\"This is a test message payload\",\n    subject=\"Test subject\",\n    destinations=[\"test-destination-id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new notification template\n    var example = new Impart.NotificationTemplate(\"example\", new()\n    {\n        Name = \"notification_template_example\",\n        ConnectorId = resource.Impart_connector.Example_connector.Id,\n        Payload = \"This is a test message payload\",\n        Subject = \"Test subject\",\n        Destinations = new[]\n        {\n            \"test-destination-id\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new notification template\n\t\t_, err := impart.NewNotificationTemplate(ctx, \"example\", \u0026impart.NotificationTemplateArgs{\n\t\t\tName:        pulumi.String(\"notification_template_example\"),\n\t\t\tConnectorId: pulumi.Any(resource.Impart_connector.Example_connector.Id),\n\t\t\tPayload:     pulumi.String(\"This is a test message payload\"),\n\t\t\tSubject:     pulumi.String(\"Test subject\"),\n\t\t\tDestinations: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test-destination-id\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.NotificationTemplate;\nimport com.pulumi.impart.NotificationTemplateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new notification template\n        var example = new NotificationTemplate(\"example\", NotificationTemplateArgs.builder()        \n            .name(\"notification_template_example\")\n            .connectorId(resource.impart_connector().example_connector().id())\n            .payload(\"This is a test message payload\")\n            .subject(\"Test subject\")\n            .destinations(\"test-destination-id\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new notification template\n  example:\n    type: impart:NotificationTemplate\n    properties:\n      name: notification_template_example\n      connectorId: ${resource.impart_connector.example_connector.id}\n      payload: This is a test message payload\n      subject: Test subject\n      destinations:\n        - test-destination-id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "connectorId": {
+                    "type": "string",
+                    "description": "The connector id.\n"
+                },
+                "destinations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of destination ids to which the payloads will be sent.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name for this notification template.\n"
+                },
+                "payload": {
+                    "type": "string",
+                    "description": "The payload message that will be sent to the Third Party API.\n"
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "The subject message that will be sent to the Third Party API.\n"
+                }
+            },
+            "required": [
+                "connectorId",
+                "destinations",
+                "name",
+                "payload",
+                "subject"
+            ],
+            "inputProperties": {
+                "connectorId": {
+                    "type": "string",
+                    "description": "The connector id.\n"
+                },
+                "destinations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of destination ids to which the payloads will be sent.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name for this notification template.\n"
+                },
+                "payload": {
+                    "type": "string",
+                    "description": "The payload message that will be sent to the Third Party API.\n"
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "The subject message that will be sent to the Third Party API.\n"
+                }
+            },
+            "requiredInputs": [
+                "connectorId",
+                "destinations",
+                "name",
+                "payload",
+                "subject"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NotificationTemplate resources.\n",
+                "properties": {
+                    "connectorId": {
+                        "type": "string",
+                        "description": "The connector id.\n"
+                    },
+                    "destinations": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "An array of destination ids to which the payloads will be sent.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name for this notification template.\n"
+                    },
+                    "payload": {
+                        "type": "string",
+                        "description": "The payload message that will be sent to the Third Party API.\n"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "description": "The subject message that will be sent to the Third Party API.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "impart:index/ruleScript:RuleScript": {
-            "description": "Manage a rule script.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new rule script\nconst example = new impart.RuleScript(\"example\", {\n    description: \"Rule description\",\n    disabled: false,\n    name: \"example\",\n    sourceFile: `${path.module}/rule.js`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new rule script\nexample = impart.RuleScript(\"example\",\n    description=\"Rule description\",\n    disabled=False,\n    name=\"example\",\n    source_file=f\"{path['module']}/rule.js\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new rule script\n    var example = new Impart.RuleScript(\"example\", new()\n    {\n        Description = \"Rule description\",\n        Disabled = false,\n        Name = \"example\",\n        SourceFile = $\"{path.Module}/rule.js\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewRuleScript(ctx, \"example\", \u0026impart.RuleScriptArgs{\n\t\t\tDescription: pulumi.String(\"Rule description\"),\n\t\t\tDisabled:    pulumi.Bool(false),\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tSourceFile:  pulumi.String(fmt.Sprintf(\"%v/rule.js\", path.Module)),\n\t\t\tSourceHash:  pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.RuleScript;\nimport com.pulumi.impart.RuleScriptArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new RuleScript(\"example\", RuleScriptArgs.builder()        \n            .description(\"Rule description\")\n            .disabled(false)\n            .name(\"example\")\n            .sourceFile(String.format(\"%s/rule.js\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new rule script\n  example:\n    type: impart:RuleScript\n    properties:\n      description: Rule description\n      disabled: false\n      name: example\n      sourceFile: ${path.module}/rule.js\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manage a rule script.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new rule script\nconst example = new impart.RuleScript(\"example\", {\n    description: \"Rule description\",\n    disabled: false,\n    name: \"example\",\n    sourceFile: `${path.module}/rule.js`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new rule script\nexample = impart.RuleScript(\"example\",\n    description=\"Rule description\",\n    disabled=False,\n    name=\"example\",\n    source_file=f\"{path['module']}/rule.js\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new rule script\n    var example = new Impart.RuleScript(\"example\", new()\n    {\n        Description = \"Rule description\",\n        Disabled = false,\n        Name = \"example\",\n        SourceFile = $\"{path.Module}/rule.js\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new rule script\n\t\t_, err := impart.NewRuleScript(ctx, \"example\", \u0026impart.RuleScriptArgs{\n\t\t\tDescription: pulumi.String(\"Rule description\"),\n\t\t\tDisabled:    pulumi.Bool(false),\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tSourceFile:  pulumi.String(fmt.Sprintf(\"%v/rule.js\", path.Module)),\n\t\t\tSourceHash:  pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.RuleScript;\nimport com.pulumi.impart.RuleScriptArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new rule script\n        var example = new RuleScript(\"example\", RuleScriptArgs.builder()        \n            .description(\"Rule description\")\n            .disabled(false)\n            .name(\"example\")\n            .sourceFile(String.format(\"%s/rule.js\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new rule script\n  example:\n    type: impart:RuleScript\n    properties:\n      description: Rule description\n      disabled: false\n      name: example\n      sourceFile: ${path.module}/rule.js\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "description": {
                     "type": "string",
@@ -474,8 +743,48 @@
                 "type": "object"
             }
         },
+        "impart:index/ruleScriptDependencies:RuleScriptDependencies": {
+            "description": "Manage rule script dependencies. There should only ever be one instance of this resource in a workspace at once, because it manages rule script dependencies at an organization level.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.RuleScriptDependencies;\nimport com.pulumi.impart.RuleScriptDependenciesArgs;\nimport com.pulumi.impart.inputs.RuleScriptDependenciesDependencyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new RuleScriptDependencies(\"example\", RuleScriptDependenciesArgs.builder()        \n            .dependencies(RuleScriptDependenciesDependencyArgs.builder()\n%!v(PANIC=Format method: interface conversion: model.Expression is *model.TemplateExpression, not *model.LiteralValueExpression))\n                .build());\n\n        }\n}\n```\n```yaml\nresources:\n  example:\n    type: impart:RuleScriptDependencies\n    properties:\n      dependencies:\n        - rule_script_id: ${resource.impart_rule_script.example_1.id}\n          depends_on_rule_script_ids:\n            - ${resource.impart_rule_script.example_2.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "dependencies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/impart:index/RuleScriptDependenciesDependency:RuleScriptDependenciesDependency"
+                    },
+                    "description": "An array of rule scripts and the other ids of the rules they depend on before executing.\n"
+                }
+            },
+            "required": [
+                "dependencies"
+            ],
+            "inputProperties": {
+                "dependencies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/impart:index/RuleScriptDependenciesDependency:RuleScriptDependenciesDependency"
+                    },
+                    "description": "An array of rule scripts and the other ids of the rules they depend on before executing.\n"
+                }
+            },
+            "requiredInputs": [
+                "dependencies"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RuleScriptDependencies resources.\n",
+                "properties": {
+                    "dependencies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/impart:index/RuleScriptDependenciesDependency:RuleScriptDependenciesDependency"
+                        },
+                        "description": "An array of rule scripts and the other ids of the rules they depend on before executing.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "impart:index/spec:Spec": {
-            "description": "Manage a specification.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new specification\nconst example = new impart.Spec(\"example\", {\n    name: \"spec_example\",\n    sourceFile: `${path.module}/spec.yaml`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new specification\nexample = impart.Spec(\"example\",\n    name=\"spec_example\",\n    source_file=f\"{path['module']}/spec.yaml\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new specification\n    var example = new Impart.Spec(\"example\", new()\n    {\n        Name = \"spec_example\",\n        SourceFile = $\"{path.Module}/spec.yaml\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.NewSpec(ctx, \"example\", \u0026impart.SpecArgs{\n\t\t\tName:       pulumi.String(\"spec_example\"),\n\t\t\tSourceFile: pulumi.String(fmt.Sprintf(\"%v/spec.yaml\", path.Module)),\n\t\t\tSourceHash: pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Spec;\nimport com.pulumi.impart.SpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Spec(\"example\", SpecArgs.builder()        \n            .name(\"spec_example\")\n            .sourceFile(String.format(\"%s/spec.yaml\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new specification\n  example:\n    type: impart:Spec\n    properties:\n      name: spec_example\n      sourceFile: ${path.module}/spec.yaml\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n#!/bin/bash\n\n ```sh\n $ pulumi import impart:index/spec:Spec example \"\u003cid\u003e\"\n```\n\n ",
+            "description": "Manage a specification.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new specification\nconst example = new impart.Spec(\"example\", {\n    name: \"spec_example\",\n    sourceFile: `${path.module}/spec.yaml`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new specification\nexample = impart.Spec(\"example\",\n    name=\"spec_example\",\n    source_file=f\"{path['module']}/spec.yaml\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new specification\n    var example = new Impart.Spec(\"example\", new()\n    {\n        Name = \"spec_example\",\n        SourceFile = $\"{path.Module}/spec.yaml\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new specification\n\t\t_, err := impart.NewSpec(ctx, \"example\", \u0026impart.SpecArgs{\n\t\t\tName:       pulumi.String(\"spec_example\"),\n\t\t\tSourceFile: pulumi.String(fmt.Sprintf(\"%v/spec.yaml\", path.Module)),\n\t\t\tSourceHash: pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Spec;\nimport com.pulumi.impart.SpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new specification\n        var example = new Spec(\"example\", SpecArgs.builder()        \n            .name(\"spec_example\")\n            .sourceFile(String.format(\"%s/spec.yaml\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new specification\n  example:\n    type: impart:Spec\n    properties:\n      name: spec_example\n      sourceFile: ${path.module}/spec.yaml\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n#!/bin/bash\n\n```sh\n$ pulumi import impart:index/spec:Spec example \"\u003cid\u003e\"\n```\n\n",
             "properties": {
                 "name": {
                     "type": "string",
@@ -533,8 +842,61 @@
         }
     },
     "functions": {
+        "impart:index/getConnector:GetConnector": {
+            "description": "Manage a connector.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@pulumi/impart\";\n\nconst exampleConnector = impart.GetConnector({\n    id: \"\u003cid\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\nexample_connector = impart.get_connector(id=\"\u003cid\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleConnector = Impart.GetConnector.Invoke(new()\n    {\n        Id = \"\u003cid\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.GetConnector(ctx, \u0026impart.GetConnectorArgs{\n\t\t\tId: \"\u003cid\u003e\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ImpartFunctions;\nimport com.pulumi.impart.inputs.GetConnectorArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleConnector = ImpartFunctions.GetConnector(GetConnectorArgs.builder()\n            .id(\"\u003cid\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleConnector:\n    fn::invoke:\n      Function: impart:GetConnector\n      Arguments:\n        id: \u003cid\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking GetConnector.\n",
+                "properties": {
+                    "connectorTypeId": {
+                        "type": "string",
+                        "description": "ID of the connector type (eg. ID for our Slack or Jira connector types).\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Identifier for this connector.\n"
+                    },
+                    "isConnected": {
+                        "type": "boolean",
+                        "description": "Whether or not the connector is authenticated via OAuth2.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name for this connector.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by GetConnector.\n",
+                "properties": {
+                    "connectorTypeId": {
+                        "type": "string",
+                        "description": "ID of the connector type (eg. ID for our Slack or Jira connector types).\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Identifier for this connector.\n"
+                    },
+                    "isConnected": {
+                        "type": "boolean",
+                        "description": "Whether or not the connector is authenticated via OAuth2.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name for this connector.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            }
+        },
         "impart:index/getSpec:GetSpec": {
-            "description": "Manage a specification.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@pulumi/impart\";\n\nconst example = impart.GetSpec({\n    id: \"\u003cid\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\nexample = impart.get_spec(id=\"\u003cid\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Impart.GetSpec.Invoke(new()\n    {\n        Id = \"\u003cid\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.GetSpec(ctx, \u0026impart.LookupSpecArgs{\n\t\t\tId: \"\u003cid\u003e\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ImpartFunctions;\nimport com.pulumi.impart.inputs.GetSpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = ImpartFunctions.GetSpec(GetSpecArgs.builder()\n            .id(\"\u003cid\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: impart:GetSpec\n      Arguments:\n        id: \u003cid\u003e\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manage a specification.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@pulumi/impart\";\n\nconst example = impart.GetSpec({\n    id: \"\u003cid\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\nexample = impart.get_spec(id=\"\u003cid\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Impart.GetSpec.Invoke(new()\n    {\n        Id = \"\u003cid\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.GetSpec(ctx, \u0026impart.LookupSpecArgs{\n\t\t\tId: \"\u003cid\u003e\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ImpartFunctions;\nimport com.pulumi.impart.inputs.GetSpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = ImpartFunctions.GetSpec(GetSpecArgs.builder()\n            .id(\"\u003cid\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: impart:GetSpec\n      Arguments:\n        id: \u003cid\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking GetSpec.\n",
                 "properties": {

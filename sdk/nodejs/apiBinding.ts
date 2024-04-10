@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as impart from "@impart-security/pulumi-impart";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  *     basePath: "/",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class ApiBinding extends pulumi.CustomResource {
     /**

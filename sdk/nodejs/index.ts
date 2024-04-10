@@ -10,6 +10,11 @@ export type ApiBinding = import("./apiBinding").ApiBinding;
 export const ApiBinding: typeof import("./apiBinding").ApiBinding = null as any;
 utilities.lazyLoad(exports, ["ApiBinding"], () => require("./apiBinding"));
 
+export { GetConnectorArgs, GetConnectorResult, GetConnectorOutputArgs } from "./getConnector";
+export const getConnector: typeof import("./getConnector").getConnector = null as any;
+export const getConnectorOutput: typeof import("./getConnector").getConnectorOutput = null as any;
+utilities.lazyLoad(exports, ["getConnector","getConnectorOutput"], () => require("./getConnector"));
+
 export { GetSpecArgs, GetSpecResult, GetSpecOutputArgs } from "./getSpec";
 export const getSpec: typeof import("./getSpec").getSpec = null as any;
 export const getSpecOutput: typeof import("./getSpec").getSpecOutput = null as any;
@@ -19,6 +24,16 @@ export { LogBindingArgs, LogBindingState } from "./logBinding";
 export type LogBinding = import("./logBinding").LogBinding;
 export const LogBinding: typeof import("./logBinding").LogBinding = null as any;
 utilities.lazyLoad(exports, ["LogBinding"], () => require("./logBinding"));
+
+export { MonitorArgs, MonitorState } from "./monitor";
+export type Monitor = import("./monitor").Monitor;
+export const Monitor: typeof import("./monitor").Monitor = null as any;
+utilities.lazyLoad(exports, ["Monitor"], () => require("./monitor"));
+
+export { NotificationTemplateArgs, NotificationTemplateState } from "./notificationTemplate";
+export type NotificationTemplate = import("./notificationTemplate").NotificationTemplate;
+export const NotificationTemplate: typeof import("./notificationTemplate").NotificationTemplate = null as any;
+utilities.lazyLoad(exports, ["NotificationTemplate"], () => require("./notificationTemplate"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
@@ -30,6 +45,11 @@ export type RuleScript = import("./ruleScript").RuleScript;
 export const RuleScript: typeof import("./ruleScript").RuleScript = null as any;
 utilities.lazyLoad(exports, ["RuleScript"], () => require("./ruleScript"));
 
+export { RuleScriptDependenciesArgs, RuleScriptDependenciesState } from "./ruleScriptDependencies";
+export type RuleScriptDependencies = import("./ruleScriptDependencies").RuleScriptDependencies;
+export const RuleScriptDependencies: typeof import("./ruleScriptDependencies").RuleScriptDependencies = null as any;
+utilities.lazyLoad(exports, ["RuleScriptDependencies"], () => require("./ruleScriptDependencies"));
+
 export { SpecArgs, SpecState } from "./spec";
 export type Spec = import("./spec").Spec;
 export const Spec: typeof import("./spec").Spec = null as any;
@@ -38,9 +58,11 @@ utilities.lazyLoad(exports, ["Spec"], () => require("./spec"));
 
 // Export sub-modules:
 import * as config from "./config";
+import * as types from "./types";
 
 export {
     config,
+    types,
 };
 
 const _module = {
@@ -51,8 +73,14 @@ const _module = {
                 return new ApiBinding(name, <any>undefined, { urn })
             case "impart:index/logBinding:LogBinding":
                 return new LogBinding(name, <any>undefined, { urn })
+            case "impart:index/monitor:Monitor":
+                return new Monitor(name, <any>undefined, { urn })
+            case "impart:index/notificationTemplate:NotificationTemplate":
+                return new NotificationTemplate(name, <any>undefined, { urn })
             case "impart:index/ruleScript:RuleScript":
                 return new RuleScript(name, <any>undefined, { urn })
+            case "impart:index/ruleScriptDependencies:RuleScriptDependencies":
+                return new RuleScriptDependencies(name, <any>undefined, { urn })
             case "impart:index/spec:Spec":
                 return new Spec(name, <any>undefined, { urn })
             default:
@@ -62,7 +90,10 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("impart", "index/apiBinding", _module)
 pulumi.runtime.registerResourceModule("impart", "index/logBinding", _module)
+pulumi.runtime.registerResourceModule("impart", "index/monitor", _module)
+pulumi.runtime.registerResourceModule("impart", "index/notificationTemplate", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleScript", _module)
+pulumi.runtime.registerResourceModule("impart", "index/ruleScriptDependencies", _module)
 pulumi.runtime.registerResourceModule("impart", "index/spec", _module)
 pulumi.runtime.registerResourcePackage("impart", {
     version: utilities.getVersion(),

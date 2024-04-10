@@ -25,8 +25,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApiBinding{}
 	case "impart:index/logBinding:LogBinding":
 		r = &LogBinding{}
+	case "impart:index/monitor:Monitor":
+		r = &Monitor{}
+	case "impart:index/notificationTemplate:NotificationTemplate":
+		r = &NotificationTemplate{}
 	case "impart:index/ruleScript:RuleScript":
 		r = &RuleScript{}
+	case "impart:index/ruleScriptDependencies:RuleScriptDependencies":
+		r = &RuleScriptDependencies{}
 	case "impart:index/spec:Spec":
 		r = &Spec{}
 	default:
@@ -72,7 +78,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"impart",
+		"index/monitor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/notificationTemplate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
 		"index/ruleScript",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/ruleScriptDependencies",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as impart from "@pulumi/impart";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     id: "<id>",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getSpec(args: GetSpecArgs, opts?: pulumi.InvokeOptions): Promise<GetSpecResult> {
 
@@ -54,6 +56,7 @@ export interface GetSpecResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as impart from "@pulumi/impart";
@@ -62,6 +65,7 @@ export interface GetSpecResult {
  *     id: "<id>",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getSpecOutput(args: GetSpecOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSpecResult> {
     return pulumi.output(args).apply((a: any) => getSpec(a, opts))

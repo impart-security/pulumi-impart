@@ -16,12 +16,19 @@
         "apiBinding.ts",
         "config/index.ts",
         "config/vars.ts",
+        "getConnector.ts",
         "getSpec.ts",
         "index.ts",
         "logBinding.ts",
+        "monitor.ts",
+        "notificationTemplate.ts",
         "provider.ts",
         "ruleScript.ts",
+        "ruleScriptDependencies.ts",
         "spec.ts",
+        "types/index.ts",
+        "types/input.ts",
+        "types/output.ts",
         "utilities.ts"
     ]
 }

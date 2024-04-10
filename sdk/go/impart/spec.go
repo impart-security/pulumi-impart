@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,6 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a new specification
 //			_, err := impart.NewSpec(ctx, "example", &impart.SpecArgs{
 //				Name:       pulumi.String("spec_example"),
 //				SourceFile: pulumi.String(fmt.Sprintf("%v/spec.yaml", path.Module)),
@@ -43,6 +45,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a new api binding
 //			_, err := impart.NewApiBinding(ctx, "example", &impart.ApiBindingArgs{
 //				Name:     pulumi.String("api_binding_example"),
 //				Port:     pulumi.Int(443),
@@ -43,6 +45,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ApiBinding struct {
 	pulumi.CustomResourceState
 
