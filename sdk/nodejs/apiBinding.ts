@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as impart from "@impart-security/pulumi-impart";
@@ -23,7 +22,6 @@ import * as utilities from "./utilities";
  *     basePath: "/",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ApiBinding extends pulumi.CustomResource {
     /**
@@ -57,6 +55,10 @@ export class ApiBinding extends pulumi.CustomResource {
      * The basePath for this api binding.
      */
     public readonly basePath!: pulumi.Output<string>;
+    /**
+     * The disabled for this api binding.
+     */
+    public readonly disabled!: pulumi.Output<boolean | undefined>;
     /**
      * The forwardedFor for this api binding.
      */
@@ -116,6 +118,7 @@ export class ApiBinding extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ApiBindingState | undefined;
             resourceInputs["basePath"] = state ? state.basePath : undefined;
+            resourceInputs["disabled"] = state ? state.disabled : undefined;
             resourceInputs["forwardedFors"] = state ? state.forwardedFors : undefined;
             resourceInputs["forwardedHosts"] = state ? state.forwardedHosts : undefined;
             resourceInputs["forwardedIds"] = state ? state.forwardedIds : undefined;
@@ -145,6 +148,7 @@ export class ApiBinding extends pulumi.CustomResource {
                 throw new Error("Missing required property 'specId'");
             }
             resourceInputs["basePath"] = args ? args.basePath : undefined;
+            resourceInputs["disabled"] = args ? args.disabled : undefined;
             resourceInputs["forwardedFors"] = args ? args.forwardedFors : undefined;
             resourceInputs["forwardedHosts"] = args ? args.forwardedHosts : undefined;
             resourceInputs["forwardedIds"] = args ? args.forwardedIds : undefined;
@@ -170,6 +174,10 @@ export interface ApiBindingState {
      * The basePath for this api binding.
      */
     basePath?: pulumi.Input<string>;
+    /**
+     * The disabled for this api binding.
+     */
+    disabled?: pulumi.Input<boolean>;
     /**
      * The forwardedFor for this api binding.
      */
@@ -224,6 +232,10 @@ export interface ApiBindingArgs {
      * The basePath for this api binding.
      */
     basePath: pulumi.Input<string>;
+    /**
+     * The disabled for this api binding.
+     */
+    disabled?: pulumi.Input<boolean>;
     /**
      * The forwardedFor for this api binding.
      */

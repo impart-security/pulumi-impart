@@ -19,6 +19,7 @@
         "getConnector.ts",
         "getSpec.ts",
         "index.ts",
+        "list.ts",
         "logBinding.ts",
         "monitor.ts",
         "notificationTemplate.ts",

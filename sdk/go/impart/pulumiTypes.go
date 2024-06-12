@@ -13,6 +13,112 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type ListItem struct {
+	// The list item expiration.
+	Expiration *string `pulumi:"expiration"`
+	// The list item value.
+	Value string `pulumi:"value"`
+}
+
+// ListItemInput is an input type that accepts ListItemArgs and ListItemOutput values.
+// You can construct a concrete instance of `ListItemInput` via:
+//
+//	ListItemArgs{...}
+type ListItemInput interface {
+	pulumi.Input
+
+	ToListItemOutput() ListItemOutput
+	ToListItemOutputWithContext(context.Context) ListItemOutput
+}
+
+type ListItemArgs struct {
+	// The list item expiration.
+	Expiration pulumi.StringPtrInput `pulumi:"expiration"`
+	// The list item value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ListItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListItem)(nil)).Elem()
+}
+
+func (i ListItemArgs) ToListItemOutput() ListItemOutput {
+	return i.ToListItemOutputWithContext(context.Background())
+}
+
+func (i ListItemArgs) ToListItemOutputWithContext(ctx context.Context) ListItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListItemOutput)
+}
+
+// ListItemArrayInput is an input type that accepts ListItemArray and ListItemArrayOutput values.
+// You can construct a concrete instance of `ListItemArrayInput` via:
+//
+//	ListItemArray{ ListItemArgs{...} }
+type ListItemArrayInput interface {
+	pulumi.Input
+
+	ToListItemArrayOutput() ListItemArrayOutput
+	ToListItemArrayOutputWithContext(context.Context) ListItemArrayOutput
+}
+
+type ListItemArray []ListItemInput
+
+func (ListItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListItem)(nil)).Elem()
+}
+
+func (i ListItemArray) ToListItemArrayOutput() ListItemArrayOutput {
+	return i.ToListItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListItemArray) ToListItemArrayOutputWithContext(ctx context.Context) ListItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListItemArrayOutput)
+}
+
+type ListItemOutput struct{ *pulumi.OutputState }
+
+func (ListItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListItem)(nil)).Elem()
+}
+
+func (o ListItemOutput) ToListItemOutput() ListItemOutput {
+	return o
+}
+
+func (o ListItemOutput) ToListItemOutputWithContext(ctx context.Context) ListItemOutput {
+	return o
+}
+
+// The list item expiration.
+func (o ListItemOutput) Expiration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListItem) *string { return v.Expiration }).(pulumi.StringPtrOutput)
+}
+
+// The list item value.
+func (o ListItemOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ListItem) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ListItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListItem)(nil)).Elem()
+}
+
+func (o ListItemArrayOutput) ToListItemArrayOutput() ListItemArrayOutput {
+	return o
+}
+
+func (o ListItemArrayOutput) ToListItemArrayOutputWithContext(ctx context.Context) ListItemArrayOutput {
+	return o
+}
+
+func (o ListItemArrayOutput) Index(i pulumi.IntInput) ListItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListItem {
+		return vs[0].([]ListItem)[vs[1].(int)]
+	}).(ListItemOutput)
+}
+
 type MonitorCondition struct {
 	// Greater than, equal to, or less than (should be one of 'gt', 'lt', or 'eq')
 	Comparator string `pulumi:"comparator"`
@@ -338,11 +444,15 @@ func (o RuleScriptDependenciesDependencyArrayOutput) Index(i pulumi.IntInput) Ru
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ListItemInput)(nil)).Elem(), ListItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListItemArrayInput)(nil)).Elem(), ListItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionInput)(nil)).Elem(), MonitorConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionArrayInput)(nil)).Elem(), MonitorConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionDetailsInput)(nil)).Elem(), MonitorConditionDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleScriptDependenciesDependencyInput)(nil)).Elem(), RuleScriptDependenciesDependencyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleScriptDependenciesDependencyArrayInput)(nil)).Elem(), RuleScriptDependenciesDependencyArray{})
+	pulumi.RegisterOutputType(ListItemOutput{})
+	pulumi.RegisterOutputType(ListItemArrayOutput{})
 	pulumi.RegisterOutputType(MonitorConditionOutput{})
 	pulumi.RegisterOutputType(MonitorConditionArrayOutput{})
 	pulumi.RegisterOutputType(MonitorConditionDetailsOutput{})

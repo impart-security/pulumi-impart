@@ -5,6 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ListItem {
+    /**
+     * The list item expiration.
+     */
+    expiration?: pulumi.Input<string>;
+    /**
+     * The list item value.
+     */
+    value: pulumi.Input<string>;
+}
+
 export interface MonitorCondition {
     /**
      * Greater than, equal to, or less than (should be one of 'gt', 'lt', or 'eq')

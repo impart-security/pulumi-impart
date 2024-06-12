@@ -9,21 +9,27 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
  * import * as impart from "@impart-security/pulumi-impart";
  *
  * // Create a new rule script
  * const example = new impart.RuleScript("example", {
- *     description: "Rule description",
- *     disabled: false,
  *     name: "example",
+ *     disabled: false,
+ *     description: "Rule description",
  *     sourceFile: `${path.module}/rule.js`,
  *     sourceHash: "<sha256 hash for the source_file content>",
  * });
+ * // Create a new rule script with content
+ * const exampleContent = new impart.RuleScript("exampleContent", {
+ *     name: "example",
+ *     disabled: false,
+ *     description: "Rule description",
+ *     content: fs.readFileSync(`${path.module}/rule.js`, "utf8"),
+ * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class RuleScript extends pulumi.CustomResource {
     /**
@@ -54,6 +60,10 @@ export class RuleScript extends pulumi.CustomResource {
     }
 
     /**
+     * The rule body content.
+     */
+    public readonly content!: pulumi.Output<string | undefined>;
+    /**
      * The description for this rule script.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -68,7 +78,7 @@ export class RuleScript extends pulumi.CustomResource {
     /**
      * The rule source file.
      */
-    public readonly sourceFile!: pulumi.Output<string>;
+    public readonly sourceFile!: pulumi.Output<string | undefined>;
     /**
      * The rule source hash.
      */
@@ -87,6 +97,7 @@ export class RuleScript extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RuleScriptState | undefined;
+            resourceInputs["content"] = state ? state.content : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disabled"] = state ? state.disabled : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -100,9 +111,7 @@ export class RuleScript extends pulumi.CustomResource {
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            if ((!args || args.sourceFile === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'sourceFile'");
-            }
+            resourceInputs["content"] = args ? args.content : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disabled"] = args ? args.disabled : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -118,6 +127,10 @@ export class RuleScript extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RuleScript resources.
  */
 export interface RuleScriptState {
+    /**
+     * The rule body content.
+     */
+    content?: pulumi.Input<string>;
     /**
      * The description for this rule script.
      */
@@ -145,6 +158,10 @@ export interface RuleScriptState {
  */
 export interface RuleScriptArgs {
     /**
+     * The rule body content.
+     */
+    content?: pulumi.Input<string>;
+    /**
      * The description for this rule script.
      */
     description?: pulumi.Input<string>;
@@ -159,7 +176,7 @@ export interface RuleScriptArgs {
     /**
      * The rule source file.
      */
-    sourceFile: pulumi.Input<string>;
+    sourceFile?: pulumi.Input<string>;
     /**
      * The rule source hash.
      */

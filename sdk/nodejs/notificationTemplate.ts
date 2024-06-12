@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as impart from "@impart-security/pulumi-impart";
@@ -23,7 +22,6 @@ import * as utilities from "./utilities";
  *     destinations: ["test-destination-id"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class NotificationTemplate extends pulumi.CustomResource {
     /**

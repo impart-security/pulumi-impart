@@ -13,6 +13,37 @@ import (
 )
 
 // Manage a log binding.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/impart-security/pulumi-impart/sdk/go/impart"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a new log binding
+//			_, err := impart.NewLogBinding(ctx, "example", &impart.LogBindingArgs{
+//				Name:        pulumi.String("log_binding_example"),
+//				PatternType: pulumi.String("grok"),
+//				Pattern:     pulumi.String("<pattern>\n"),
+//				LogstreamId: pulumi.String("logstream_id"),
+//				SpecId:      pulumi.Any(resource.Impart_spec.Example.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type LogBinding struct {
 	pulumi.CustomResourceState
 

@@ -20,6 +20,11 @@ export const getSpec: typeof import("./getSpec").getSpec = null as any;
 export const getSpecOutput: typeof import("./getSpec").getSpecOutput = null as any;
 utilities.lazyLoad(exports, ["getSpec","getSpecOutput"], () => require("./getSpec"));
 
+export { ListArgs, ListState } from "./list";
+export type List = import("./list").List;
+export const List: typeof import("./list").List = null as any;
+utilities.lazyLoad(exports, ["List"], () => require("./list"));
+
 export { LogBindingArgs, LogBindingState } from "./logBinding";
 export type LogBinding = import("./logBinding").LogBinding;
 export const LogBinding: typeof import("./logBinding").LogBinding = null as any;
@@ -71,6 +76,8 @@ const _module = {
         switch (type) {
             case "impart:index/apiBinding:ApiBinding":
                 return new ApiBinding(name, <any>undefined, { urn })
+            case "impart:index/list:List":
+                return new List(name, <any>undefined, { urn })
             case "impart:index/logBinding:LogBinding":
                 return new LogBinding(name, <any>undefined, { urn })
             case "impart:index/monitor:Monitor":
@@ -89,6 +96,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("impart", "index/apiBinding", _module)
+pulumi.runtime.registerResourceModule("impart", "index/list", _module)
 pulumi.runtime.registerResourceModule("impart", "index/logBinding", _module)
 pulumi.runtime.registerResourceModule("impart", "index/monitor", _module)
 pulumi.runtime.registerResourceModule("impart", "index/notificationTemplate", _module)

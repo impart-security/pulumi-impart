@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as impart from "@pulumi/impart";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     id: "<id>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getConnector(args: GetConnectorArgs, opts?: pulumi.InvokeOptions): Promise<GetConnectorResult> {
 
@@ -79,7 +77,6 @@ export interface GetConnectorResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as impart from "@pulumi/impart";
@@ -88,7 +85,6 @@ export interface GetConnectorResult {
  *     id: "<id>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getConnectorOutput(args: GetConnectorOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetConnectorResult> {
     return pulumi.output(args).apply((a: any) => getConnector(a, opts))

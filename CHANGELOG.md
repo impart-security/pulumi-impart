@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0] - 2024-06-11
+
+### Added
+
+- List resource
+- ApiBinding disabled attribute
+
 ## [0.4.0] - 2024-04-10
 
 ### Added

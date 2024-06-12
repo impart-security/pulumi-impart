@@ -6,6 +6,22 @@ import * as utilities from "./utilities";
 
 /**
  * Manage a log binding.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as impart from "@impart-security/pulumi-impart";
+ *
+ * // Create a new log binding
+ * const example = new impart.LogBinding("example", {
+ *     name: "log_binding_example",
+ *     patternType: "grok",
+ *     pattern: "<pattern>\n",
+ *     logstreamId: "logstream_id",
+ *     specId: resource.impart_spec.example.id,
+ * });
+ * ```
  */
 export class LogBinding extends pulumi.CustomResource {
     /**

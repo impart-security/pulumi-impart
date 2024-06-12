@@ -16,28 +16,46 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
 // import (
 //
 //	"fmt"
+//	"os"
 //
 //	"github.com/impart-security/pulumi-impart/sdk/go/impart"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := os.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
+//
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a new rule script
 //			_, err := impart.NewRuleScript(ctx, "example", &impart.RuleScriptArgs{
-//				Description: pulumi.String("Rule description"),
-//				Disabled:    pulumi.Bool(false),
 //				Name:        pulumi.String("example"),
+//				Disabled:    pulumi.Bool(false),
+//				Description: pulumi.String("Rule description"),
 //				SourceFile:  pulumi.String(fmt.Sprintf("%v/rule.js", path.Module)),
 //				SourceHash:  pulumi.String("<sha256 hash for the source_file content>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create a new rule script with content
+//			_, err = impart.NewRuleScript(ctx, "exampleContent", &impart.RuleScriptArgs{
+//				Name:        pulumi.String("example"),
+//				Disabled:    pulumi.Bool(false),
+//				Description: pulumi.String("Rule description"),
+//				Content:     readFileOrPanic(fmt.Sprintf("%v/rule.js", path.Module)),
 //			})
 //			if err != nil {
 //				return err
@@ -47,10 +65,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type RuleScript struct {
 	pulumi.CustomResourceState
 
+	// The rule body content.
+	Content pulumi.StringPtrOutput `pulumi:"content"`
 	// The description for this rule script.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Set true to disable the rule script.
@@ -58,7 +77,7 @@ type RuleScript struct {
 	// The name for this rule script.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The rule source file.
-	SourceFile pulumi.StringOutput `pulumi:"sourceFile"`
+	SourceFile pulumi.StringPtrOutput `pulumi:"sourceFile"`
 	// The rule source hash.
 	SourceHash pulumi.StringPtrOutput `pulumi:"sourceHash"`
 }
@@ -75,9 +94,6 @@ func NewRuleScript(ctx *pulumi.Context,
 	}
 	if args.Name == nil {
 		return nil, errors.New("invalid value for required argument 'Name'")
-	}
-	if args.SourceFile == nil {
-		return nil, errors.New("invalid value for required argument 'SourceFile'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RuleScript
@@ -102,6 +118,8 @@ func GetRuleScript(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RuleScript resources.
 type ruleScriptState struct {
+	// The rule body content.
+	Content *string `pulumi:"content"`
 	// The description for this rule script.
 	Description *string `pulumi:"description"`
 	// Set true to disable the rule script.
@@ -115,6 +133,8 @@ type ruleScriptState struct {
 }
 
 type RuleScriptState struct {
+	// The rule body content.
+	Content pulumi.StringPtrInput
 	// The description for this rule script.
 	Description pulumi.StringPtrInput
 	// Set true to disable the rule script.
@@ -132,6 +152,8 @@ func (RuleScriptState) ElementType() reflect.Type {
 }
 
 type ruleScriptArgs struct {
+	// The rule body content.
+	Content *string `pulumi:"content"`
 	// The description for this rule script.
 	Description *string `pulumi:"description"`
 	// Set true to disable the rule script.
@@ -139,13 +161,15 @@ type ruleScriptArgs struct {
 	// The name for this rule script.
 	Name string `pulumi:"name"`
 	// The rule source file.
-	SourceFile string `pulumi:"sourceFile"`
+	SourceFile *string `pulumi:"sourceFile"`
 	// The rule source hash.
 	SourceHash *string `pulumi:"sourceHash"`
 }
 
 // The set of arguments for constructing a RuleScript resource.
 type RuleScriptArgs struct {
+	// The rule body content.
+	Content pulumi.StringPtrInput
 	// The description for this rule script.
 	Description pulumi.StringPtrInput
 	// Set true to disable the rule script.
@@ -153,7 +177,7 @@ type RuleScriptArgs struct {
 	// The name for this rule script.
 	Name pulumi.StringInput
 	// The rule source file.
-	SourceFile pulumi.StringInput
+	SourceFile pulumi.StringPtrInput
 	// The rule source hash.
 	SourceHash pulumi.StringPtrInput
 }
@@ -245,6 +269,11 @@ func (o RuleScriptOutput) ToRuleScriptOutputWithContext(ctx context.Context) Rul
 	return o
 }
 
+// The rule body content.
+func (o RuleScriptOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleScript) pulumi.StringPtrOutput { return v.Content }).(pulumi.StringPtrOutput)
+}
+
 // The description for this rule script.
 func (o RuleScriptOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RuleScript) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -261,8 +290,8 @@ func (o RuleScriptOutput) Name() pulumi.StringOutput {
 }
 
 // The rule source file.
-func (o RuleScriptOutput) SourceFile() pulumi.StringOutput {
-	return o.ApplyT(func(v *RuleScript) pulumi.StringOutput { return v.SourceFile }).(pulumi.StringOutput)
+func (o RuleScriptOutput) SourceFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleScript) pulumi.StringPtrOutput { return v.SourceFile }).(pulumi.StringPtrOutput)
 }
 
 // The rule source hash.

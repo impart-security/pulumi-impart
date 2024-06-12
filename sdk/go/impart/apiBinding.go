@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,12 +44,13 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type ApiBinding struct {
 	pulumi.CustomResourceState
 
 	// The basePath for this api binding.
 	BasePath pulumi.StringOutput `pulumi:"basePath"`
+	// The disabled for this api binding.
+	Disabled pulumi.BoolPtrOutput `pulumi:"disabled"`
 	// The forwardedFor for this api binding.
 	ForwardedFors pulumi.StringArrayOutput `pulumi:"forwardedFors"`
 	// The forwardedHost for this api binding.
@@ -122,6 +122,8 @@ func GetApiBinding(ctx *pulumi.Context,
 type apiBindingState struct {
 	// The basePath for this api binding.
 	BasePath *string `pulumi:"basePath"`
+	// The disabled for this api binding.
+	Disabled *bool `pulumi:"disabled"`
 	// The forwardedFor for this api binding.
 	ForwardedFors []string `pulumi:"forwardedFors"`
 	// The forwardedHost for this api binding.
@@ -149,6 +151,8 @@ type apiBindingState struct {
 type ApiBindingState struct {
 	// The basePath for this api binding.
 	BasePath pulumi.StringPtrInput
+	// The disabled for this api binding.
+	Disabled pulumi.BoolPtrInput
 	// The forwardedFor for this api binding.
 	ForwardedFors pulumi.StringArrayInput
 	// The forwardedHost for this api binding.
@@ -180,6 +184,8 @@ func (ApiBindingState) ElementType() reflect.Type {
 type apiBindingArgs struct {
 	// The basePath for this api binding.
 	BasePath string `pulumi:"basePath"`
+	// The disabled for this api binding.
+	Disabled *bool `pulumi:"disabled"`
 	// The forwardedFor for this api binding.
 	ForwardedFors []string `pulumi:"forwardedFors"`
 	// The forwardedHost for this api binding.
@@ -208,6 +214,8 @@ type apiBindingArgs struct {
 type ApiBindingArgs struct {
 	// The basePath for this api binding.
 	BasePath pulumi.StringInput
+	// The disabled for this api binding.
+	Disabled pulumi.BoolPtrInput
 	// The forwardedFor for this api binding.
 	ForwardedFors pulumi.StringArrayInput
 	// The forwardedHost for this api binding.
@@ -322,6 +330,11 @@ func (o ApiBindingOutput) ToApiBindingOutputWithContext(ctx context.Context) Api
 // The basePath for this api binding.
 func (o ApiBindingOutput) BasePath() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiBinding) pulumi.StringOutput { return v.BasePath }).(pulumi.StringOutput)
+}
+
+// The disabled for this api binding.
+func (o ApiBindingOutput) Disabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ApiBinding) pulumi.BoolPtrOutput { return v.Disabled }).(pulumi.BoolPtrOutput)
 }
 
 // The forwardedFor for this api binding.
