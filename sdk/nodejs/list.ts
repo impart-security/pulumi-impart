@@ -8,6 +8,27 @@ import * as utilities from "./utilities";
 
 /**
  * Manage a list.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as impart from "@impart-security/pulumi-impart";
+ *
+ * // Create a new list
+ * const example = new impart.List("example", {
+ *     items: [
+ *         {
+ *             value: "item1",
+ *         },
+ *         {
+ *             value: "item2",
+ *         },
+ *     ],
+ *     kind: "string",
+ *     name: "list_example",
+ * });
+ * ```
  */
 export class List extends pulumi.CustomResource {
     /**
@@ -38,6 +59,10 @@ export class List extends pulumi.CustomResource {
     }
 
     /**
+     * The list functionality. Allowed values are add, add/remove, none.
+     */
+    public readonly functionality!: pulumi.Output<string | undefined>;
+    /**
      * The list items.
      */
     public readonly items!: pulumi.Output<outputs.ListItem[] | undefined>;
@@ -67,6 +92,7 @@ export class List extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ListState | undefined;
+            resourceInputs["functionality"] = state ? state.functionality : undefined;
             resourceInputs["items"] = state ? state.items : undefined;
             resourceInputs["kind"] = state ? state.kind : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -79,6 +105,7 @@ export class List extends pulumi.CustomResource {
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
+            resourceInputs["functionality"] = args ? args.functionality : undefined;
             resourceInputs["items"] = args ? args.items : undefined;
             resourceInputs["kind"] = args ? args.kind : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -93,6 +120,10 @@ export class List extends pulumi.CustomResource {
  * Input properties used for looking up and filtering List resources.
  */
 export interface ListState {
+    /**
+     * The list functionality. Allowed values are add, add/remove, none.
+     */
+    functionality?: pulumi.Input<string>;
     /**
      * The list items.
      */
@@ -115,6 +146,10 @@ export interface ListState {
  * The set of arguments for constructing a List resource.
  */
 export interface ListArgs {
+    /**
+     * The list functionality. Allowed values are add, add/remove, none.
+     */
+    functionality?: pulumi.Input<string>;
     /**
      * The list items.
      */

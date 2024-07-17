@@ -3,8 +3,8 @@ module github.com/impart-security/terraform-provider-impart/shim
 go 1.22
 
 require (
-	github.com/hashicorp/terraform-plugin-framework v1.9.0
-	github.com/impart-security/terraform-provider-impart v0.6.1
+	github.com/hashicorp/terraform-plugin-framework v1.10.0
+	github.com/impart-security/terraform-provider-impart v0.7.0
 )
 
 require (
@@ -17,6 +17,7 @@ require (
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
+	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba // indirect
 	golang.org/x/oauth2 v0.21.0 // indirect
-	golang.org/x/sys v0.21.0 // indirect
+	golang.org/x/sys v0.22.0 // indirect
 )

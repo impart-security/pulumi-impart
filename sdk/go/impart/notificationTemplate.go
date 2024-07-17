@@ -30,13 +30,13 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a new notification template
 //			_, err := impart.NewNotificationTemplate(ctx, "example", &impart.NotificationTemplateArgs{
-//				Name:        pulumi.String("notification_template_example"),
-//				ConnectorId: pulumi.Any(resource.Impart_connector.Example_connector.Id),
-//				Payload:     pulumi.String("This is a test message payload"),
-//				Subject:     pulumi.String("Test subject"),
+//				ConnectorId: pulumi.String("<example_connector.id>"),
 //				Destinations: pulumi.StringArray{
 //					pulumi.String("test-destination-id"),
 //				},
+//				Name:    pulumi.String("notification_template_example"),
+//				Payload: pulumi.String("This is a test message payload"),
+//				Subject: pulumi.String("Test subject"),
 //			})
 //			if err != nil {
 //				return err

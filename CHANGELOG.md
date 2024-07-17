@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.0] - 2024-06-17
+
+### Added
+
+- List functionality attribute
+
 ## [0.5.0] - 2024-06-11
 
 ### Added

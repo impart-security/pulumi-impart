@@ -15,11 +15,11 @@ import * as utilities from "./utilities";
  *
  * // Create a new notification template
  * const example = new impart.NotificationTemplate("example", {
+ *     connectorId: "<example_connector.id>",
+ *     destinations: ["test-destination-id"],
  *     name: "notification_template_example",
- *     connectorId: resource.impart_connector.example_connector.id,
  *     payload: "This is a test message payload",
  *     subject: "Test subject",
- *     destinations: ["test-destination-id"],
  * });
  * ```
  */

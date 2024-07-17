@@ -13,9 +13,47 @@ import (
 )
 
 // Manage a list.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/impart-security/pulumi-impart/sdk/go/impart"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a new list
+//			_, err := impart.NewList(ctx, "example", &impart.ListArgs{
+//				Items: impart.ListItemArray{
+//					&impart.ListItemArgs{
+//						Value: pulumi.String("item1"),
+//					},
+//					&impart.ListItemArgs{
+//						Value: pulumi.String("item2"),
+//					},
+//				},
+//				Kind: pulumi.String("string"),
+//				Name: pulumi.String("list_example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type List struct {
 	pulumi.CustomResourceState
 
+	// The list functionality. Allowed values are add, add/remove, none.
+	Functionality pulumi.StringPtrOutput `pulumi:"functionality"`
 	// The list items.
 	Items ListItemArrayOutput `pulumi:"items"`
 	// The list kind.
@@ -62,6 +100,8 @@ func GetList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering List resources.
 type listState struct {
+	// The list functionality. Allowed values are add, add/remove, none.
+	Functionality *string `pulumi:"functionality"`
 	// The list items.
 	Items []ListItem `pulumi:"items"`
 	// The list kind.
@@ -73,6 +113,8 @@ type listState struct {
 }
 
 type ListState struct {
+	// The list functionality. Allowed values are add, add/remove, none.
+	Functionality pulumi.StringPtrInput
 	// The list items.
 	Items ListItemArrayInput
 	// The list kind.
@@ -88,6 +130,8 @@ func (ListState) ElementType() reflect.Type {
 }
 
 type listArgs struct {
+	// The list functionality. Allowed values are add, add/remove, none.
+	Functionality *string `pulumi:"functionality"`
 	// The list items.
 	Items []ListItem `pulumi:"items"`
 	// The list kind.
@@ -100,6 +144,8 @@ type listArgs struct {
 
 // The set of arguments for constructing a List resource.
 type ListArgs struct {
+	// The list functionality. Allowed values are add, add/remove, none.
+	Functionality pulumi.StringPtrInput
 	// The list items.
 	Items ListItemArrayInput
 	// The list kind.
@@ -195,6 +241,11 @@ func (o ListOutput) ToListOutput() ListOutput {
 
 func (o ListOutput) ToListOutputWithContext(ctx context.Context) ListOutput {
 	return o
+}
+
+// The list functionality. Allowed values are add, add/remove, none.
+func (o ListOutput) Functionality() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *List) pulumi.StringPtrOutput { return v.Functionality }).(pulumi.StringPtrOutput)
 }
 
 // The list items.
