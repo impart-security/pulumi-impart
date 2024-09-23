@@ -443,6 +443,514 @@ func (o RuleScriptDependenciesDependencyArrayOutput) Index(i pulumi.IntInput) Ru
 	}).(RuleScriptDependenciesDependencyOutput)
 }
 
+type RuleTestCaseAssertion struct {
+	// The assertion type of the request.
+	AssertionType string `pulumi:"assertionType"`
+	// The condition of the assertion.
+	// Accepted values per assertion type:
+	// **output**: contains, not*contains.
+	// **tags**: contains, not*contains.
+	// **status_code**: equal, not*equal, greater*than, less*than, one*of.
+	// **block**: N/A
+	Condition *string `pulumi:"condition"`
+	// The expected value of the assertion.
+	// It is a string value, and the format it must satisfy depends on the assertion type:
+	// **output**: A string.
+	// **tags**: A string.
+	// **status_code**: An integer value (e.g., "200") or comma-separated list of integers for oneOf condition (e.g., "200,404,500").
+	// **block**: A boolean value represented as "true" or "false".
+	Expected string `pulumi:"expected"`
+	// The location of the assertion. Allowed values: req, res. Not applicable for assertion type output.
+	Location *string `pulumi:"location"`
+	// The indexes of the messages in the test case the assertion applies to.
+	MessageIndexes []float64 `pulumi:"messageIndexes"`
+}
+
+// RuleTestCaseAssertionInput is an input type that accepts RuleTestCaseAssertionArgs and RuleTestCaseAssertionOutput values.
+// You can construct a concrete instance of `RuleTestCaseAssertionInput` via:
+//
+//	RuleTestCaseAssertionArgs{...}
+type RuleTestCaseAssertionInput interface {
+	pulumi.Input
+
+	ToRuleTestCaseAssertionOutput() RuleTestCaseAssertionOutput
+	ToRuleTestCaseAssertionOutputWithContext(context.Context) RuleTestCaseAssertionOutput
+}
+
+type RuleTestCaseAssertionArgs struct {
+	// The assertion type of the request.
+	AssertionType pulumi.StringInput `pulumi:"assertionType"`
+	// The condition of the assertion.
+	// Accepted values per assertion type:
+	// **output**: contains, not*contains.
+	// **tags**: contains, not*contains.
+	// **status_code**: equal, not*equal, greater*than, less*than, one*of.
+	// **block**: N/A
+	Condition pulumi.StringPtrInput `pulumi:"condition"`
+	// The expected value of the assertion.
+	// It is a string value, and the format it must satisfy depends on the assertion type:
+	// **output**: A string.
+	// **tags**: A string.
+	// **status_code**: An integer value (e.g., "200") or comma-separated list of integers for oneOf condition (e.g., "200,404,500").
+	// **block**: A boolean value represented as "true" or "false".
+	Expected pulumi.StringInput `pulumi:"expected"`
+	// The location of the assertion. Allowed values: req, res. Not applicable for assertion type output.
+	Location pulumi.StringPtrInput `pulumi:"location"`
+	// The indexes of the messages in the test case the assertion applies to.
+	MessageIndexes pulumi.Float64ArrayInput `pulumi:"messageIndexes"`
+}
+
+func (RuleTestCaseAssertionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTestCaseAssertion)(nil)).Elem()
+}
+
+func (i RuleTestCaseAssertionArgs) ToRuleTestCaseAssertionOutput() RuleTestCaseAssertionOutput {
+	return i.ToRuleTestCaseAssertionOutputWithContext(context.Background())
+}
+
+func (i RuleTestCaseAssertionArgs) ToRuleTestCaseAssertionOutputWithContext(ctx context.Context) RuleTestCaseAssertionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleTestCaseAssertionOutput)
+}
+
+// RuleTestCaseAssertionArrayInput is an input type that accepts RuleTestCaseAssertionArray and RuleTestCaseAssertionArrayOutput values.
+// You can construct a concrete instance of `RuleTestCaseAssertionArrayInput` via:
+//
+//	RuleTestCaseAssertionArray{ RuleTestCaseAssertionArgs{...} }
+type RuleTestCaseAssertionArrayInput interface {
+	pulumi.Input
+
+	ToRuleTestCaseAssertionArrayOutput() RuleTestCaseAssertionArrayOutput
+	ToRuleTestCaseAssertionArrayOutputWithContext(context.Context) RuleTestCaseAssertionArrayOutput
+}
+
+type RuleTestCaseAssertionArray []RuleTestCaseAssertionInput
+
+func (RuleTestCaseAssertionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleTestCaseAssertion)(nil)).Elem()
+}
+
+func (i RuleTestCaseAssertionArray) ToRuleTestCaseAssertionArrayOutput() RuleTestCaseAssertionArrayOutput {
+	return i.ToRuleTestCaseAssertionArrayOutputWithContext(context.Background())
+}
+
+func (i RuleTestCaseAssertionArray) ToRuleTestCaseAssertionArrayOutputWithContext(ctx context.Context) RuleTestCaseAssertionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleTestCaseAssertionArrayOutput)
+}
+
+type RuleTestCaseAssertionOutput struct{ *pulumi.OutputState }
+
+func (RuleTestCaseAssertionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTestCaseAssertion)(nil)).Elem()
+}
+
+func (o RuleTestCaseAssertionOutput) ToRuleTestCaseAssertionOutput() RuleTestCaseAssertionOutput {
+	return o
+}
+
+func (o RuleTestCaseAssertionOutput) ToRuleTestCaseAssertionOutputWithContext(ctx context.Context) RuleTestCaseAssertionOutput {
+	return o
+}
+
+// The assertion type of the request.
+func (o RuleTestCaseAssertionOutput) AssertionType() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleTestCaseAssertion) string { return v.AssertionType }).(pulumi.StringOutput)
+}
+
+// The condition of the assertion.
+// Accepted values per assertion type:
+// **output**: contains, not*contains.
+// **tags**: contains, not*contains.
+// **status_code**: equal, not*equal, greater*than, less*than, one*of.
+// **block**: N/A
+func (o RuleTestCaseAssertionOutput) Condition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseAssertion) *string { return v.Condition }).(pulumi.StringPtrOutput)
+}
+
+// The expected value of the assertion.
+// It is a string value, and the format it must satisfy depends on the assertion type:
+// **output**: A string.
+// **tags**: A string.
+// **status_code**: An integer value (e.g., "200") or comma-separated list of integers for oneOf condition (e.g., "200,404,500").
+// **block**: A boolean value represented as "true" or "false".
+func (o RuleTestCaseAssertionOutput) Expected() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleTestCaseAssertion) string { return v.Expected }).(pulumi.StringOutput)
+}
+
+// The location of the assertion. Allowed values: req, res. Not applicable for assertion type output.
+func (o RuleTestCaseAssertionOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseAssertion) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// The indexes of the messages in the test case the assertion applies to.
+func (o RuleTestCaseAssertionOutput) MessageIndexes() pulumi.Float64ArrayOutput {
+	return o.ApplyT(func(v RuleTestCaseAssertion) []float64 { return v.MessageIndexes }).(pulumi.Float64ArrayOutput)
+}
+
+type RuleTestCaseAssertionArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleTestCaseAssertionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleTestCaseAssertion)(nil)).Elem()
+}
+
+func (o RuleTestCaseAssertionArrayOutput) ToRuleTestCaseAssertionArrayOutput() RuleTestCaseAssertionArrayOutput {
+	return o
+}
+
+func (o RuleTestCaseAssertionArrayOutput) ToRuleTestCaseAssertionArrayOutputWithContext(ctx context.Context) RuleTestCaseAssertionArrayOutput {
+	return o
+}
+
+func (o RuleTestCaseAssertionArrayOutput) Index(i pulumi.IntInput) RuleTestCaseAssertionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleTestCaseAssertion {
+		return vs[0].([]RuleTestCaseAssertion)[vs[1].(int)]
+	}).(RuleTestCaseAssertionOutput)
+}
+
+type RuleTestCaseMessage struct {
+	// The number of times to include the message in the test case.
+	Count *float64 `pulumi:"count"`
+	// The delay in milliseconds between message iterations.
+	Delay *float64 `pulumi:"delay"`
+	// The delay in milliseconds after a set of message iterations.
+	PostDelay *float64 `pulumi:"postDelay"`
+	// A payload sent to the inspector to inspect an HTTP request.
+	Req RuleTestCaseMessageReq `pulumi:"req"`
+	// A payload sent to the inspector to inspect an HTTP response.
+	Res RuleTestCaseMessageRes `pulumi:"res"`
+}
+
+// RuleTestCaseMessageInput is an input type that accepts RuleTestCaseMessageArgs and RuleTestCaseMessageOutput values.
+// You can construct a concrete instance of `RuleTestCaseMessageInput` via:
+//
+//	RuleTestCaseMessageArgs{...}
+type RuleTestCaseMessageInput interface {
+	pulumi.Input
+
+	ToRuleTestCaseMessageOutput() RuleTestCaseMessageOutput
+	ToRuleTestCaseMessageOutputWithContext(context.Context) RuleTestCaseMessageOutput
+}
+
+type RuleTestCaseMessageArgs struct {
+	// The number of times to include the message in the test case.
+	Count pulumi.Float64PtrInput `pulumi:"count"`
+	// The delay in milliseconds between message iterations.
+	Delay pulumi.Float64PtrInput `pulumi:"delay"`
+	// The delay in milliseconds after a set of message iterations.
+	PostDelay pulumi.Float64PtrInput `pulumi:"postDelay"`
+	// A payload sent to the inspector to inspect an HTTP request.
+	Req RuleTestCaseMessageReqInput `pulumi:"req"`
+	// A payload sent to the inspector to inspect an HTTP response.
+	Res RuleTestCaseMessageResInput `pulumi:"res"`
+}
+
+func (RuleTestCaseMessageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTestCaseMessage)(nil)).Elem()
+}
+
+func (i RuleTestCaseMessageArgs) ToRuleTestCaseMessageOutput() RuleTestCaseMessageOutput {
+	return i.ToRuleTestCaseMessageOutputWithContext(context.Background())
+}
+
+func (i RuleTestCaseMessageArgs) ToRuleTestCaseMessageOutputWithContext(ctx context.Context) RuleTestCaseMessageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleTestCaseMessageOutput)
+}
+
+// RuleTestCaseMessageArrayInput is an input type that accepts RuleTestCaseMessageArray and RuleTestCaseMessageArrayOutput values.
+// You can construct a concrete instance of `RuleTestCaseMessageArrayInput` via:
+//
+//	RuleTestCaseMessageArray{ RuleTestCaseMessageArgs{...} }
+type RuleTestCaseMessageArrayInput interface {
+	pulumi.Input
+
+	ToRuleTestCaseMessageArrayOutput() RuleTestCaseMessageArrayOutput
+	ToRuleTestCaseMessageArrayOutputWithContext(context.Context) RuleTestCaseMessageArrayOutput
+}
+
+type RuleTestCaseMessageArray []RuleTestCaseMessageInput
+
+func (RuleTestCaseMessageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleTestCaseMessage)(nil)).Elem()
+}
+
+func (i RuleTestCaseMessageArray) ToRuleTestCaseMessageArrayOutput() RuleTestCaseMessageArrayOutput {
+	return i.ToRuleTestCaseMessageArrayOutputWithContext(context.Background())
+}
+
+func (i RuleTestCaseMessageArray) ToRuleTestCaseMessageArrayOutputWithContext(ctx context.Context) RuleTestCaseMessageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleTestCaseMessageArrayOutput)
+}
+
+type RuleTestCaseMessageOutput struct{ *pulumi.OutputState }
+
+func (RuleTestCaseMessageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTestCaseMessage)(nil)).Elem()
+}
+
+func (o RuleTestCaseMessageOutput) ToRuleTestCaseMessageOutput() RuleTestCaseMessageOutput {
+	return o
+}
+
+func (o RuleTestCaseMessageOutput) ToRuleTestCaseMessageOutputWithContext(ctx context.Context) RuleTestCaseMessageOutput {
+	return o
+}
+
+// The number of times to include the message in the test case.
+func (o RuleTestCaseMessageOutput) Count() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) *float64 { return v.Count }).(pulumi.Float64PtrOutput)
+}
+
+// The delay in milliseconds between message iterations.
+func (o RuleTestCaseMessageOutput) Delay() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) *float64 { return v.Delay }).(pulumi.Float64PtrOutput)
+}
+
+// The delay in milliseconds after a set of message iterations.
+func (o RuleTestCaseMessageOutput) PostDelay() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) *float64 { return v.PostDelay }).(pulumi.Float64PtrOutput)
+}
+
+// A payload sent to the inspector to inspect an HTTP request.
+func (o RuleTestCaseMessageOutput) Req() RuleTestCaseMessageReqOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) RuleTestCaseMessageReq { return v.Req }).(RuleTestCaseMessageReqOutput)
+}
+
+// A payload sent to the inspector to inspect an HTTP response.
+func (o RuleTestCaseMessageOutput) Res() RuleTestCaseMessageResOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) RuleTestCaseMessageRes { return v.Res }).(RuleTestCaseMessageResOutput)
+}
+
+type RuleTestCaseMessageArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleTestCaseMessageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleTestCaseMessage)(nil)).Elem()
+}
+
+func (o RuleTestCaseMessageArrayOutput) ToRuleTestCaseMessageArrayOutput() RuleTestCaseMessageArrayOutput {
+	return o
+}
+
+func (o RuleTestCaseMessageArrayOutput) ToRuleTestCaseMessageArrayOutputWithContext(ctx context.Context) RuleTestCaseMessageArrayOutput {
+	return o
+}
+
+func (o RuleTestCaseMessageArrayOutput) Index(i pulumi.IntInput) RuleTestCaseMessageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleTestCaseMessage {
+		return vs[0].([]RuleTestCaseMessage)[vs[1].(int)]
+	}).(RuleTestCaseMessageOutput)
+}
+
+type RuleTestCaseMessageReq struct {
+	// The base64 encoded HTTP request body.
+	Body *string `pulumi:"body"`
+	// The HTTP request cookie keys.
+	CookieKeys []string `pulumi:"cookieKeys"`
+	// The HTTP request cookie values.
+	CookieValues []string `pulumi:"cookieValues"`
+	// The HTTP request header keys.
+	HeaderKeys []string `pulumi:"headerKeys"`
+	// The HTTP request header values.
+	HeaderValues []string `pulumi:"headerValues"`
+	// The method of the request.
+	Method string `pulumi:"method"`
+	// The remote address of the request.
+	RemoteAddr *string `pulumi:"remoteAddr"`
+	// Indicates whether the request body was truncated.
+	TruncatedBody *bool `pulumi:"truncatedBody"`
+	// The URL of the request.
+	Url string `pulumi:"url"`
+}
+
+// RuleTestCaseMessageReqInput is an input type that accepts RuleTestCaseMessageReqArgs and RuleTestCaseMessageReqOutput values.
+// You can construct a concrete instance of `RuleTestCaseMessageReqInput` via:
+//
+//	RuleTestCaseMessageReqArgs{...}
+type RuleTestCaseMessageReqInput interface {
+	pulumi.Input
+
+	ToRuleTestCaseMessageReqOutput() RuleTestCaseMessageReqOutput
+	ToRuleTestCaseMessageReqOutputWithContext(context.Context) RuleTestCaseMessageReqOutput
+}
+
+type RuleTestCaseMessageReqArgs struct {
+	// The base64 encoded HTTP request body.
+	Body pulumi.StringPtrInput `pulumi:"body"`
+	// The HTTP request cookie keys.
+	CookieKeys pulumi.StringArrayInput `pulumi:"cookieKeys"`
+	// The HTTP request cookie values.
+	CookieValues pulumi.StringArrayInput `pulumi:"cookieValues"`
+	// The HTTP request header keys.
+	HeaderKeys pulumi.StringArrayInput `pulumi:"headerKeys"`
+	// The HTTP request header values.
+	HeaderValues pulumi.StringArrayInput `pulumi:"headerValues"`
+	// The method of the request.
+	Method pulumi.StringInput `pulumi:"method"`
+	// The remote address of the request.
+	RemoteAddr pulumi.StringPtrInput `pulumi:"remoteAddr"`
+	// Indicates whether the request body was truncated.
+	TruncatedBody pulumi.BoolPtrInput `pulumi:"truncatedBody"`
+	// The URL of the request.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (RuleTestCaseMessageReqArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTestCaseMessageReq)(nil)).Elem()
+}
+
+func (i RuleTestCaseMessageReqArgs) ToRuleTestCaseMessageReqOutput() RuleTestCaseMessageReqOutput {
+	return i.ToRuleTestCaseMessageReqOutputWithContext(context.Background())
+}
+
+func (i RuleTestCaseMessageReqArgs) ToRuleTestCaseMessageReqOutputWithContext(ctx context.Context) RuleTestCaseMessageReqOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleTestCaseMessageReqOutput)
+}
+
+type RuleTestCaseMessageReqOutput struct{ *pulumi.OutputState }
+
+func (RuleTestCaseMessageReqOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTestCaseMessageReq)(nil)).Elem()
+}
+
+func (o RuleTestCaseMessageReqOutput) ToRuleTestCaseMessageReqOutput() RuleTestCaseMessageReqOutput {
+	return o
+}
+
+func (o RuleTestCaseMessageReqOutput) ToRuleTestCaseMessageReqOutputWithContext(ctx context.Context) RuleTestCaseMessageReqOutput {
+	return o
+}
+
+// The base64 encoded HTTP request body.
+func (o RuleTestCaseMessageReqOutput) Body() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) *string { return v.Body }).(pulumi.StringPtrOutput)
+}
+
+// The HTTP request cookie keys.
+func (o RuleTestCaseMessageReqOutput) CookieKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) []string { return v.CookieKeys }).(pulumi.StringArrayOutput)
+}
+
+// The HTTP request cookie values.
+func (o RuleTestCaseMessageReqOutput) CookieValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) []string { return v.CookieValues }).(pulumi.StringArrayOutput)
+}
+
+// The HTTP request header keys.
+func (o RuleTestCaseMessageReqOutput) HeaderKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) []string { return v.HeaderKeys }).(pulumi.StringArrayOutput)
+}
+
+// The HTTP request header values.
+func (o RuleTestCaseMessageReqOutput) HeaderValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) []string { return v.HeaderValues }).(pulumi.StringArrayOutput)
+}
+
+// The method of the request.
+func (o RuleTestCaseMessageReqOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// The remote address of the request.
+func (o RuleTestCaseMessageReqOutput) RemoteAddr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) *string { return v.RemoteAddr }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether the request body was truncated.
+func (o RuleTestCaseMessageReqOutput) TruncatedBody() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) *bool { return v.TruncatedBody }).(pulumi.BoolPtrOutput)
+}
+
+// The URL of the request.
+func (o RuleTestCaseMessageReqOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageReq) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type RuleTestCaseMessageRes struct {
+	// The base64 encoded HTTP response body.
+	Body *string `pulumi:"body"`
+	// The HTTP response header keys.
+	HeaderKeys []string `pulumi:"headerKeys"`
+	// The HTTP response header values.
+	HeaderValues []string `pulumi:"headerValues"`
+	// The HTTP response status code.
+	StatusCode float64 `pulumi:"statusCode"`
+	// Indicates whether the response body was truncated.
+	TruncatedBody *bool `pulumi:"truncatedBody"`
+}
+
+// RuleTestCaseMessageResInput is an input type that accepts RuleTestCaseMessageResArgs and RuleTestCaseMessageResOutput values.
+// You can construct a concrete instance of `RuleTestCaseMessageResInput` via:
+//
+//	RuleTestCaseMessageResArgs{...}
+type RuleTestCaseMessageResInput interface {
+	pulumi.Input
+
+	ToRuleTestCaseMessageResOutput() RuleTestCaseMessageResOutput
+	ToRuleTestCaseMessageResOutputWithContext(context.Context) RuleTestCaseMessageResOutput
+}
+
+type RuleTestCaseMessageResArgs struct {
+	// The base64 encoded HTTP response body.
+	Body pulumi.StringPtrInput `pulumi:"body"`
+	// The HTTP response header keys.
+	HeaderKeys pulumi.StringArrayInput `pulumi:"headerKeys"`
+	// The HTTP response header values.
+	HeaderValues pulumi.StringArrayInput `pulumi:"headerValues"`
+	// The HTTP response status code.
+	StatusCode pulumi.Float64Input `pulumi:"statusCode"`
+	// Indicates whether the response body was truncated.
+	TruncatedBody pulumi.BoolPtrInput `pulumi:"truncatedBody"`
+}
+
+func (RuleTestCaseMessageResArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTestCaseMessageRes)(nil)).Elem()
+}
+
+func (i RuleTestCaseMessageResArgs) ToRuleTestCaseMessageResOutput() RuleTestCaseMessageResOutput {
+	return i.ToRuleTestCaseMessageResOutputWithContext(context.Background())
+}
+
+func (i RuleTestCaseMessageResArgs) ToRuleTestCaseMessageResOutputWithContext(ctx context.Context) RuleTestCaseMessageResOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleTestCaseMessageResOutput)
+}
+
+type RuleTestCaseMessageResOutput struct{ *pulumi.OutputState }
+
+func (RuleTestCaseMessageResOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTestCaseMessageRes)(nil)).Elem()
+}
+
+func (o RuleTestCaseMessageResOutput) ToRuleTestCaseMessageResOutput() RuleTestCaseMessageResOutput {
+	return o
+}
+
+func (o RuleTestCaseMessageResOutput) ToRuleTestCaseMessageResOutputWithContext(ctx context.Context) RuleTestCaseMessageResOutput {
+	return o
+}
+
+// The base64 encoded HTTP response body.
+func (o RuleTestCaseMessageResOutput) Body() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageRes) *string { return v.Body }).(pulumi.StringPtrOutput)
+}
+
+// The HTTP response header keys.
+func (o RuleTestCaseMessageResOutput) HeaderKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageRes) []string { return v.HeaderKeys }).(pulumi.StringArrayOutput)
+}
+
+// The HTTP response header values.
+func (o RuleTestCaseMessageResOutput) HeaderValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageRes) []string { return v.HeaderValues }).(pulumi.StringArrayOutput)
+}
+
+// The HTTP response status code.
+func (o RuleTestCaseMessageResOutput) StatusCode() pulumi.Float64Output {
+	return o.ApplyT(func(v RuleTestCaseMessageRes) float64 { return v.StatusCode }).(pulumi.Float64Output)
+}
+
+// Indicates whether the response body was truncated.
+func (o RuleTestCaseMessageResOutput) TruncatedBody() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageRes) *bool { return v.TruncatedBody }).(pulumi.BoolPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ListItemInput)(nil)).Elem(), ListItemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListItemArrayInput)(nil)).Elem(), ListItemArray{})
@@ -451,6 +959,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionDetailsInput)(nil)).Elem(), MonitorConditionDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleScriptDependenciesDependencyInput)(nil)).Elem(), RuleScriptDependenciesDependencyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleScriptDependenciesDependencyArrayInput)(nil)).Elem(), RuleScriptDependenciesDependencyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleTestCaseAssertionInput)(nil)).Elem(), RuleTestCaseAssertionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleTestCaseAssertionArrayInput)(nil)).Elem(), RuleTestCaseAssertionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleTestCaseMessageInput)(nil)).Elem(), RuleTestCaseMessageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleTestCaseMessageArrayInput)(nil)).Elem(), RuleTestCaseMessageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleTestCaseMessageReqInput)(nil)).Elem(), RuleTestCaseMessageReqArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleTestCaseMessageResInput)(nil)).Elem(), RuleTestCaseMessageResArgs{})
 	pulumi.RegisterOutputType(ListItemOutput{})
 	pulumi.RegisterOutputType(ListItemArrayOutput{})
 	pulumi.RegisterOutputType(MonitorConditionOutput{})
@@ -458,4 +972,10 @@ func init() {
 	pulumi.RegisterOutputType(MonitorConditionDetailsOutput{})
 	pulumi.RegisterOutputType(RuleScriptDependenciesDependencyOutput{})
 	pulumi.RegisterOutputType(RuleScriptDependenciesDependencyArrayOutput{})
+	pulumi.RegisterOutputType(RuleTestCaseAssertionOutput{})
+	pulumi.RegisterOutputType(RuleTestCaseAssertionArrayOutput{})
+	pulumi.RegisterOutputType(RuleTestCaseMessageOutput{})
+	pulumi.RegisterOutputType(RuleTestCaseMessageArrayOutput{})
+	pulumi.RegisterOutputType(RuleTestCaseMessageReqOutput{})
+	pulumi.RegisterOutputType(RuleTestCaseMessageResOutput{})
 }

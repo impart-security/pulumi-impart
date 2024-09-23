@@ -59,7 +59,7 @@ export class List extends pulumi.CustomResource {
     }
 
     /**
-     * The list functionality. Allowed values are add, add/remove, none.
+     * The list functionality. Allowed values are add, add/remove.
      */
     public readonly functionality!: pulumi.Output<string | undefined>;
     /**
@@ -121,7 +121,7 @@ export class List extends pulumi.CustomResource {
  */
 export interface ListState {
     /**
-     * The list functionality. Allowed values are add, add/remove, none.
+     * The list functionality. Allowed values are add, add/remove.
      */
     functionality?: pulumi.Input<string>;
     /**
@@ -147,7 +147,7 @@ export interface ListState {
  */
 export interface ListArgs {
     /**
-     * The list functionality. Allowed values are add, add/remove, none.
+     * The list functionality. Allowed values are add, add/remove.
      */
     functionality?: pulumi.Input<string>;
     /**

@@ -41,21 +41,23 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a new rule script
 //			_, err := impart.NewRuleScript(ctx, "example", &impart.RuleScriptArgs{
-//				Name:        pulumi.String("example"),
-//				Disabled:    pulumi.Bool(false),
-//				Description: pulumi.String("Rule description"),
-//				SourceFile:  pulumi.String(fmt.Sprintf("%v/rule.js", path.Module)),
-//				SourceHash:  pulumi.String("<sha256 hash for the source_file content>"),
+//				Name:           pulumi.String("example"),
+//				Disabled:       pulumi.Bool(false),
+//				Description:    pulumi.String("Rule description"),
+//				SourceFile:     pulumi.String(fmt.Sprintf("%v/rule.js", path.Module)),
+//				SourceHash:     pulumi.String("<sha256 hash for the source_file content>"),
+//				BlockingEffect: pulumi.String("block"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Create a new rule script with content
 //			_, err = impart.NewRuleScript(ctx, "exampleContent", &impart.RuleScriptArgs{
-//				Name:        pulumi.String("example"),
-//				Disabled:    pulumi.Bool(false),
-//				Description: pulumi.String("Rule description"),
-//				Content:     readFileOrPanic(fmt.Sprintf("%v/rule.js", path.Module)),
+//				Name:           pulumi.String("example"),
+//				Disabled:       pulumi.Bool(false),
+//				Description:    pulumi.String("Rule description"),
+//				Content:        readFileOrPanic(fmt.Sprintf("%v/rule.js", path.Module)),
+//				BlockingEffect: pulumi.String("block"),
 //			})
 //			if err != nil {
 //				return err
@@ -68,6 +70,8 @@ import (
 type RuleScript struct {
 	pulumi.CustomResourceState
 
+	// The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+	BlockingEffect pulumi.StringPtrOutput `pulumi:"blockingEffect"`
 	// The rule body content.
 	Content pulumi.StringPtrOutput `pulumi:"content"`
 	// The description for this rule script.
@@ -118,6 +122,8 @@ func GetRuleScript(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RuleScript resources.
 type ruleScriptState struct {
+	// The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+	BlockingEffect *string `pulumi:"blockingEffect"`
 	// The rule body content.
 	Content *string `pulumi:"content"`
 	// The description for this rule script.
@@ -133,6 +139,8 @@ type ruleScriptState struct {
 }
 
 type RuleScriptState struct {
+	// The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+	BlockingEffect pulumi.StringPtrInput
 	// The rule body content.
 	Content pulumi.StringPtrInput
 	// The description for this rule script.
@@ -152,6 +160,8 @@ func (RuleScriptState) ElementType() reflect.Type {
 }
 
 type ruleScriptArgs struct {
+	// The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+	BlockingEffect *string `pulumi:"blockingEffect"`
 	// The rule body content.
 	Content *string `pulumi:"content"`
 	// The description for this rule script.
@@ -168,6 +178,8 @@ type ruleScriptArgs struct {
 
 // The set of arguments for constructing a RuleScript resource.
 type RuleScriptArgs struct {
+	// The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+	BlockingEffect pulumi.StringPtrInput
 	// The rule body content.
 	Content pulumi.StringPtrInput
 	// The description for this rule script.
@@ -267,6 +279,11 @@ func (o RuleScriptOutput) ToRuleScriptOutput() RuleScriptOutput {
 
 func (o RuleScriptOutput) ToRuleScriptOutputWithContext(ctx context.Context) RuleScriptOutput {
 	return o
+}
+
+// The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+func (o RuleScriptOutput) BlockingEffect() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RuleScript) pulumi.StringPtrOutput { return v.BlockingEffect }).(pulumi.StringPtrOutput)
 }
 
 // The rule body content.

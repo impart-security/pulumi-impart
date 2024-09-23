@@ -52,7 +52,7 @@ import (
 type List struct {
 	pulumi.CustomResourceState
 
-	// The list functionality. Allowed values are add, add/remove, none.
+	// The list functionality. Allowed values are add, add/remove.
 	Functionality pulumi.StringPtrOutput `pulumi:"functionality"`
 	// The list items.
 	Items ListItemArrayOutput `pulumi:"items"`
@@ -100,7 +100,7 @@ func GetList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering List resources.
 type listState struct {
-	// The list functionality. Allowed values are add, add/remove, none.
+	// The list functionality. Allowed values are add, add/remove.
 	Functionality *string `pulumi:"functionality"`
 	// The list items.
 	Items []ListItem `pulumi:"items"`
@@ -113,7 +113,7 @@ type listState struct {
 }
 
 type ListState struct {
-	// The list functionality. Allowed values are add, add/remove, none.
+	// The list functionality. Allowed values are add, add/remove.
 	Functionality pulumi.StringPtrInput
 	// The list items.
 	Items ListItemArrayInput
@@ -130,7 +130,7 @@ func (ListState) ElementType() reflect.Type {
 }
 
 type listArgs struct {
-	// The list functionality. Allowed values are add, add/remove, none.
+	// The list functionality. Allowed values are add, add/remove.
 	Functionality *string `pulumi:"functionality"`
 	// The list items.
 	Items []ListItem `pulumi:"items"`
@@ -144,7 +144,7 @@ type listArgs struct {
 
 // The set of arguments for constructing a List resource.
 type ListArgs struct {
-	// The list functionality. Allowed values are add, add/remove, none.
+	// The list functionality. Allowed values are add, add/remove.
 	Functionality pulumi.StringPtrInput
 	// The list items.
 	Items ListItemArrayInput
@@ -243,7 +243,7 @@ func (o ListOutput) ToListOutputWithContext(ctx context.Context) ListOutput {
 	return o
 }
 
-// The list functionality. Allowed values are add, add/remove, none.
+// The list functionality. Allowed values are add, add/remove.
 func (o ListOutput) Functionality() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *List) pulumi.StringPtrOutput { return v.Functionality }).(pulumi.StringPtrOutput)
 }

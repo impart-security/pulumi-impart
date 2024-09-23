@@ -70,3 +70,121 @@ export interface RuleScriptDependenciesDependency {
     ruleScriptId: string;
 }
 
+export interface RuleTestCaseAssertion {
+    /**
+     * The assertion type of the request.
+     */
+    assertionType: string;
+    /**
+     * The condition of the assertion.
+     * Accepted values per assertion type:
+     * **output**: contains, not*contains.
+     * **tags**: contains, not*contains.
+     * **status_code**: equal, not*equal, greater*than, less*than, one*of.
+     * **block**: N/A
+     */
+    condition?: string;
+    /**
+     * The expected value of the assertion.
+     * It is a string value, and the format it must satisfy depends on the assertion type:
+     * **output**: A string.
+     * **tags**: A string.
+     * **status_code**: An integer value (e.g., "200") or comma-separated list of integers for oneOf condition (e.g., "200,404,500").
+     * **block**: A boolean value represented as "true" or "false".
+     */
+    expected: string;
+    /**
+     * The location of the assertion. Allowed values: req, res. Not applicable for assertion type output.
+     */
+    location?: string;
+    /**
+     * The indexes of the messages in the test case the assertion applies to.
+     */
+    messageIndexes: number[];
+}
+
+export interface RuleTestCaseMessage {
+    /**
+     * The number of times to include the message in the test case.
+     */
+    count: number;
+    /**
+     * The delay in milliseconds between message iterations.
+     */
+    delay: number;
+    /**
+     * The delay in milliseconds after a set of message iterations.
+     */
+    postDelay: number;
+    /**
+     * A payload sent to the inspector to inspect an HTTP request.
+     */
+    req: outputs.RuleTestCaseMessageReq;
+    /**
+     * A payload sent to the inspector to inspect an HTTP response.
+     */
+    res: outputs.RuleTestCaseMessageRes;
+}
+
+export interface RuleTestCaseMessageReq {
+    /**
+     * The base64 encoded HTTP request body.
+     */
+    body?: string;
+    /**
+     * The HTTP request cookie keys.
+     */
+    cookieKeys?: string[];
+    /**
+     * The HTTP request cookie values.
+     */
+    cookieValues?: string[];
+    /**
+     * The HTTP request header keys.
+     */
+    headerKeys?: string[];
+    /**
+     * The HTTP request header values.
+     */
+    headerValues?: string[];
+    /**
+     * The method of the request.
+     */
+    method: string;
+    /**
+     * The remote address of the request.
+     */
+    remoteAddr?: string;
+    /**
+     * Indicates whether the request body was truncated.
+     */
+    truncatedBody?: boolean;
+    /**
+     * The URL of the request.
+     */
+    url: string;
+}
+
+export interface RuleTestCaseMessageRes {
+    /**
+     * The base64 encoded HTTP response body.
+     */
+    body?: string;
+    /**
+     * The HTTP response header keys.
+     */
+    headerKeys?: string[];
+    /**
+     * The HTTP response header values.
+     */
+    headerValues?: string[];
+    /**
+     * The HTTP response status code.
+     */
+    statusCode: number;
+    /**
+     * Indicates whether the response body was truncated.
+     */
+    truncatedBody?: boolean;
+}
+

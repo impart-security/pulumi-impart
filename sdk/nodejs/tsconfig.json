@@ -26,6 +26,7 @@
         "provider.ts",
         "ruleScript.ts",
         "ruleScriptDependencies.ts",
+        "ruleTestCase.ts",
         "spec.ts",
         "types/index.ts",
         "types/input.ts",

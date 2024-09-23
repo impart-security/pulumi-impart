@@ -69,3 +69,121 @@ export interface RuleScriptDependenciesDependency {
      */
     ruleScriptId: pulumi.Input<string>;
 }
+
+export interface RuleTestCaseAssertion {
+    /**
+     * The assertion type of the request.
+     */
+    assertionType: pulumi.Input<string>;
+    /**
+     * The condition of the assertion.
+     * Accepted values per assertion type:
+     * **output**: contains, not*contains.
+     * **tags**: contains, not*contains.
+     * **status_code**: equal, not*equal, greater*than, less*than, one*of.
+     * **block**: N/A
+     */
+    condition?: pulumi.Input<string>;
+    /**
+     * The expected value of the assertion.
+     * It is a string value, and the format it must satisfy depends on the assertion type:
+     * **output**: A string.
+     * **tags**: A string.
+     * **status_code**: An integer value (e.g., "200") or comma-separated list of integers for oneOf condition (e.g., "200,404,500").
+     * **block**: A boolean value represented as "true" or "false".
+     */
+    expected: pulumi.Input<string>;
+    /**
+     * The location of the assertion. Allowed values: req, res. Not applicable for assertion type output.
+     */
+    location?: pulumi.Input<string>;
+    /**
+     * The indexes of the messages in the test case the assertion applies to.
+     */
+    messageIndexes: pulumi.Input<pulumi.Input<number>[]>;
+}
+
+export interface RuleTestCaseMessage {
+    /**
+     * The number of times to include the message in the test case.
+     */
+    count?: pulumi.Input<number>;
+    /**
+     * The delay in milliseconds between message iterations.
+     */
+    delay?: pulumi.Input<number>;
+    /**
+     * The delay in milliseconds after a set of message iterations.
+     */
+    postDelay?: pulumi.Input<number>;
+    /**
+     * A payload sent to the inspector to inspect an HTTP request.
+     */
+    req: pulumi.Input<inputs.RuleTestCaseMessageReq>;
+    /**
+     * A payload sent to the inspector to inspect an HTTP response.
+     */
+    res: pulumi.Input<inputs.RuleTestCaseMessageRes>;
+}
+
+export interface RuleTestCaseMessageReq {
+    /**
+     * The base64 encoded HTTP request body.
+     */
+    body?: pulumi.Input<string>;
+    /**
+     * The HTTP request cookie keys.
+     */
+    cookieKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The HTTP request cookie values.
+     */
+    cookieValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The HTTP request header keys.
+     */
+    headerKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The HTTP request header values.
+     */
+    headerValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The method of the request.
+     */
+    method: pulumi.Input<string>;
+    /**
+     * The remote address of the request.
+     */
+    remoteAddr?: pulumi.Input<string>;
+    /**
+     * Indicates whether the request body was truncated.
+     */
+    truncatedBody?: pulumi.Input<boolean>;
+    /**
+     * The URL of the request.
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface RuleTestCaseMessageRes {
+    /**
+     * The base64 encoded HTTP response body.
+     */
+    body?: pulumi.Input<string>;
+    /**
+     * The HTTP response header keys.
+     */
+    headerKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The HTTP response header values.
+     */
+    headerValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The HTTP response status code.
+     */
+    statusCode: pulumi.Input<number>;
+    /**
+     * Indicates whether the response body was truncated.
+     */
+    truncatedBody?: pulumi.Input<boolean>;
+}

@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RuleScript{}
 	case "impart:index/ruleScriptDependencies:RuleScriptDependencies":
 		r = &RuleScriptDependencies{}
+	case "impart:index/ruleTestCase:RuleTestCase":
+		r = &RuleTestCase{}
 	case "impart:index/spec:Spec":
 		r = &Spec{}
 	default:
@@ -101,6 +103,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"impart",
 		"index/ruleScriptDependencies",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/ruleTestCase",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

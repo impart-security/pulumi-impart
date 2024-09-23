@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.0] - 2024-09-23
+
+### Added
+
+- Added RuleTestCase resource
+
 ## [0.6.0] - 2024-06-17
 
 ### Added

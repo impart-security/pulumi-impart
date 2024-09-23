@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
  *     description: "Rule description",
  *     sourceFile: `${path.module}/rule.js`,
  *     sourceHash: "<sha256 hash for the source_file content>",
+ *     blockingEffect: "block",
  * });
  * // Create a new rule script with content
  * const exampleContent = new impart.RuleScript("exampleContent", {
@@ -28,6 +29,7 @@ import * as utilities from "./utilities";
  *     disabled: false,
  *     description: "Rule description",
  *     content: fs.readFileSync(`${path.module}/rule.js`, "utf8"),
+ *     blockingEffect: "block",
  * });
  * ```
  */
@@ -59,6 +61,10 @@ export class RuleScript extends pulumi.CustomResource {
         return obj['__pulumiType'] === RuleScript.__pulumiType;
     }
 
+    /**
+     * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+     */
+    public readonly blockingEffect!: pulumi.Output<string | undefined>;
     /**
      * The rule body content.
      */
@@ -97,6 +103,7 @@ export class RuleScript extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RuleScriptState | undefined;
+            resourceInputs["blockingEffect"] = state ? state.blockingEffect : undefined;
             resourceInputs["content"] = state ? state.content : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disabled"] = state ? state.disabled : undefined;
@@ -111,6 +118,7 @@ export class RuleScript extends pulumi.CustomResource {
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
+            resourceInputs["blockingEffect"] = args ? args.blockingEffect : undefined;
             resourceInputs["content"] = args ? args.content : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disabled"] = args ? args.disabled : undefined;
@@ -127,6 +135,10 @@ export class RuleScript extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RuleScript resources.
  */
 export interface RuleScriptState {
+    /**
+     * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+     */
+    blockingEffect?: pulumi.Input<string>;
     /**
      * The rule body content.
      */
@@ -157,6 +169,10 @@ export interface RuleScriptState {
  * The set of arguments for constructing a RuleScript resource.
  */
 export interface RuleScriptArgs {
+    /**
+     * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
+     */
+    blockingEffect?: pulumi.Input<string>;
     /**
      * The rule body content.
      */

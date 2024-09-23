@@ -55,6 +55,11 @@ export type RuleScriptDependencies = import("./ruleScriptDependencies").RuleScri
 export const RuleScriptDependencies: typeof import("./ruleScriptDependencies").RuleScriptDependencies = null as any;
 utilities.lazyLoad(exports, ["RuleScriptDependencies"], () => require("./ruleScriptDependencies"));
 
+export { RuleTestCaseArgs, RuleTestCaseState } from "./ruleTestCase";
+export type RuleTestCase = import("./ruleTestCase").RuleTestCase;
+export const RuleTestCase: typeof import("./ruleTestCase").RuleTestCase = null as any;
+utilities.lazyLoad(exports, ["RuleTestCase"], () => require("./ruleTestCase"));
+
 export { SpecArgs, SpecState } from "./spec";
 export type Spec = import("./spec").Spec;
 export const Spec: typeof import("./spec").Spec = null as any;
@@ -88,6 +93,8 @@ const _module = {
                 return new RuleScript(name, <any>undefined, { urn })
             case "impart:index/ruleScriptDependencies:RuleScriptDependencies":
                 return new RuleScriptDependencies(name, <any>undefined, { urn })
+            case "impart:index/ruleTestCase:RuleTestCase":
+                return new RuleTestCase(name, <any>undefined, { urn })
             case "impart:index/spec:Spec":
                 return new Spec(name, <any>undefined, { urn })
             default:
@@ -102,6 +109,7 @@ pulumi.runtime.registerResourceModule("impart", "index/monitor", _module)
 pulumi.runtime.registerResourceModule("impart", "index/notificationTemplate", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleScript", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleScriptDependencies", _module)
+pulumi.runtime.registerResourceModule("impart", "index/ruleTestCase", _module)
 pulumi.runtime.registerResourceModule("impart", "index/spec", _module)
 pulumi.runtime.registerResourcePackage("impart", {
     version: utilities.getVersion(),
