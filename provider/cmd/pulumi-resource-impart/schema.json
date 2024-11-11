@@ -172,6 +172,10 @@
                     "type": "string",
                     "description": "The condition of the assertion.\nAccepted values per assertion type:\n**output**: contains, not*contains.\n**tags**: contains, not*contains.\n**status_code**: equal, not*equal, greater*than, less*than, one*of.\n**block**: N/A\n"
                 },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the assertion.\n"
+                },
                 "expected": {
                     "type": "string",
                     "description": "The expected value of the assertion.\nIt is a string value, and the format it must satisfy depends on the assertion type:\n**output**: A string.\n**tags**: A string.\n**status_code**: An integer value (e.g., \"200\") or comma-separated list of integers for one_of condition (e.g., \"200,404,500\").\n**block**: A boolean value represented as \"true\" or \"false\".\n"
@@ -204,6 +208,10 @@
                 "delay": {
                     "type": "number",
                     "description": "The delay in milliseconds between message iterations.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the test case message.\n"
                 },
                 "postDelay": {
                     "type": "number",
@@ -580,9 +588,80 @@
                 "type": "object"
             }
         },
-        "impart:index/list:List": {
-            "description": "Manage a list.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new list\nconst example = new impart.List(\"example\", {\n    items: [\n        {\n            value: \"item1\",\n        },\n        {\n            value: \"item2\",\n        },\n    ],\n    kind: \"string\",\n    name: \"list_example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new list\nexample = impart.List(\"example\",\n    items=[\n        impart.ListItemArgs(\n            value=\"item1\",\n        ),\n        impart.ListItemArgs(\n            value=\"item2\",\n        ),\n    ],\n    kind=\"string\",\n    name=\"list_example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new list\n    var example = new Impart.List(\"example\", new()\n    {\n        Items = new[]\n        {\n            new Impart.Inputs.ListItemArgs\n            {\n                Value = \"item1\",\n            },\n            new Impart.Inputs.ListItemArgs\n            {\n                Value = \"item2\",\n            },\n        },\n        Kind = \"string\",\n        Name = \"list_example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new list\n\t\t_, err := impart.NewList(ctx, \"example\", \u0026impart.ListArgs{\n\t\t\tItems: impart.ListItemArray{\n\t\t\t\t\u0026impart.ListItemArgs{\n\t\t\t\t\tValue: pulumi.String(\"item1\"),\n\t\t\t\t},\n\t\t\t\t\u0026impart.ListItemArgs{\n\t\t\t\t\tValue: pulumi.String(\"item2\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tKind: pulumi.String(\"string\"),\n\t\t\tName: pulumi.String(\"list_example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.List;\nimport com.pulumi.impart.ListArgs;\nimport com.pulumi.impart.inputs.ListItemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new list\n        var example = new List(\"example\", ListArgs.builder()\n            .items(            \n                ListItemArgs.builder()\n                    .value(\"item1\")\n                    .build(),\n                ListItemArgs.builder()\n                    .value(\"item2\")\n                    .build())\n            .kind(\"string\")\n            .name(\"list_example\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new list\n  example:\n    type: impart:List\n    properties:\n      items:\n        - value: item1\n        - value: item2\n      kind: string\n      name: list_example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+        "impart:index/label:Label": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new label\nconst example = new impart.Label(\"example\", {\n    color: \"red\",\n    description: \"example label\",\n    displayName: \"Example\",\n    slug: \"example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new label\nexample = impart.Label(\"example\",\n    color=\"red\",\n    description=\"example label\",\n    display_name=\"Example\",\n    slug=\"example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new label\n    var example = new Impart.Label(\"example\", new()\n    {\n        Color = \"red\",\n        Description = \"example label\",\n        DisplayName = \"Example\",\n        Slug = \"example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new label\n\t\t_, err := impart.NewLabel(ctx, \"example\", \u0026impart.LabelArgs{\n\t\t\tColor:       pulumi.String(\"red\"),\n\t\t\tDescription: pulumi.String(\"example label\"),\n\t\t\tDisplayName: pulumi.String(\"Example\"),\n\t\t\tSlug:        pulumi.String(\"example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Label;\nimport com.pulumi.impart.LabelArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new label\n        var example = new Label(\"example\", LabelArgs.builder()\n            .color(\"red\")\n            .description(\"example label\")\n            .displayName(\"Example\")\n            .slug(\"example\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new label\n  example:\n    type: impart:Label\n    properties:\n      color: red\n      description: example label\n      displayName: Example\n      slug: example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "color": {
+                    "type": "string",
+                    "description": "The color of the label.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the label.\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The display name of the label.\n"
+                },
+                "slug": {
+                    "type": "string",
+                    "description": "Slug of the label.\n"
+                }
+            },
+            "required": [
+                "slug"
+            ],
+            "inputProperties": {
+                "color": {
+                    "type": "string",
+                    "description": "The color of the label.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the label.\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The display name of the label.\n"
+                },
+                "slug": {
+                    "type": "string",
+                    "description": "Slug of the label.\n"
+                }
+            },
+            "requiredInputs": [
+                "slug"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Label resources.\n",
+                "properties": {
+                    "color": {
+                        "type": "string",
+                        "description": "The color of the label.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the label.\n"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "description": "The display name of the label.\n"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "description": "Slug of the label.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "impart:index/list:List": {
+            "description": "Manage a list.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new list\nconst example = new impart.List(\"example\", {\n    description: \"list description\",\n    items: [\n        {\n            value: \"item1\",\n        },\n        {\n            value: \"item2\",\n        },\n    ],\n    kind: \"string\",\n    name: \"list_example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new list\nexample = impart.List(\"example\",\n    description=\"list description\",\n    items=[\n        {\n            \"value\": \"item1\",\n        },\n        {\n            \"value\": \"item2\",\n        },\n    ],\n    kind=\"string\",\n    name=\"list_example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new list\n    var example = new Impart.List(\"example\", new()\n    {\n        Description = \"list description\",\n        Items = new[]\n        {\n            new Impart.Inputs.ListItemArgs\n            {\n                Value = \"item1\",\n            },\n            new Impart.Inputs.ListItemArgs\n            {\n                Value = \"item2\",\n            },\n        },\n        Kind = \"string\",\n        Name = \"list_example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new list\n\t\t_, err := impart.NewList(ctx, \"example\", \u0026impart.ListArgs{\n\t\t\tDescription: pulumi.String(\"list description\"),\n\t\t\tItems: impart.ListItemArray{\n\t\t\t\t\u0026impart.ListItemArgs{\n\t\t\t\t\tValue: pulumi.String(\"item1\"),\n\t\t\t\t},\n\t\t\t\t\u0026impart.ListItemArgs{\n\t\t\t\t\tValue: pulumi.String(\"item2\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tKind: pulumi.String(\"string\"),\n\t\t\tName: pulumi.String(\"list_example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.List;\nimport com.pulumi.impart.ListArgs;\nimport com.pulumi.impart.inputs.ListItemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new list\n        var example = new List(\"example\", ListArgs.builder()\n            .description(\"list description\")\n            .items(            \n                ListItemArgs.builder()\n                    .value(\"item1\")\n                    .build(),\n                ListItemArgs.builder()\n                    .value(\"item2\")\n                    .build())\n            .kind(\"string\")\n            .name(\"list_example\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new list\n  example:\n    type: impart:List\n    properties:\n      description: list description\n      items:\n        - value: item1\n        - value: item2\n      kind: string\n      name: list_example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description for this list.\n"
+                },
                 "functionality": {
                     "type": "string",
                     "description": "The list functionality. Allowed values are add, add/remove.\n"
@@ -597,6 +676,13 @@
                 "kind": {
                     "type": "string",
                     "description": "The list kind.\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
                 },
                 "name": {
                     "type": "string",
@@ -612,6 +698,10 @@
                 "name"
             ],
             "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description for this list.\n"
+                },
                 "functionality": {
                     "type": "string",
                     "description": "The list functionality. Allowed values are add, add/remove.\n"
@@ -626,6 +716,13 @@
                 "kind": {
                     "type": "string",
                     "description": "The list kind.\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
                 },
                 "name": {
                     "type": "string",
@@ -643,6 +740,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering List resources.\n",
                 "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "The description for this list.\n"
+                    },
                     "functionality": {
                         "type": "string",
                         "description": "The list functionality. Allowed values are add, add/remove.\n"
@@ -657,6 +758,13 @@
                     "kind": {
                         "type": "string",
                         "description": "The list kind.\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The applied labels.\n"
                     },
                     "name": {
                         "type": "string",
@@ -769,6 +877,13 @@
                     "type": "string",
                     "description": "The description for this monitor.\n"
                 },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name for this monitor.\n"
@@ -798,6 +913,13 @@
                 "description": {
                     "type": "string",
                     "description": "The description for this monitor.\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
                 },
                 "name": {
                     "type": "string",
@@ -830,6 +952,13 @@
                     "description": {
                         "type": "string",
                         "description": "The description for this monitor.\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The applied labels.\n"
                     },
                     "name": {
                         "type": "string",
@@ -943,7 +1072,7 @@
             }
         },
         "impart:index/ruleScript:RuleScript": {
-            "description": "Manage a rule script.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new rule script\nconst example = new impart.RuleScript(\"example\", {\n    name: \"example\",\n    disabled: false,\n    description: \"Rule description\",\n    sourceFile: `${path.module}/rule.js`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n    blockingEffect: \"block\",\n});\n// Create a new rule script with content\nconst exampleContent = new impart.RuleScript(\"exampleContent\", {\n    name: \"example\",\n    disabled: false,\n    description: \"Rule description\",\n    content: fs.readFileSync(`${path.module}/rule.js`, \"utf8\"),\n    blockingEffect: \"block\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new rule script\nexample = impart.RuleScript(\"example\",\n    name=\"example\",\n    disabled=False,\n    description=\"Rule description\",\n    source_file=f\"{path['module']}/rule.js\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\",\n    blocking_effect=\"block\")\n# Create a new rule script with content\nexample_content = impart.RuleScript(\"exampleContent\",\n    name=\"example\",\n    disabled=False,\n    description=\"Rule description\",\n    content=(lambda path: open(path).read())(f\"{path['module']}/rule.js\"),\n    blocking_effect=\"block\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new rule script\n    var example = new Impart.RuleScript(\"example\", new()\n    {\n        Name = \"example\",\n        Disabled = false,\n        Description = \"Rule description\",\n        SourceFile = $\"{path.Module}/rule.js\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n        BlockingEffect = \"block\",\n    });\n\n    // Create a new rule script with content\n    var exampleContent = new Impart.RuleScript(\"exampleContent\", new()\n    {\n        Name = \"example\",\n        Disabled = false,\n        Description = \"Rule description\",\n        Content = File.ReadAllText($\"{path.Module}/rule.js\"),\n        BlockingEffect = \"block\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"os\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new rule script\n\t\t_, err := impart.NewRuleScript(ctx, \"example\", \u0026impart.RuleScriptArgs{\n\t\t\tName:           pulumi.String(\"example\"),\n\t\t\tDisabled:       pulumi.Bool(false),\n\t\t\tDescription:    pulumi.String(\"Rule description\"),\n\t\t\tSourceFile:     pulumi.String(fmt.Sprintf(\"%v/rule.js\", path.Module)),\n\t\t\tSourceHash:     pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t\tBlockingEffect: pulumi.String(\"block\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Create a new rule script with content\n\t\t_, err = impart.NewRuleScript(ctx, \"exampleContent\", \u0026impart.RuleScriptArgs{\n\t\t\tName:           pulumi.String(\"example\"),\n\t\t\tDisabled:       pulumi.Bool(false),\n\t\t\tDescription:    pulumi.String(\"Rule description\"),\n\t\t\tContent:        readFileOrPanic(fmt.Sprintf(\"%v/rule.js\", path.Module)),\n\t\t\tBlockingEffect: pulumi.String(\"block\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.RuleScript;\nimport com.pulumi.impart.RuleScriptArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new rule script\n        var example = new RuleScript(\"example\", RuleScriptArgs.builder()\n            .name(\"example\")\n            .disabled(false)\n            .description(\"Rule description\")\n            .sourceFile(String.format(\"%s/rule.js\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .blockingEffect(\"block\")\n            .build());\n\n        // Create a new rule script with content\n        var exampleContent = new RuleScript(\"exampleContent\", RuleScriptArgs.builder()\n            .name(\"example\")\n            .disabled(false)\n            .description(\"Rule description\")\n            .content(Files.readString(Paths.get(String.format(\"%s/rule.js\", path.module()))))\n            .blockingEffect(\"block\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new rule script\n  example:\n    type: impart:RuleScript\n    properties:\n      name: example\n      disabled: false\n      description: Rule description\n      sourceFile: ${path.module}/rule.js\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n      blockingEffect: block\n  # Create a new rule script with content\n  exampleContent:\n    type: impart:RuleScript\n    properties:\n      name: example\n      disabled: false\n      description: Rule description\n      content:\n        fn::readFile: ${path.module}/rule.js\n      blockingEffect: block\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manage a rule script.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new rule script\nconst example = new impart.RuleScript(\"example\", {\n    name: \"example\",\n    disabled: false,\n    description: \"Rule description\",\n    sourceFile: `${path.module}/rule.js`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n    blockingEffect: \"block\",\n});\n// Create a new rule script with content\nconst exampleContent = new impart.RuleScript(\"exampleContent\", {\n    name: \"example\",\n    disabled: false,\n    description: \"Rule description\",\n    content: fs.readFileSync(`${path.module}/rule.js`, \"utf8\"),\n    blockingEffect: \"block\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new rule script\nexample = impart.RuleScript(\"example\",\n    name=\"example\",\n    disabled=False,\n    description=\"Rule description\",\n    source_file=f\"{path['module']}/rule.js\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\",\n    blocking_effect=\"block\")\n# Create a new rule script with content\nexample_content = impart.RuleScript(\"exampleContent\",\n    name=\"example\",\n    disabled=False,\n    description=\"Rule description\",\n    content=(lambda path: open(path).read())(f\"{path['module']}/rule.js\"),\n    blocking_effect=\"block\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new rule script\n    var example = new Impart.RuleScript(\"example\", new()\n    {\n        Name = \"example\",\n        Disabled = false,\n        Description = \"Rule description\",\n        SourceFile = $\"{path.Module}/rule.js\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n        BlockingEffect = \"block\",\n    });\n\n    // Create a new rule script with content\n    var exampleContent = new Impart.RuleScript(\"exampleContent\", new()\n    {\n        Name = \"example\",\n        Disabled = false,\n        Description = \"Rule description\",\n        Content = File.ReadAllText($\"{path.Module}/rule.js\"),\n        BlockingEffect = \"block\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"os\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new rule script\n\t\t_, err := impart.NewRuleScript(ctx, \"example\", \u0026impart.RuleScriptArgs{\n\t\t\tName:           pulumi.String(\"example\"),\n\t\t\tDisabled:       pulumi.Bool(false),\n\t\t\tDescription:    pulumi.String(\"Rule description\"),\n\t\t\tSourceFile:     pulumi.Sprintf(\"%v/rule.js\", path.Module),\n\t\t\tSourceHash:     pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t\tBlockingEffect: pulumi.String(\"block\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Create a new rule script with content\n\t\t_, err = impart.NewRuleScript(ctx, \"exampleContent\", \u0026impart.RuleScriptArgs{\n\t\t\tName:           pulumi.String(\"example\"),\n\t\t\tDisabled:       pulumi.Bool(false),\n\t\t\tDescription:    pulumi.String(\"Rule description\"),\n\t\t\tContent:        pulumi.String(readFileOrPanic(fmt.Sprintf(\"%v/rule.js\", path.Module))),\n\t\t\tBlockingEffect: pulumi.String(\"block\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.RuleScript;\nimport com.pulumi.impart.RuleScriptArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new rule script\n        var example = new RuleScript(\"example\", RuleScriptArgs.builder()\n            .name(\"example\")\n            .disabled(false)\n            .description(\"Rule description\")\n            .sourceFile(String.format(\"%s/rule.js\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .blockingEffect(\"block\")\n            .build());\n\n        // Create a new rule script with content\n        var exampleContent = new RuleScript(\"exampleContent\", RuleScriptArgs.builder()\n            .name(\"example\")\n            .disabled(false)\n            .description(\"Rule description\")\n            .content(Files.readString(Paths.get(String.format(\"%s/rule.js\", path.module()))))\n            .blockingEffect(\"block\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new rule script\n  example:\n    type: impart:RuleScript\n    properties:\n      name: example\n      disabled: false\n      description: Rule description\n      sourceFile: ${path.module}/rule.js\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n      blockingEffect: block\n  # Create a new rule script with content\n  exampleContent:\n    type: impart:RuleScript\n    properties:\n      name: example\n      disabled: false\n      description: Rule description\n      content:\n        fn::readFile: ${path.module}/rule.js\n      blockingEffect: block\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "blockingEffect": {
                     "type": "string",
@@ -960,6 +1089,13 @@
                 "disabled": {
                     "type": "boolean",
                     "description": "Set true to disable the rule script.\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
                 },
                 "name": {
                     "type": "string",
@@ -994,6 +1130,13 @@
                 "disabled": {
                     "type": "boolean",
                     "description": "Set true to disable the rule script.\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1030,6 +1173,13 @@
                     "disabled": {
                         "type": "boolean",
                         "description": "Set true to disable the rule script.\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The applied labels.\n"
                     },
                     "name": {
                         "type": "string",
@@ -1101,6 +1251,13 @@
                     "type": "string",
                     "description": "The description of the test case.\n"
                 },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
+                },
                 "messages": {
                     "type": "array",
                     "items": {
@@ -1132,6 +1289,13 @@
                 "description": {
                     "type": "string",
                     "description": "The description of the test case.\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
                 },
                 "messages": {
                     "type": "array",
@@ -1167,6 +1331,13 @@
                         "type": "string",
                         "description": "The description of the test case.\n"
                     },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The applied labels.\n"
+                    },
                     "messages": {
                         "type": "array",
                         "items": {
@@ -1187,7 +1358,7 @@
             }
         },
         "impart:index/spec:Spec": {
-            "description": "Manage a specification.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new specification\nconst example = new impart.Spec(\"example\", {\n    name: \"spec_example\",\n    sourceFile: `${path.module}/spec.yaml`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new specification\nexample = impart.Spec(\"example\",\n    name=\"spec_example\",\n    source_file=f\"{path['module']}/spec.yaml\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new specification\n    var example = new Impart.Spec(\"example\", new()\n    {\n        Name = \"spec_example\",\n        SourceFile = $\"{path.Module}/spec.yaml\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new specification\n\t\t_, err := impart.NewSpec(ctx, \"example\", \u0026impart.SpecArgs{\n\t\t\tName:       pulumi.String(\"spec_example\"),\n\t\t\tSourceFile: pulumi.String(fmt.Sprintf(\"%v/spec.yaml\", path.Module)),\n\t\t\tSourceHash: pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Spec;\nimport com.pulumi.impart.SpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new specification\n        var example = new Spec(\"example\", SpecArgs.builder()\n            .name(\"spec_example\")\n            .sourceFile(String.format(\"%s/spec.yaml\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new specification\n  example:\n    type: impart:Spec\n    properties:\n      name: spec_example\n      sourceFile: ${path.module}/spec.yaml\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n#!/bin/bash\n\n```sh\n$ pulumi import impart:index/spec:Spec example \"\u003cid\u003e\"\n```\n\n",
+            "description": "Manage a specification.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new specification\nconst example = new impart.Spec(\"example\", {\n    name: \"spec_example\",\n    sourceFile: `${path.module}/spec.yaml`,\n    sourceHash: \"\u003csha256 hash for the source_file content\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new specification\nexample = impart.Spec(\"example\",\n    name=\"spec_example\",\n    source_file=f\"{path['module']}/spec.yaml\",\n    source_hash=\"\u003csha256 hash for the source_file content\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new specification\n    var example = new Impart.Spec(\"example\", new()\n    {\n        Name = \"spec_example\",\n        SourceFile = $\"{path.Module}/spec.yaml\",\n        SourceHash = \"\u003csha256 hash for the source_file content\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new specification\n\t\t_, err := impart.NewSpec(ctx, \"example\", \u0026impart.SpecArgs{\n\t\t\tName:       pulumi.String(\"spec_example\"),\n\t\t\tSourceFile: pulumi.Sprintf(\"%v/spec.yaml\", path.Module),\n\t\t\tSourceHash: pulumi.String(\"\u003csha256 hash for the source_file content\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Spec;\nimport com.pulumi.impart.SpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new specification\n        var example = new Spec(\"example\", SpecArgs.builder()\n            .name(\"spec_example\")\n            .sourceFile(String.format(\"%s/spec.yaml\", path.module()))\n            .sourceHash(\"\u003csha256 hash for the source_file content\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new specification\n  example:\n    type: impart:Spec\n    properties:\n      name: spec_example\n      sourceFile: ${path.module}/spec.yaml\n      sourceHash: \u003csha256 hash for the source_file content\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n#!/bin/bash\n\n```sh\n$ pulumi import impart:index/spec:Spec example \"\u003cid\u003e\"\n```\n\n",
             "properties": {
                 "name": {
                     "type": "string",
@@ -1238,6 +1409,94 @@
                     "sourceHash": {
                         "type": "string",
                         "description": "The specification source hash.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "impart:index/tagMetadata:TagMetadata": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new tag metadata\nconst example = new impart.TagMetadata(\"example\", {\n    name: \"tag\",\n    description: \"tag description\",\n    externalUrl: \"http://example.com\",\n    labels: [resource.impart_label.example.slug],\n    riskStatement: \"risk statement\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new tag metadata\nexample = impart.TagMetadata(\"example\",\n    name=\"tag\",\n    description=\"tag description\",\n    external_url=\"http://example.com\",\n    labels=[resource[\"impart_label\"][\"example\"][\"slug\"]],\n    risk_statement=\"risk statement\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new tag metadata\n    var example = new Impart.TagMetadata(\"example\", new()\n    {\n        Name = \"tag\",\n        Description = \"tag description\",\n        ExternalUrl = \"http://example.com\",\n        Labels = new[]\n        {\n            resource.Impart_label.Example.Slug,\n        },\n        RiskStatement = \"risk statement\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new tag metadata\n\t\t_, err := impart.NewTagMetadata(ctx, \"example\", \u0026impart.TagMetadataArgs{\n\t\t\tName:        pulumi.String(\"tag\"),\n\t\t\tDescription: pulumi.String(\"tag description\"),\n\t\t\tExternalUrl: pulumi.String(\"http://example.com\"),\n\t\t\tLabels: pulumi.StringArray{\n\t\t\t\tresource.Impart_label.Example.Slug,\n\t\t\t},\n\t\t\tRiskStatement: pulumi.String(\"risk statement\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.TagMetadata;\nimport com.pulumi.impart.TagMetadataArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new tag metadata\n        var example = new TagMetadata(\"example\", TagMetadataArgs.builder()\n            .name(\"tag\")\n            .description(\"tag description\")\n            .externalUrl(\"http://example.com\")\n            .labels(resource.impart_label().example().slug())\n            .riskStatement(\"risk statement\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new tag metadata\n  example:\n    type: impart:TagMetadata\n    properties:\n      name: tag\n      description: tag description\n      externalUrl: http://example.com\n      labels:\n        - ${resource.impart_label.example.slug}\n      riskStatement: risk statement\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description for the tag.\n"
+                },
+                "externalUrl": {
+                    "type": "string",
+                    "description": "The external URL for the tag.\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The tag name.\n"
+                },
+                "riskStatement": {
+                    "type": "string",
+                    "description": "The risk statement for the tag.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description for the tag.\n"
+                },
+                "externalUrl": {
+                    "type": "string",
+                    "description": "The external URL for the tag.\n"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The applied labels.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The tag name.\n"
+                },
+                "riskStatement": {
+                    "type": "string",
+                    "description": "The risk statement for the tag.\n"
+                }
+            },
+            "requiredInputs": [
+                "name"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TagMetadata resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "The description for the tag.\n"
+                    },
+                    "externalUrl": {
+                        "type": "string",
+                        "description": "The external URL for the tag.\n"
+                    },
+                    "labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The applied labels.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The tag name.\n"
+                    },
+                    "riskStatement": {
+                        "type": "string",
+                        "description": "The risk statement for the tag.\n"
                     }
                 },
                 "type": "object"

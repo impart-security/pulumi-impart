@@ -20,6 +20,8 @@ type RuleTestCase struct {
 	Assertions RuleTestCaseAssertionArrayOutput `pulumi:"assertions"`
 	// The description of the test case.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The applied labels.
+	Labels pulumi.StringArrayOutput `pulumi:"labels"`
 	// The messages of the test case.
 	Messages RuleTestCaseMessageArrayOutput `pulumi:"messages"`
 	// The name of the test case.
@@ -68,6 +70,8 @@ type ruleTestCaseState struct {
 	Assertions []RuleTestCaseAssertion `pulumi:"assertions"`
 	// The description of the test case.
 	Description *string `pulumi:"description"`
+	// The applied labels.
+	Labels []string `pulumi:"labels"`
 	// The messages of the test case.
 	Messages []RuleTestCaseMessage `pulumi:"messages"`
 	// The name of the test case.
@@ -81,6 +85,8 @@ type RuleTestCaseState struct {
 	Assertions RuleTestCaseAssertionArrayInput
 	// The description of the test case.
 	Description pulumi.StringPtrInput
+	// The applied labels.
+	Labels pulumi.StringArrayInput
 	// The messages of the test case.
 	Messages RuleTestCaseMessageArrayInput
 	// The name of the test case.
@@ -98,6 +104,8 @@ type ruleTestCaseArgs struct {
 	Assertions []RuleTestCaseAssertion `pulumi:"assertions"`
 	// The description of the test case.
 	Description *string `pulumi:"description"`
+	// The applied labels.
+	Labels []string `pulumi:"labels"`
 	// The messages of the test case.
 	Messages []RuleTestCaseMessage `pulumi:"messages"`
 	// The name of the test case.
@@ -112,6 +120,8 @@ type RuleTestCaseArgs struct {
 	Assertions RuleTestCaseAssertionArrayInput
 	// The description of the test case.
 	Description pulumi.StringPtrInput
+	// The applied labels.
+	Labels pulumi.StringArrayInput
 	// The messages of the test case.
 	Messages RuleTestCaseMessageArrayInput
 	// The name of the test case.
@@ -215,6 +225,11 @@ func (o RuleTestCaseOutput) Assertions() RuleTestCaseAssertionArrayOutput {
 // The description of the test case.
 func (o RuleTestCaseOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RuleTestCase) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The applied labels.
+func (o RuleTestCaseOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleTestCase) pulumi.StringArrayOutput { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
 // The messages of the test case.

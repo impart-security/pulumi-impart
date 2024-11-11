@@ -20,6 +20,8 @@ type Monitor struct {
 	Conditions MonitorConditionArrayOutput `pulumi:"conditions"`
 	// The description for this monitor.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// The applied labels.
+	Labels pulumi.StringArrayOutput `pulumi:"labels"`
 	// The name for this monitor.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// An array of notification template ids for the templates that will send notifications to their respective connectors.
@@ -72,6 +74,8 @@ type monitorState struct {
 	Conditions []MonitorCondition `pulumi:"conditions"`
 	// The description for this monitor.
 	Description *string `pulumi:"description"`
+	// The applied labels.
+	Labels []string `pulumi:"labels"`
 	// The name for this monitor.
 	Name *string `pulumi:"name"`
 	// An array of notification template ids for the templates that will send notifications to their respective connectors.
@@ -83,6 +87,8 @@ type MonitorState struct {
 	Conditions MonitorConditionArrayInput
 	// The description for this monitor.
 	Description pulumi.StringPtrInput
+	// The applied labels.
+	Labels pulumi.StringArrayInput
 	// The name for this monitor.
 	Name pulumi.StringPtrInput
 	// An array of notification template ids for the templates that will send notifications to their respective connectors.
@@ -98,6 +104,8 @@ type monitorArgs struct {
 	Conditions []MonitorCondition `pulumi:"conditions"`
 	// The description for this monitor.
 	Description string `pulumi:"description"`
+	// The applied labels.
+	Labels []string `pulumi:"labels"`
 	// The name for this monitor.
 	Name string `pulumi:"name"`
 	// An array of notification template ids for the templates that will send notifications to their respective connectors.
@@ -110,6 +118,8 @@ type MonitorArgs struct {
 	Conditions MonitorConditionArrayInput
 	// The description for this monitor.
 	Description pulumi.StringInput
+	// The applied labels.
+	Labels pulumi.StringArrayInput
 	// The name for this monitor.
 	Name pulumi.StringInput
 	// An array of notification template ids for the templates that will send notifications to their respective connectors.
@@ -211,6 +221,11 @@ func (o MonitorOutput) Conditions() MonitorConditionArrayOutput {
 // The description for this monitor.
 func (o MonitorOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// The applied labels.
+func (o MonitorOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Monitor) pulumi.StringArrayOutput { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
 // The name for this monitor.

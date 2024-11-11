@@ -17,6 +17,7 @@ import * as utilities from "./utilities";
  *
  * // Create a new list
  * const example = new impart.List("example", {
+ *     description: "list description",
  *     items: [
  *         {
  *             value: "item1",
@@ -59,6 +60,10 @@ export class List extends pulumi.CustomResource {
     }
 
     /**
+     * The description for this list.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
+    /**
      * The list functionality. Allowed values are add, add/remove.
      */
     public readonly functionality!: pulumi.Output<string | undefined>;
@@ -70,6 +75,10 @@ export class List extends pulumi.CustomResource {
      * The list kind.
      */
     public readonly kind!: pulumi.Output<string>;
+    /**
+     * The applied labels.
+     */
+    public readonly labels!: pulumi.Output<string[] | undefined>;
     /**
      * The name for this list.
      */
@@ -92,9 +101,11 @@ export class List extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ListState | undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["functionality"] = state ? state.functionality : undefined;
             resourceInputs["items"] = state ? state.items : undefined;
             resourceInputs["kind"] = state ? state.kind : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["subkind"] = state ? state.subkind : undefined;
         } else {
@@ -105,9 +116,11 @@ export class List extends pulumi.CustomResource {
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
+            resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["functionality"] = args ? args.functionality : undefined;
             resourceInputs["items"] = args ? args.items : undefined;
             resourceInputs["kind"] = args ? args.kind : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["subkind"] = args ? args.subkind : undefined;
         }
@@ -121,6 +134,10 @@ export class List extends pulumi.CustomResource {
  */
 export interface ListState {
     /**
+     * The description for this list.
+     */
+    description?: pulumi.Input<string>;
+    /**
      * The list functionality. Allowed values are add, add/remove.
      */
     functionality?: pulumi.Input<string>;
@@ -132,6 +149,10 @@ export interface ListState {
      * The list kind.
      */
     kind?: pulumi.Input<string>;
+    /**
+     * The applied labels.
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name for this list.
      */
@@ -147,6 +168,10 @@ export interface ListState {
  */
 export interface ListArgs {
     /**
+     * The description for this list.
+     */
+    description?: pulumi.Input<string>;
+    /**
      * The list functionality. Allowed values are add, add/remove.
      */
     functionality?: pulumi.Input<string>;
@@ -158,6 +183,10 @@ export interface ListArgs {
      * The list kind.
      */
     kind: pulumi.Input<string>;
+    /**
+     * The applied labels.
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name for this list.
      */

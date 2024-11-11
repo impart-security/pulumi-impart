@@ -85,6 +85,10 @@ export interface RuleTestCaseAssertion {
      */
     condition?: string;
     /**
+     * The description of the assertion.
+     */
+    description?: string;
+    /**
      * The expected value of the assertion.
      * It is a string value, and the format it must satisfy depends on the assertion type:
      * **output**: A string.
@@ -112,6 +116,10 @@ export interface RuleTestCaseMessage {
      * The delay in milliseconds between message iterations.
      */
     delay: number;
+    /**
+     * The description of the test case message.
+     */
+    description?: string;
     /**
      * The delay in milliseconds after a set of message iterations.
      */

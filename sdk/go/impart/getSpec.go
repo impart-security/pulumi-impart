@@ -64,14 +64,20 @@ type LookupSpecResult struct {
 
 func LookupSpecOutput(ctx *pulumi.Context, args LookupSpecOutputArgs, opts ...pulumi.InvokeOption) LookupSpecResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupSpecResult, error) {
+		ApplyT(func(v interface{}) (LookupSpecResultOutput, error) {
 			args := v.(LookupSpecArgs)
-			r, err := LookupSpec(ctx, &args, opts...)
-			var s LookupSpecResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupSpecResult
+			secret, err := ctx.InvokePackageRaw("impart:index/getSpec:GetSpec", args, &rv, "", opts...)
+			if err != nil {
+				return LookupSpecResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupSpecResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupSpecResultOutput), nil
+			}
+			return output, nil
 		}).(LookupSpecResultOutput)
 }
 

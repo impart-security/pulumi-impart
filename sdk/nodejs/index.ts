@@ -20,6 +20,11 @@ export const getSpec: typeof import("./getSpec").getSpec = null as any;
 export const getSpecOutput: typeof import("./getSpec").getSpecOutput = null as any;
 utilities.lazyLoad(exports, ["getSpec","getSpecOutput"], () => require("./getSpec"));
 
+export { LabelArgs, LabelState } from "./label";
+export type Label = import("./label").Label;
+export const Label: typeof import("./label").Label = null as any;
+utilities.lazyLoad(exports, ["Label"], () => require("./label"));
+
 export { ListArgs, ListState } from "./list";
 export type List = import("./list").List;
 export const List: typeof import("./list").List = null as any;
@@ -65,6 +70,11 @@ export type Spec = import("./spec").Spec;
 export const Spec: typeof import("./spec").Spec = null as any;
 utilities.lazyLoad(exports, ["Spec"], () => require("./spec"));
 
+export { TagMetadataArgs, TagMetadataState } from "./tagMetadata";
+export type TagMetadata = import("./tagMetadata").TagMetadata;
+export const TagMetadata: typeof import("./tagMetadata").TagMetadata = null as any;
+utilities.lazyLoad(exports, ["TagMetadata"], () => require("./tagMetadata"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -81,6 +91,8 @@ const _module = {
         switch (type) {
             case "impart:index/apiBinding:ApiBinding":
                 return new ApiBinding(name, <any>undefined, { urn })
+            case "impart:index/label:Label":
+                return new Label(name, <any>undefined, { urn })
             case "impart:index/list:List":
                 return new List(name, <any>undefined, { urn })
             case "impart:index/logBinding:LogBinding":
@@ -97,12 +109,15 @@ const _module = {
                 return new RuleTestCase(name, <any>undefined, { urn })
             case "impart:index/spec:Spec":
                 return new Spec(name, <any>undefined, { urn })
+            case "impart:index/tagMetadata:TagMetadata":
+                return new TagMetadata(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("impart", "index/apiBinding", _module)
+pulumi.runtime.registerResourceModule("impart", "index/label", _module)
 pulumi.runtime.registerResourceModule("impart", "index/list", _module)
 pulumi.runtime.registerResourceModule("impart", "index/logBinding", _module)
 pulumi.runtime.registerResourceModule("impart", "index/monitor", _module)
@@ -111,6 +126,7 @@ pulumi.runtime.registerResourceModule("impart", "index/ruleScript", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleScriptDependencies", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleTestCase", _module)
 pulumi.runtime.registerResourceModule("impart", "index/spec", _module)
+pulumi.runtime.registerResourceModule("impart", "index/tagMetadata", _module)
 pulumi.runtime.registerResourcePackage("impart", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

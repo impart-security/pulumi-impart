@@ -46,6 +46,10 @@ export class Monitor extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * The applied labels.
+     */
+    public readonly labels!: pulumi.Output<string[] | undefined>;
+    /**
      * The name for this monitor.
      */
     public readonly name!: pulumi.Output<string>;
@@ -69,6 +73,7 @@ export class Monitor extends pulumi.CustomResource {
             const state = argsOrState as MonitorState | undefined;
             resourceInputs["conditions"] = state ? state.conditions : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["notificationTemplateIds"] = state ? state.notificationTemplateIds : undefined;
         } else {
@@ -87,6 +92,7 @@ export class Monitor extends pulumi.CustomResource {
             }
             resourceInputs["conditions"] = args ? args.conditions : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["notificationTemplateIds"] = args ? args.notificationTemplateIds : undefined;
         }
@@ -107,6 +113,10 @@ export interface MonitorState {
      * The description for this monitor.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The applied labels.
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name for this monitor.
      */
@@ -129,6 +139,10 @@ export interface MonitorArgs {
      * The description for this monitor.
      */
     description: pulumi.Input<string>;
+    /**
+     * The applied labels.
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name for this monitor.
      */

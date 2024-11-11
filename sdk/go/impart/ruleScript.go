@@ -44,7 +44,7 @@ import (
 //				Name:           pulumi.String("example"),
 //				Disabled:       pulumi.Bool(false),
 //				Description:    pulumi.String("Rule description"),
-//				SourceFile:     pulumi.String(fmt.Sprintf("%v/rule.js", path.Module)),
+//				SourceFile:     pulumi.Sprintf("%v/rule.js", path.Module),
 //				SourceHash:     pulumi.String("<sha256 hash for the source_file content>"),
 //				BlockingEffect: pulumi.String("block"),
 //			})
@@ -56,7 +56,7 @@ import (
 //				Name:           pulumi.String("example"),
 //				Disabled:       pulumi.Bool(false),
 //				Description:    pulumi.String("Rule description"),
-//				Content:        readFileOrPanic(fmt.Sprintf("%v/rule.js", path.Module)),
+//				Content:        pulumi.String(readFileOrPanic(fmt.Sprintf("%v/rule.js", path.Module))),
 //				BlockingEffect: pulumi.String("block"),
 //			})
 //			if err != nil {
@@ -78,6 +78,8 @@ type RuleScript struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Set true to disable the rule script.
 	Disabled pulumi.BoolOutput `pulumi:"disabled"`
+	// The applied labels.
+	Labels pulumi.StringArrayOutput `pulumi:"labels"`
 	// The name for this rule script.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The rule source file.
@@ -130,6 +132,8 @@ type ruleScriptState struct {
 	Description *string `pulumi:"description"`
 	// Set true to disable the rule script.
 	Disabled *bool `pulumi:"disabled"`
+	// The applied labels.
+	Labels []string `pulumi:"labels"`
 	// The name for this rule script.
 	Name *string `pulumi:"name"`
 	// The rule source file.
@@ -147,6 +151,8 @@ type RuleScriptState struct {
 	Description pulumi.StringPtrInput
 	// Set true to disable the rule script.
 	Disabled pulumi.BoolPtrInput
+	// The applied labels.
+	Labels pulumi.StringArrayInput
 	// The name for this rule script.
 	Name pulumi.StringPtrInput
 	// The rule source file.
@@ -168,6 +174,8 @@ type ruleScriptArgs struct {
 	Description *string `pulumi:"description"`
 	// Set true to disable the rule script.
 	Disabled bool `pulumi:"disabled"`
+	// The applied labels.
+	Labels []string `pulumi:"labels"`
 	// The name for this rule script.
 	Name string `pulumi:"name"`
 	// The rule source file.
@@ -186,6 +194,8 @@ type RuleScriptArgs struct {
 	Description pulumi.StringPtrInput
 	// Set true to disable the rule script.
 	Disabled pulumi.BoolInput
+	// The applied labels.
+	Labels pulumi.StringArrayInput
 	// The name for this rule script.
 	Name pulumi.StringInput
 	// The rule source file.
@@ -299,6 +309,11 @@ func (o RuleScriptOutput) Description() pulumi.StringPtrOutput {
 // Set true to disable the rule script.
 func (o RuleScriptOutput) Disabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *RuleScript) pulumi.BoolOutput { return v.Disabled }).(pulumi.BoolOutput)
+}
+
+// The applied labels.
+func (o RuleScriptOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleScript) pulumi.StringArrayOutput { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
 // The name for this rule script.

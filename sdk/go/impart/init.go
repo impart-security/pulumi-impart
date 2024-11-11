@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "impart:index/apiBinding:ApiBinding":
 		r = &ApiBinding{}
+	case "impart:index/label:Label":
+		r = &Label{}
 	case "impart:index/list:List":
 		r = &List{}
 	case "impart:index/logBinding:LogBinding":
@@ -39,6 +41,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RuleTestCase{}
 	case "impart:index/spec:Spec":
 		r = &Spec{}
+	case "impart:index/tagMetadata:TagMetadata":
+		r = &TagMetadata{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -73,6 +77,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"impart",
 		"index/apiBinding",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/label",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -113,6 +122,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"impart",
 		"index/spec",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/tagMetadata",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

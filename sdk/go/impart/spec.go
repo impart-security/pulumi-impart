@@ -33,7 +33,7 @@ import (
 //			// Create a new specification
 //			_, err := impart.NewSpec(ctx, "example", &impart.SpecArgs{
 //				Name:       pulumi.String("spec_example"),
-//				SourceFile: pulumi.String(fmt.Sprintf("%v/spec.yaml", path.Module)),
+//				SourceFile: pulumi.Sprintf("%v/spec.yaml", path.Module),
 //				SourceHash: pulumi.String("<sha256 hash for the source_file content>"),
 //			})
 //			if err != nil {

@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getSpec(args: GetSpecArgs, opts?: pulumi.InvokeOptions): Promise<GetSpecResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("impart:index/getSpec:GetSpec", {
         "id": args.id,
@@ -64,7 +63,10 @@ export interface GetSpecResult {
  * ```
  */
 export function getSpecOutput(args: GetSpecOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSpecResult> {
-    return pulumi.output(args).apply((a: any) => getSpec(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("impart:index/getSpec:GetSpec", {
+        "id": args.id,
+    }, opts);
 }
 
 /**

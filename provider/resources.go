@@ -3,6 +3,7 @@ package impart
 import (
 	"context"
 	_ "embed"
+	"errors"
 	"fmt"
 	"path/filepath"
 	"unicode"
@@ -89,6 +90,24 @@ func Provider() tfbridge.ProviderInfo {
 			"impart_rule_test_case":        {Tok: makeResource(mainMod, "RuleTestCase")},
 			"impart_notification_template": {Tok: makeResource(mainMod, "NotificationTemplate")},
 			"impart_monitor":               {Tok: makeResource(mainMod, "Monitor")},
+			"impart_label": {
+				Tok: makeResource(mainMod, "Label"),
+				ComputeID: func(_ context.Context, state resource.PropertyMap) (resource.ID, error) {
+					if id, ok := state["slug"]; ok {
+						return resource.ID(id.StringValue()), nil
+					}
+					return "", errors.New("slug attribute not found")
+				},
+			},
+			"impart_tag_metadata": {
+				Tok: makeResource(mainMod, "TagMetadata"),
+				ComputeID: func(_ context.Context, state resource.PropertyMap) (resource.ID, error) {
+					if id, ok := state["name"]; ok {
+						return resource.ID(id.StringValue()), nil
+					}
+					return "", errors.New("name attribute not found")
+				},
+			},
 			"impart_rule_script_dependencies": {
 				Tok:       makeResource(mainMod, "RuleScriptDependencies"),
 				ComputeID: computeRuleScriptDependenciesID,

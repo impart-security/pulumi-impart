@@ -30,6 +30,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a new list
 //			_, err := impart.NewList(ctx, "example", &impart.ListArgs{
+//				Description: pulumi.String("list description"),
 //				Items: impart.ListItemArray{
 //					&impart.ListItemArgs{
 //						Value: pulumi.String("item1"),
@@ -52,12 +53,16 @@ import (
 type List struct {
 	pulumi.CustomResourceState
 
+	// The description for this list.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The list functionality. Allowed values are add, add/remove.
 	Functionality pulumi.StringPtrOutput `pulumi:"functionality"`
 	// The list items.
 	Items ListItemArrayOutput `pulumi:"items"`
 	// The list kind.
 	Kind pulumi.StringOutput `pulumi:"kind"`
+	// The applied labels.
+	Labels pulumi.StringArrayOutput `pulumi:"labels"`
 	// The name for this list.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The list subkind.
@@ -100,12 +105,16 @@ func GetList(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering List resources.
 type listState struct {
+	// The description for this list.
+	Description *string `pulumi:"description"`
 	// The list functionality. Allowed values are add, add/remove.
 	Functionality *string `pulumi:"functionality"`
 	// The list items.
 	Items []ListItem `pulumi:"items"`
 	// The list kind.
 	Kind *string `pulumi:"kind"`
+	// The applied labels.
+	Labels []string `pulumi:"labels"`
 	// The name for this list.
 	Name *string `pulumi:"name"`
 	// The list subkind.
@@ -113,12 +122,16 @@ type listState struct {
 }
 
 type ListState struct {
+	// The description for this list.
+	Description pulumi.StringPtrInput
 	// The list functionality. Allowed values are add, add/remove.
 	Functionality pulumi.StringPtrInput
 	// The list items.
 	Items ListItemArrayInput
 	// The list kind.
 	Kind pulumi.StringPtrInput
+	// The applied labels.
+	Labels pulumi.StringArrayInput
 	// The name for this list.
 	Name pulumi.StringPtrInput
 	// The list subkind.
@@ -130,12 +143,16 @@ func (ListState) ElementType() reflect.Type {
 }
 
 type listArgs struct {
+	// The description for this list.
+	Description *string `pulumi:"description"`
 	// The list functionality. Allowed values are add, add/remove.
 	Functionality *string `pulumi:"functionality"`
 	// The list items.
 	Items []ListItem `pulumi:"items"`
 	// The list kind.
 	Kind string `pulumi:"kind"`
+	// The applied labels.
+	Labels []string `pulumi:"labels"`
 	// The name for this list.
 	Name string `pulumi:"name"`
 	// The list subkind.
@@ -144,12 +161,16 @@ type listArgs struct {
 
 // The set of arguments for constructing a List resource.
 type ListArgs struct {
+	// The description for this list.
+	Description pulumi.StringPtrInput
 	// The list functionality. Allowed values are add, add/remove.
 	Functionality pulumi.StringPtrInput
 	// The list items.
 	Items ListItemArrayInput
 	// The list kind.
 	Kind pulumi.StringInput
+	// The applied labels.
+	Labels pulumi.StringArrayInput
 	// The name for this list.
 	Name pulumi.StringInput
 	// The list subkind.
@@ -243,6 +264,11 @@ func (o ListOutput) ToListOutputWithContext(ctx context.Context) ListOutput {
 	return o
 }
 
+// The description for this list.
+func (o ListOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *List) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
 // The list functionality. Allowed values are add, add/remove.
 func (o ListOutput) Functionality() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *List) pulumi.StringPtrOutput { return v.Functionality }).(pulumi.StringPtrOutput)
@@ -256,6 +282,11 @@ func (o ListOutput) Items() ListItemArrayOutput {
 // The list kind.
 func (o ListOutput) Kind() pulumi.StringOutput {
 	return o.ApplyT(func(v *List) pulumi.StringOutput { return v.Kind }).(pulumi.StringOutput)
+}
+
+// The applied labels.
+func (o ListOutput) Labels() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *List) pulumi.StringArrayOutput { return v.Labels }).(pulumi.StringArrayOutput)
 }
 
 // The name for this list.

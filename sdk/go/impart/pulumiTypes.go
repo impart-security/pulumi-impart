@@ -453,6 +453,8 @@ type RuleTestCaseAssertion struct {
 	// **status_code**: equal, not*equal, greater*than, less*than, one*of.
 	// **block**: N/A
 	Condition *string `pulumi:"condition"`
+	// The description of the assertion.
+	Description *string `pulumi:"description"`
 	// The expected value of the assertion.
 	// It is a string value, and the format it must satisfy depends on the assertion type:
 	// **output**: A string.
@@ -487,6 +489,8 @@ type RuleTestCaseAssertionArgs struct {
 	// **status_code**: equal, not*equal, greater*than, less*than, one*of.
 	// **block**: N/A
 	Condition pulumi.StringPtrInput `pulumi:"condition"`
+	// The description of the assertion.
+	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The expected value of the assertion.
 	// It is a string value, and the format it must satisfy depends on the assertion type:
 	// **output**: A string.
@@ -566,6 +570,11 @@ func (o RuleTestCaseAssertionOutput) Condition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleTestCaseAssertion) *string { return v.Condition }).(pulumi.StringPtrOutput)
 }
 
+// The description of the assertion.
+func (o RuleTestCaseAssertionOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseAssertion) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
 // The expected value of the assertion.
 // It is a string value, and the format it must satisfy depends on the assertion type:
 // **output**: A string.
@@ -611,6 +620,8 @@ type RuleTestCaseMessage struct {
 	Count *float64 `pulumi:"count"`
 	// The delay in milliseconds between message iterations.
 	Delay *float64 `pulumi:"delay"`
+	// The description of the test case message.
+	Description *string `pulumi:"description"`
 	// The delay in milliseconds after a set of message iterations.
 	PostDelay *float64 `pulumi:"postDelay"`
 	// A payload sent to the inspector to inspect an HTTP request.
@@ -635,6 +646,8 @@ type RuleTestCaseMessageArgs struct {
 	Count pulumi.Float64PtrInput `pulumi:"count"`
 	// The delay in milliseconds between message iterations.
 	Delay pulumi.Float64PtrInput `pulumi:"delay"`
+	// The description of the test case message.
+	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The delay in milliseconds after a set of message iterations.
 	PostDelay pulumi.Float64PtrInput `pulumi:"postDelay"`
 	// A payload sent to the inspector to inspect an HTTP request.
@@ -702,6 +715,11 @@ func (o RuleTestCaseMessageOutput) Count() pulumi.Float64PtrOutput {
 // The delay in milliseconds between message iterations.
 func (o RuleTestCaseMessageOutput) Delay() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v RuleTestCaseMessage) *float64 { return v.Delay }).(pulumi.Float64PtrOutput)
+}
+
+// The description of the test case message.
+func (o RuleTestCaseMessageOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The delay in milliseconds after a set of message iterations.

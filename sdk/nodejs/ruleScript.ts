@@ -78,6 +78,10 @@ export class RuleScript extends pulumi.CustomResource {
      */
     public readonly disabled!: pulumi.Output<boolean>;
     /**
+     * The applied labels.
+     */
+    public readonly labels!: pulumi.Output<string[] | undefined>;
+    /**
      * The name for this rule script.
      */
     public readonly name!: pulumi.Output<string>;
@@ -107,6 +111,7 @@ export class RuleScript extends pulumi.CustomResource {
             resourceInputs["content"] = state ? state.content : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disabled"] = state ? state.disabled : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["sourceFile"] = state ? state.sourceFile : undefined;
             resourceInputs["sourceHash"] = state ? state.sourceHash : undefined;
@@ -122,6 +127,7 @@ export class RuleScript extends pulumi.CustomResource {
             resourceInputs["content"] = args ? args.content : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disabled"] = args ? args.disabled : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["sourceFile"] = args ? args.sourceFile : undefined;
             resourceInputs["sourceHash"] = args ? args.sourceHash : undefined;
@@ -151,6 +157,10 @@ export interface RuleScriptState {
      * Set true to disable the rule script.
      */
     disabled?: pulumi.Input<boolean>;
+    /**
+     * The applied labels.
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name for this rule script.
      */
@@ -185,6 +195,10 @@ export interface RuleScriptArgs {
      * Set true to disable the rule script.
      */
     disabled: pulumi.Input<boolean>;
+    /**
+     * The applied labels.
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name for this rule script.
      */

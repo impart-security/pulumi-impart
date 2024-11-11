@@ -46,6 +46,10 @@ export class RuleTestCase extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The applied labels.
+     */
+    public readonly labels!: pulumi.Output<string[] | undefined>;
+    /**
      * The messages of the test case.
      */
     public readonly messages!: pulumi.Output<outputs.RuleTestCaseMessage[]>;
@@ -73,6 +77,7 @@ export class RuleTestCase extends pulumi.CustomResource {
             const state = argsOrState as RuleTestCaseState | undefined;
             resourceInputs["assertions"] = state ? state.assertions : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["messages"] = state ? state.messages : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["required"] = state ? state.required : undefined;
@@ -86,6 +91,7 @@ export class RuleTestCase extends pulumi.CustomResource {
             }
             resourceInputs["assertions"] = args ? args.assertions : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["messages"] = args ? args.messages : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["required"] = args ? args.required : undefined;
@@ -107,6 +113,10 @@ export interface RuleTestCaseState {
      * The description of the test case.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The applied labels.
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The messages of the test case.
      */
@@ -133,6 +143,10 @@ export interface RuleTestCaseArgs {
      * The description of the test case.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The applied labels.
+     */
+    labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The messages of the test case.
      */
