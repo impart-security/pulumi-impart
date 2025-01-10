@@ -1,4 +1,11 @@
+
 # Changelog
+
+## [0.8.1] - 2025-01-09
+
+### Changed
+
+- Updated dependencies
 
 ## [0.8.0] - 2024-11-11
 
@@ -10,6 +17,7 @@
 - description attribute to lists and to test cases messages and assertions
 
 ### Changed
+
 - List implementation to use PUT and PATCH items endpoint
 
 ## [0.7.0] - 2024-09-23
@@ -124,3 +132,4 @@
 ### Added
 
 - Initial release
+
