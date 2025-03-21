@@ -63,21 +63,11 @@ type LookupSpecResult struct {
 }
 
 func LookupSpecOutput(ctx *pulumi.Context, args LookupSpecOutputArgs, opts ...pulumi.InvokeOption) LookupSpecResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupSpecResultOutput, error) {
 			args := v.(LookupSpecArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupSpecResult
-			secret, err := ctx.InvokePackageRaw("impart:index/getSpec:GetSpec", args, &rv, "", opts...)
-			if err != nil {
-				return LookupSpecResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupSpecResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupSpecResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("impart:index/getSpec:GetSpec", args, LookupSpecResultOutput{}, options).(LookupSpecResultOutput), nil
 		}).(LookupSpecResultOutput)
 }
 

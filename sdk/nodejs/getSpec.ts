@@ -62,7 +62,7 @@ export interface GetSpecResult {
  * });
  * ```
  */
-export function getSpecOutput(args: GetSpecOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSpecResult> {
+export function getSpecOutput(args: GetSpecOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSpecResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("impart:index/getSpec:GetSpec", {
         "id": args.id,

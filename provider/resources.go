@@ -112,6 +112,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:       makeResource(mainMod, "RuleScriptDependencies"),
 				ComputeID: computeRuleScriptDependenciesID,
 			},
+			"impart_external_link": {Tok: makeResource(mainMod, "ExternalLink")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"impart_spec":      {Tok: makeDataSource(mainMod, "GetSpec")},

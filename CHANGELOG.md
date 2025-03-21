@@ -1,6 +1,12 @@
 
 # Changelog
 
+## [0.9.0] - 2025-03-21
+
+### Add
+
+- External Link resource
+
 ## [0.8.1] - 2025-01-09
 
 ### Changed

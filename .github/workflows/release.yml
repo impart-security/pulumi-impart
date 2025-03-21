@@ -48,7 +48,7 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-          - 1.23.x
+          - 1.24.x
 
   publish_sdk:
     name: Publish SDKs
@@ -75,7 +75,7 @@ jobs:
           node-version: ${{matrix.nodeversion}}
           registry-url: ${{env.NPM_REGISTRY_URL}}
       - name: Enable corepack
-        run: corepack enable
+        run: npm install -g corepack@0.32.0 && corepack enable
       - name: Setup DotNet
         uses: actions/setup-dotnet@v1
         with:
@@ -127,7 +127,7 @@ jobs:
         dotnetversion:
           - 3.1.301
         goversion:
-          - 1.23.x
+          - 1.24.x
         language:
           - nodejs
           # - python

@@ -73,21 +73,11 @@ type GetConnectorResult struct {
 }
 
 func GetConnectorOutput(ctx *pulumi.Context, args GetConnectorOutputArgs, opts ...pulumi.InvokeOption) GetConnectorResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetConnectorResultOutput, error) {
 			args := v.(GetConnectorArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetConnectorResult
-			secret, err := ctx.InvokePackageRaw("impart:index/getConnector:GetConnector", args, &rv, "", opts...)
-			if err != nil {
-				return GetConnectorResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetConnectorResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetConnectorResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("impart:index/getConnector:GetConnector", args, GetConnectorResultOutput{}, options).(GetConnectorResultOutput), nil
 		}).(GetConnectorResultOutput)
 }
 

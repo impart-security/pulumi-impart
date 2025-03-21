@@ -187,7 +187,7 @@
                 "messageIndexes": {
                     "type": "array",
                     "items": {
-                        "type": "number"
+                        "type": "integer"
                     },
                     "description": "The indexes of the messages in the test case the assertion applies to.\n"
                 }
@@ -202,11 +202,11 @@
         "impart:index/RuleTestCaseMessage:RuleTestCaseMessage": {
             "properties": {
                 "count": {
-                    "type": "number",
+                    "type": "integer",
                     "description": "The number of times to include the message in the test case.\n"
                 },
                 "delay": {
-                    "type": "number",
+                    "type": "integer",
                     "description": "The delay in milliseconds between message iterations.\n"
                 },
                 "description": {
@@ -214,7 +214,7 @@
                     "description": "The description of the test case message.\n"
                 },
                 "postDelay": {
-                    "type": "number",
+                    "type": "integer",
                     "description": "The delay in milliseconds after a set of message iterations.\n"
                 },
                 "req": {
@@ -321,7 +321,7 @@
                     "description": "The HTTP response header values.\n"
                 },
                 "statusCode": {
-                    "type": "number",
+                    "type": "integer",
                     "description": "The HTTP response status code.\n"
                 },
                 "truncatedBody": {
@@ -583,6 +583,126 @@
                     "useForwarded": {
                         "type": "boolean",
                         "description": "The use_forwarded for this api binding.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "impart:index/externalLink:ExternalLink": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@impart-security/pulumi-impart\";\n\n// Create a new external link\nconst externalLink1 = new impart.ExternalLink(\"externalLink1\", {\n    description: \"A link to Datadog dashboard for client IP address\",\n    entity: \"request\",\n    jsonPathElement: \"$.client_ip.address\",\n    name: \"Datadog client IP address\",\n    url: \"https://app.datadoghq.com/dashboard/3tm-mpc-863?tpl_var_ClientIp=9.37.130.233\",\n    vendor: \"Datadog\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\n# Create a new external link\nexternal_link1 = impart.ExternalLink(\"externalLink1\",\n    description=\"A link to Datadog dashboard for client IP address\",\n    entity=\"request\",\n    json_path_element=\"$.client_ip.address\",\n    name=\"Datadog client IP address\",\n    url=\"https://app.datadoghq.com/dashboard/3tm-mpc-863?tpl_var_ClientIp=9.37.130.233\",\n    vendor=\"Datadog\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a new external link\n    var externalLink1 = new Impart.ExternalLink(\"externalLink1\", new()\n    {\n        Description = \"A link to Datadog dashboard for client IP address\",\n        Entity = \"request\",\n        JsonPathElement = \"$.client_ip.address\",\n        Name = \"Datadog client IP address\",\n        Url = \"https://app.datadoghq.com/dashboard/3tm-mpc-863?tpl_var_ClientIp=9.37.130.233\",\n        Vendor = \"Datadog\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a new external link\n\t\t_, err := impart.NewExternalLink(ctx, \"externalLink1\", \u0026impart.ExternalLinkArgs{\n\t\t\tDescription:     pulumi.String(\"A link to Datadog dashboard for client IP address\"),\n\t\t\tEntity:          pulumi.String(\"request\"),\n\t\t\tJsonPathElement: pulumi.String(\"$.client_ip.address\"),\n\t\t\tName:            pulumi.String(\"Datadog client IP address\"),\n\t\t\tUrl:             pulumi.String(\"https://app.datadoghq.com/dashboard/3tm-mpc-863?tpl_var_ClientIp=9.37.130.233\"),\n\t\t\tVendor:          pulumi.String(\"Datadog\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ExternalLink;\nimport com.pulumi.impart.ExternalLinkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new external link\n        var externalLink1 = new ExternalLink(\"externalLink1\", ExternalLinkArgs.builder()\n            .description(\"A link to Datadog dashboard for client IP address\")\n            .entity(\"request\")\n            .jsonPathElement(\"$.client_ip.address\")\n            .name(\"Datadog client IP address\")\n            .url(\"https://app.datadoghq.com/dashboard/3tm-mpc-863?tpl_var_ClientIp=9.37.130.233\")\n            .vendor(\"Datadog\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new external link\n  externalLink1:\n    type: impart:ExternalLink\n    properties:\n      description: A link to Datadog dashboard for client IP address\n      entity: request\n      jsonPathElement: $.client_ip.address\n      name: Datadog client IP address\n      url: https://app.datadoghq.com/dashboard/3tm-mpc-863?tpl_var_ClientIp=9.37.130.233\n      vendor: Datadog\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description of the external link.\n"
+                },
+                "entity": {
+                    "type": "string",
+                    "description": "The entity to which the links should be applied.\n"
+                },
+                "jsonPathElement": {
+                    "type": "string",
+                    "description": "A JSONPath to the element for which this link should apply (e.g. $.client_ip.address).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the external link.\n"
+                },
+                "specIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of spec IDs this external link applies to (empty means all).\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The external URL template with JSONPath element variables.\n"
+                },
+                "vendor": {
+                    "type": "string",
+                    "description": "The vendor for the external link.\n"
+                }
+            },
+            "required": [
+                "entity",
+                "jsonPathElement",
+                "name",
+                "url",
+                "vendor"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description of the external link.\n"
+                },
+                "entity": {
+                    "type": "string",
+                    "description": "The entity to which the links should be applied.\n"
+                },
+                "jsonPathElement": {
+                    "type": "string",
+                    "description": "A JSONPath to the element for which this link should apply (e.g. $.client_ip.address).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the external link.\n"
+                },
+                "specIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of spec IDs this external link applies to (empty means all).\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The external URL template with JSONPath element variables.\n"
+                },
+                "vendor": {
+                    "type": "string",
+                    "description": "The vendor for the external link.\n"
+                }
+            },
+            "requiredInputs": [
+                "entity",
+                "jsonPathElement",
+                "name",
+                "url",
+                "vendor"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ExternalLink resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the external link.\n"
+                    },
+                    "entity": {
+                        "type": "string",
+                        "description": "The entity to which the links should be applied.\n"
+                    },
+                    "jsonPathElement": {
+                        "type": "string",
+                        "description": "A JSONPath to the element for which this link should apply (e.g. $.client_ip.address).\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the external link.\n"
+                    },
+                    "specIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of spec IDs this external link applies to (empty means all).\n"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "The external URL template with JSONPath element variables.\n"
+                    },
+                    "vendor": {
+                        "type": "string",
+                        "description": "The vendor for the external link.\n"
                     }
                 },
                 "type": "object"
@@ -864,7 +984,7 @@
             }
         },
         "impart:index/monitor:Monitor": {
-            "description": "Manage a monitor.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.Monitor;\nimport com.pulumi.impart.MonitorArgs;\nimport com.pulumi.impart.inputs.MonitorConditionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a new event monitor\n        var testEvent = new Monitor(\"testEvent\", MonitorArgs.builder()\n            .conditions(MonitorConditionArgs.builder()\n                .comparator(\"gt\")\n                .delay(0)\n                .details(MonitorConditionDetailsArgs.builder()\n                    .action(\"api_access_token_created\")\n                    .actorType(\"user_id\")\n                    .subjectType(\"api_access_token_id\")\n                    .type(\"event\")\n                    .build())\n                .threshold(1)\n                .time_period(60000)\n                .build())\n            .description(\"test event monitor\")\n            .name(\"terraform_event_monitor\")\n            .notificationTemplateIds(\"\u003cnotification_template_id\u003e\")\n            .build());\n\n        // Create a new metric monitor\n        var testMetric = new Monitor(\"testMetric\", MonitorArgs.builder()\n            .conditions(MonitorConditionArgs.builder()\n                .comparator(\"lt\")\n                .delay(0)\n                .details(MonitorConditionDetailsArgs.builder()\n                    .tag(\"http-request\")\n                    .type(\"metric\")\n                    .build())\n                .threshold(1)\n                .time_period(60000)\n                .build())\n            .description(\"test event monitor\")\n            .name(\"terraform_event_monitor\")\n            .notificationTemplateIds(\"\u003cnotification_template_id\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a new event monitor\n  testEvent:\n    type: impart:Monitor\n    properties:\n      conditions:\n        - comparator: gt\n          delay: 0\n          details:\n            - action: api_access_token_created\n              actorType: user_id\n              subjectType: api_access_token_id\n              type: event\n          threshold: 1\n          time_period: 60000\n      description: test event monitor\n      name: terraform_event_monitor\n      notificationTemplateIds:\n        - \u003cnotification_template_id\u003e\n  # Create a new metric monitor\n  testMetric:\n    type: impart:Monitor\n    properties:\n      conditions:\n        - comparator: lt\n          delay: 0\n          details:\n            - tag: http-request\n              type: metric\n          threshold: 1\n          time_period: 60000\n      description: test event monitor\n      name: terraform_event_monitor\n      notificationTemplateIds:\n        - \u003cnotification_template_id\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manage a monitor.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  # Create a new event monitor\n  testEvent:\n    type: impart:Monitor\n    properties:\n      conditions:\n        - comparator: gt\n          delay: 0\n          details:\n            - action: api_access_token_created\n              actorType: user_id\n              subjectType: api_access_token_id\n              type: event\n          threshold: 1\n          time_period: 60000\n      description: test event monitor\n      name: terraform_event_monitor\n      notificationTemplateIds:\n        - \u003cnotification_template_id\u003e\n  # Create a new metric monitor\n  testMetric:\n    type: impart:Monitor\n    properties:\n      conditions:\n        - comparator: lt\n          delay: 0\n          details:\n            - tag: http-request\n              type: metric\n          threshold: 1\n          time_period: 60000\n      description: test event monitor\n      name: terraform_event_monitor\n      notificationTemplateIds:\n        - \u003cnotification_template_id\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "conditions": {
                     "type": "array",
@@ -1198,7 +1318,7 @@
             }
         },
         "impart:index/ruleScriptDependencies:RuleScriptDependencies": {
-            "description": "Manage rule script dependencies. There should only ever be one instance of this resource in a workspace at once, because it manages rule script dependencies at an organization level.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.RuleScriptDependencies;\nimport com.pulumi.impart.RuleScriptDependenciesArgs;\nimport com.pulumi.impart.inputs.RuleScriptDependenciesDependencyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new RuleScriptDependencies(\"example\", RuleScriptDependenciesArgs.builder()\n            .dependencies(RuleScriptDependenciesDependencyArgs.builder()\n%!v(PANIC=Format method: interface conversion: model.Expression is *model.TemplateExpression, not *model.LiteralValueExpression))\n                .build());\n\n        }\n}\n```\n```yaml\nresources:\n  example:\n    type: impart:RuleScriptDependencies\n    properties:\n      dependencies:\n        - rule_script_id: \u003cexample_1.id\u003e\n          depends_on_rule_script_ids:\n            - \u003cexample_2.id\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manage rule script dependencies. There should only ever be one instance of this resource in a workspace at once, because it manages rule script dependencies at an organization level.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: impart:RuleScriptDependencies\n    properties:\n      dependencies:\n        - rule_script_id: \u003cexample_1.id\u003e\n          depends_on_rule_script_ids:\n            - \u003cexample_2.id\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "dependencies": {
                     "type": "array",
@@ -1505,7 +1625,7 @@
     },
     "functions": {
         "impart:index/getConnector:GetConnector": {
-            "description": "Manage a connector.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@pulumi/impart\";\n\nconst exampleConnector = impart.GetConnector({\n    id: \"\u003cid\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\nexample_connector = impart.get_connector(id=\"\u003cid\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleConnector = Impart.GetConnector.Invoke(new()\n    {\n        Id = \"\u003cid\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.GetConnector(ctx, \u0026impart.GetConnectorArgs{\n\t\t\tId: \"\u003cid\u003e\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ImpartFunctions;\nimport com.pulumi.impart.inputs.GetConnectorArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleConnector = ImpartFunctions.GetConnector(GetConnectorArgs.builder()\n            .id(\"\u003cid\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleConnector:\n    fn::invoke:\n      Function: impart:GetConnector\n      Arguments:\n        id: \u003cid\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manage a connector.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@pulumi/impart\";\n\nconst exampleConnector = impart.GetConnector({\n    id: \"\u003cid\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\nexample_connector = impart.get_connector(id=\"\u003cid\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleConnector = Impart.GetConnector.Invoke(new()\n    {\n        Id = \"\u003cid\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.GetConnector(ctx, \u0026impart.GetConnectorArgs{\n\t\t\tId: \"\u003cid\u003e\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ImpartFunctions;\nimport com.pulumi.impart.inputs.GetConnectorArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var exampleConnector = ImpartFunctions.GetConnector(GetConnectorArgs.builder()\n            .id(\"\u003cid\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  exampleConnector:\n    fn::invoke:\n      function: impart:GetConnector\n      arguments:\n        id: \u003cid\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking GetConnector.\n",
                 "properties": {
@@ -1558,7 +1678,7 @@
             }
         },
         "impart:index/getSpec:GetSpec": {
-            "description": "Manage a specification.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@pulumi/impart\";\n\nconst example = impart.GetSpec({\n    id: \"\u003cid\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\nexample = impart.get_spec(id=\"\u003cid\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Impart.GetSpec.Invoke(new()\n    {\n        Id = \"\u003cid\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.GetSpec(ctx, \u0026impart.LookupSpecArgs{\n\t\t\tId: \"\u003cid\u003e\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ImpartFunctions;\nimport com.pulumi.impart.inputs.GetSpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = ImpartFunctions.GetSpec(GetSpecArgs.builder()\n            .id(\"\u003cid\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: impart:GetSpec\n      Arguments:\n        id: \u003cid\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Manage a specification.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as impart from \"@pulumi/impart\";\n\nconst example = impart.GetSpec({\n    id: \"\u003cid\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_impart as impart\n\nexample = impart.get_spec(id=\"\u003cid\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Impart = Pulumi.Impart;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Impart.GetSpec.Invoke(new()\n    {\n        Id = \"\u003cid\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/impart-security/pulumi-impart/sdk/go/impart\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := impart.GetSpec(ctx, \u0026impart.LookupSpecArgs{\n\t\t\tId: \"\u003cid\u003e\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.impart.ImpartFunctions;\nimport com.pulumi.impart.inputs.GetSpecArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = ImpartFunctions.GetSpec(GetSpecArgs.builder()\n            .id(\"\u003cid\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: impart:GetSpec\n      arguments:\n        id: \u003cid\u003e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking GetSpec.\n",
                 "properties": {

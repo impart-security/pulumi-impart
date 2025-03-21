@@ -10,6 +10,11 @@ export type ApiBinding = import("./apiBinding").ApiBinding;
 export const ApiBinding: typeof import("./apiBinding").ApiBinding = null as any;
 utilities.lazyLoad(exports, ["ApiBinding"], () => require("./apiBinding"));
 
+export { ExternalLinkArgs, ExternalLinkState } from "./externalLink";
+export type ExternalLink = import("./externalLink").ExternalLink;
+export const ExternalLink: typeof import("./externalLink").ExternalLink = null as any;
+utilities.lazyLoad(exports, ["ExternalLink"], () => require("./externalLink"));
+
 export { GetConnectorArgs, GetConnectorResult, GetConnectorOutputArgs } from "./getConnector";
 export const getConnector: typeof import("./getConnector").getConnector = null as any;
 export const getConnectorOutput: typeof import("./getConnector").getConnectorOutput = null as any;
@@ -91,6 +96,8 @@ const _module = {
         switch (type) {
             case "impart:index/apiBinding:ApiBinding":
                 return new ApiBinding(name, <any>undefined, { urn })
+            case "impart:index/externalLink:ExternalLink":
+                return new ExternalLink(name, <any>undefined, { urn })
             case "impart:index/label:Label":
                 return new Label(name, <any>undefined, { urn })
             case "impart:index/list:List":
@@ -117,6 +124,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("impart", "index/apiBinding", _module)
+pulumi.runtime.registerResourceModule("impart", "index/externalLink", _module)
 pulumi.runtime.registerResourceModule("impart", "index/label", _module)
 pulumi.runtime.registerResourceModule("impart", "index/list", _module)
 pulumi.runtime.registerResourceModule("impart", "index/logBinding", _module)

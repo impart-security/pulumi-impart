@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "impart:index/apiBinding:ApiBinding":
 		r = &ApiBinding{}
+	case "impart:index/externalLink:ExternalLink":
+		r = &ExternalLink{}
 	case "impart:index/label:Label":
 		r = &Label{}
 	case "impart:index/list:List":
@@ -77,6 +79,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"impart",
 		"index/apiBinding",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/externalLink",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

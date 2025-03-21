@@ -465,7 +465,7 @@ type RuleTestCaseAssertion struct {
 	// The location of the assertion. Allowed values: req, res. Not applicable for assertion type output.
 	Location *string `pulumi:"location"`
 	// The indexes of the messages in the test case the assertion applies to.
-	MessageIndexes []float64 `pulumi:"messageIndexes"`
+	MessageIndexes []int `pulumi:"messageIndexes"`
 }
 
 // RuleTestCaseAssertionInput is an input type that accepts RuleTestCaseAssertionArgs and RuleTestCaseAssertionOutput values.
@@ -501,7 +501,7 @@ type RuleTestCaseAssertionArgs struct {
 	// The location of the assertion. Allowed values: req, res. Not applicable for assertion type output.
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// The indexes of the messages in the test case the assertion applies to.
-	MessageIndexes pulumi.Float64ArrayInput `pulumi:"messageIndexes"`
+	MessageIndexes pulumi.IntArrayInput `pulumi:"messageIndexes"`
 }
 
 func (RuleTestCaseAssertionArgs) ElementType() reflect.Type {
@@ -591,8 +591,8 @@ func (o RuleTestCaseAssertionOutput) Location() pulumi.StringPtrOutput {
 }
 
 // The indexes of the messages in the test case the assertion applies to.
-func (o RuleTestCaseAssertionOutput) MessageIndexes() pulumi.Float64ArrayOutput {
-	return o.ApplyT(func(v RuleTestCaseAssertion) []float64 { return v.MessageIndexes }).(pulumi.Float64ArrayOutput)
+func (o RuleTestCaseAssertionOutput) MessageIndexes() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v RuleTestCaseAssertion) []int { return v.MessageIndexes }).(pulumi.IntArrayOutput)
 }
 
 type RuleTestCaseAssertionArrayOutput struct{ *pulumi.OutputState }
@@ -617,13 +617,13 @@ func (o RuleTestCaseAssertionArrayOutput) Index(i pulumi.IntInput) RuleTestCaseA
 
 type RuleTestCaseMessage struct {
 	// The number of times to include the message in the test case.
-	Count *float64 `pulumi:"count"`
+	Count *int `pulumi:"count"`
 	// The delay in milliseconds between message iterations.
-	Delay *float64 `pulumi:"delay"`
+	Delay *int `pulumi:"delay"`
 	// The description of the test case message.
 	Description *string `pulumi:"description"`
 	// The delay in milliseconds after a set of message iterations.
-	PostDelay *float64 `pulumi:"postDelay"`
+	PostDelay *int `pulumi:"postDelay"`
 	// A payload sent to the inspector to inspect an HTTP request.
 	Req RuleTestCaseMessageReq `pulumi:"req"`
 	// A payload sent to the inspector to inspect an HTTP response.
@@ -643,13 +643,13 @@ type RuleTestCaseMessageInput interface {
 
 type RuleTestCaseMessageArgs struct {
 	// The number of times to include the message in the test case.
-	Count pulumi.Float64PtrInput `pulumi:"count"`
+	Count pulumi.IntPtrInput `pulumi:"count"`
 	// The delay in milliseconds between message iterations.
-	Delay pulumi.Float64PtrInput `pulumi:"delay"`
+	Delay pulumi.IntPtrInput `pulumi:"delay"`
 	// The description of the test case message.
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The delay in milliseconds after a set of message iterations.
-	PostDelay pulumi.Float64PtrInput `pulumi:"postDelay"`
+	PostDelay pulumi.IntPtrInput `pulumi:"postDelay"`
 	// A payload sent to the inspector to inspect an HTTP request.
 	Req RuleTestCaseMessageReqInput `pulumi:"req"`
 	// A payload sent to the inspector to inspect an HTTP response.
@@ -708,13 +708,13 @@ func (o RuleTestCaseMessageOutput) ToRuleTestCaseMessageOutputWithContext(ctx co
 }
 
 // The number of times to include the message in the test case.
-func (o RuleTestCaseMessageOutput) Count() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v RuleTestCaseMessage) *float64 { return v.Count }).(pulumi.Float64PtrOutput)
+func (o RuleTestCaseMessageOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) *int { return v.Count }).(pulumi.IntPtrOutput)
 }
 
 // The delay in milliseconds between message iterations.
-func (o RuleTestCaseMessageOutput) Delay() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v RuleTestCaseMessage) *float64 { return v.Delay }).(pulumi.Float64PtrOutput)
+func (o RuleTestCaseMessageOutput) Delay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) *int { return v.Delay }).(pulumi.IntPtrOutput)
 }
 
 // The description of the test case message.
@@ -723,8 +723,8 @@ func (o RuleTestCaseMessageOutput) Description() pulumi.StringPtrOutput {
 }
 
 // The delay in milliseconds after a set of message iterations.
-func (o RuleTestCaseMessageOutput) PostDelay() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v RuleTestCaseMessage) *float64 { return v.PostDelay }).(pulumi.Float64PtrOutput)
+func (o RuleTestCaseMessageOutput) PostDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RuleTestCaseMessage) *int { return v.PostDelay }).(pulumi.IntPtrOutput)
 }
 
 // A payload sent to the inspector to inspect an HTTP request.
@@ -889,7 +889,7 @@ type RuleTestCaseMessageRes struct {
 	// The HTTP response header values.
 	HeaderValues []string `pulumi:"headerValues"`
 	// The HTTP response status code.
-	StatusCode float64 `pulumi:"statusCode"`
+	StatusCode int `pulumi:"statusCode"`
 	// Indicates whether the response body was truncated.
 	TruncatedBody *bool `pulumi:"truncatedBody"`
 }
@@ -913,7 +913,7 @@ type RuleTestCaseMessageResArgs struct {
 	// The HTTP response header values.
 	HeaderValues pulumi.StringArrayInput `pulumi:"headerValues"`
 	// The HTTP response status code.
-	StatusCode pulumi.Float64Input `pulumi:"statusCode"`
+	StatusCode pulumi.IntInput `pulumi:"statusCode"`
 	// Indicates whether the response body was truncated.
 	TruncatedBody pulumi.BoolPtrInput `pulumi:"truncatedBody"`
 }
@@ -960,8 +960,8 @@ func (o RuleTestCaseMessageResOutput) HeaderValues() pulumi.StringArrayOutput {
 }
 
 // The HTTP response status code.
-func (o RuleTestCaseMessageResOutput) StatusCode() pulumi.Float64Output {
-	return o.ApplyT(func(v RuleTestCaseMessageRes) float64 { return v.StatusCode }).(pulumi.Float64Output)
+func (o RuleTestCaseMessageResOutput) StatusCode() pulumi.IntOutput {
+	return o.ApplyT(func(v RuleTestCaseMessageRes) int { return v.StatusCode }).(pulumi.IntOutput)
 }
 
 // Indicates whether the response body was truncated.
