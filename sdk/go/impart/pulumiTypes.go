@@ -337,6 +337,218 @@ func (o MonitorConditionDetailsOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v MonitorConditionDetails) string { return v.Type }).(pulumi.StringOutput)
 }
 
+type RuleClientIdentifierHashField struct {
+	// The hash field.
+	Field string `pulumi:"field"`
+	// The hash field key.
+	Key *string `pulumi:"key"`
+}
+
+// RuleClientIdentifierHashFieldInput is an input type that accepts RuleClientIdentifierHashFieldArgs and RuleClientIdentifierHashFieldOutput values.
+// You can construct a concrete instance of `RuleClientIdentifierHashFieldInput` via:
+//
+//	RuleClientIdentifierHashFieldArgs{...}
+type RuleClientIdentifierHashFieldInput interface {
+	pulumi.Input
+
+	ToRuleClientIdentifierHashFieldOutput() RuleClientIdentifierHashFieldOutput
+	ToRuleClientIdentifierHashFieldOutputWithContext(context.Context) RuleClientIdentifierHashFieldOutput
+}
+
+type RuleClientIdentifierHashFieldArgs struct {
+	// The hash field.
+	Field pulumi.StringInput `pulumi:"field"`
+	// The hash field key.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+}
+
+func (RuleClientIdentifierHashFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleClientIdentifierHashField)(nil)).Elem()
+}
+
+func (i RuleClientIdentifierHashFieldArgs) ToRuleClientIdentifierHashFieldOutput() RuleClientIdentifierHashFieldOutput {
+	return i.ToRuleClientIdentifierHashFieldOutputWithContext(context.Background())
+}
+
+func (i RuleClientIdentifierHashFieldArgs) ToRuleClientIdentifierHashFieldOutputWithContext(ctx context.Context) RuleClientIdentifierHashFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleClientIdentifierHashFieldOutput)
+}
+
+// RuleClientIdentifierHashFieldArrayInput is an input type that accepts RuleClientIdentifierHashFieldArray and RuleClientIdentifierHashFieldArrayOutput values.
+// You can construct a concrete instance of `RuleClientIdentifierHashFieldArrayInput` via:
+//
+//	RuleClientIdentifierHashFieldArray{ RuleClientIdentifierHashFieldArgs{...} }
+type RuleClientIdentifierHashFieldArrayInput interface {
+	pulumi.Input
+
+	ToRuleClientIdentifierHashFieldArrayOutput() RuleClientIdentifierHashFieldArrayOutput
+	ToRuleClientIdentifierHashFieldArrayOutputWithContext(context.Context) RuleClientIdentifierHashFieldArrayOutput
+}
+
+type RuleClientIdentifierHashFieldArray []RuleClientIdentifierHashFieldInput
+
+func (RuleClientIdentifierHashFieldArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleClientIdentifierHashField)(nil)).Elem()
+}
+
+func (i RuleClientIdentifierHashFieldArray) ToRuleClientIdentifierHashFieldArrayOutput() RuleClientIdentifierHashFieldArrayOutput {
+	return i.ToRuleClientIdentifierHashFieldArrayOutputWithContext(context.Background())
+}
+
+func (i RuleClientIdentifierHashFieldArray) ToRuleClientIdentifierHashFieldArrayOutputWithContext(ctx context.Context) RuleClientIdentifierHashFieldArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleClientIdentifierHashFieldArrayOutput)
+}
+
+type RuleClientIdentifierHashFieldOutput struct{ *pulumi.OutputState }
+
+func (RuleClientIdentifierHashFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleClientIdentifierHashField)(nil)).Elem()
+}
+
+func (o RuleClientIdentifierHashFieldOutput) ToRuleClientIdentifierHashFieldOutput() RuleClientIdentifierHashFieldOutput {
+	return o
+}
+
+func (o RuleClientIdentifierHashFieldOutput) ToRuleClientIdentifierHashFieldOutputWithContext(ctx context.Context) RuleClientIdentifierHashFieldOutput {
+	return o
+}
+
+// The hash field.
+func (o RuleClientIdentifierHashFieldOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleClientIdentifierHashField) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// The hash field key.
+func (o RuleClientIdentifierHashFieldOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RuleClientIdentifierHashField) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+type RuleClientIdentifierHashFieldArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleClientIdentifierHashFieldArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleClientIdentifierHashField)(nil)).Elem()
+}
+
+func (o RuleClientIdentifierHashFieldArrayOutput) ToRuleClientIdentifierHashFieldArrayOutput() RuleClientIdentifierHashFieldArrayOutput {
+	return o
+}
+
+func (o RuleClientIdentifierHashFieldArrayOutput) ToRuleClientIdentifierHashFieldArrayOutputWithContext(ctx context.Context) RuleClientIdentifierHashFieldArrayOutput {
+	return o
+}
+
+func (o RuleClientIdentifierHashFieldArrayOutput) Index(i pulumi.IntInput) RuleClientIdentifierHashFieldOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleClientIdentifierHashField {
+		return vs[0].([]RuleClientIdentifierHashField)[vs[1].(int)]
+	}).(RuleClientIdentifierHashFieldOutput)
+}
+
+type RuleDependenciesDependency struct {
+	// IDs of the rule this rule depends on.
+	DependsOns []string `pulumi:"dependsOns"`
+	// The ID of the rule
+	RuleId string `pulumi:"ruleId"`
+}
+
+// RuleDependenciesDependencyInput is an input type that accepts RuleDependenciesDependencyArgs and RuleDependenciesDependencyOutput values.
+// You can construct a concrete instance of `RuleDependenciesDependencyInput` via:
+//
+//	RuleDependenciesDependencyArgs{...}
+type RuleDependenciesDependencyInput interface {
+	pulumi.Input
+
+	ToRuleDependenciesDependencyOutput() RuleDependenciesDependencyOutput
+	ToRuleDependenciesDependencyOutputWithContext(context.Context) RuleDependenciesDependencyOutput
+}
+
+type RuleDependenciesDependencyArgs struct {
+	// IDs of the rule this rule depends on.
+	DependsOns pulumi.StringArrayInput `pulumi:"dependsOns"`
+	// The ID of the rule
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+}
+
+func (RuleDependenciesDependencyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleDependenciesDependency)(nil)).Elem()
+}
+
+func (i RuleDependenciesDependencyArgs) ToRuleDependenciesDependencyOutput() RuleDependenciesDependencyOutput {
+	return i.ToRuleDependenciesDependencyOutputWithContext(context.Background())
+}
+
+func (i RuleDependenciesDependencyArgs) ToRuleDependenciesDependencyOutputWithContext(ctx context.Context) RuleDependenciesDependencyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleDependenciesDependencyOutput)
+}
+
+// RuleDependenciesDependencyArrayInput is an input type that accepts RuleDependenciesDependencyArray and RuleDependenciesDependencyArrayOutput values.
+// You can construct a concrete instance of `RuleDependenciesDependencyArrayInput` via:
+//
+//	RuleDependenciesDependencyArray{ RuleDependenciesDependencyArgs{...} }
+type RuleDependenciesDependencyArrayInput interface {
+	pulumi.Input
+
+	ToRuleDependenciesDependencyArrayOutput() RuleDependenciesDependencyArrayOutput
+	ToRuleDependenciesDependencyArrayOutputWithContext(context.Context) RuleDependenciesDependencyArrayOutput
+}
+
+type RuleDependenciesDependencyArray []RuleDependenciesDependencyInput
+
+func (RuleDependenciesDependencyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleDependenciesDependency)(nil)).Elem()
+}
+
+func (i RuleDependenciesDependencyArray) ToRuleDependenciesDependencyArrayOutput() RuleDependenciesDependencyArrayOutput {
+	return i.ToRuleDependenciesDependencyArrayOutputWithContext(context.Background())
+}
+
+func (i RuleDependenciesDependencyArray) ToRuleDependenciesDependencyArrayOutputWithContext(ctx context.Context) RuleDependenciesDependencyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleDependenciesDependencyArrayOutput)
+}
+
+type RuleDependenciesDependencyOutput struct{ *pulumi.OutputState }
+
+func (RuleDependenciesDependencyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleDependenciesDependency)(nil)).Elem()
+}
+
+func (o RuleDependenciesDependencyOutput) ToRuleDependenciesDependencyOutput() RuleDependenciesDependencyOutput {
+	return o
+}
+
+func (o RuleDependenciesDependencyOutput) ToRuleDependenciesDependencyOutputWithContext(ctx context.Context) RuleDependenciesDependencyOutput {
+	return o
+}
+
+// IDs of the rule this rule depends on.
+func (o RuleDependenciesDependencyOutput) DependsOns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RuleDependenciesDependency) []string { return v.DependsOns }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the rule
+func (o RuleDependenciesDependencyOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleDependenciesDependency) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+type RuleDependenciesDependencyArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleDependenciesDependencyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleDependenciesDependency)(nil)).Elem()
+}
+
+func (o RuleDependenciesDependencyArrayOutput) ToRuleDependenciesDependencyArrayOutput() RuleDependenciesDependencyArrayOutput {
+	return o
+}
+
+func (o RuleDependenciesDependencyArrayOutput) ToRuleDependenciesDependencyArrayOutputWithContext(ctx context.Context) RuleDependenciesDependencyArrayOutput {
+	return o
+}
+
+func (o RuleDependenciesDependencyArrayOutput) Index(i pulumi.IntInput) RuleDependenciesDependencyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleDependenciesDependency {
+		return vs[0].([]RuleDependenciesDependency)[vs[1].(int)]
+	}).(RuleDependenciesDependencyOutput)
+}
+
 type RuleScriptDependenciesDependency struct {
 	// IDs of the rule script this rule depends on.
 	DependsOnRuleScriptIds []string `pulumi:"dependsOnRuleScriptIds"`
@@ -975,6 +1187,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionInput)(nil)).Elem(), MonitorConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionArrayInput)(nil)).Elem(), MonitorConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionDetailsInput)(nil)).Elem(), MonitorConditionDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleClientIdentifierHashFieldInput)(nil)).Elem(), RuleClientIdentifierHashFieldArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleClientIdentifierHashFieldArrayInput)(nil)).Elem(), RuleClientIdentifierHashFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleDependenciesDependencyInput)(nil)).Elem(), RuleDependenciesDependencyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleDependenciesDependencyArrayInput)(nil)).Elem(), RuleDependenciesDependencyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleScriptDependenciesDependencyInput)(nil)).Elem(), RuleScriptDependenciesDependencyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleScriptDependenciesDependencyArrayInput)(nil)).Elem(), RuleScriptDependenciesDependencyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleTestCaseAssertionInput)(nil)).Elem(), RuleTestCaseAssertionArgs{})
@@ -988,6 +1204,10 @@ func init() {
 	pulumi.RegisterOutputType(MonitorConditionOutput{})
 	pulumi.RegisterOutputType(MonitorConditionArrayOutput{})
 	pulumi.RegisterOutputType(MonitorConditionDetailsOutput{})
+	pulumi.RegisterOutputType(RuleClientIdentifierHashFieldOutput{})
+	pulumi.RegisterOutputType(RuleClientIdentifierHashFieldArrayOutput{})
+	pulumi.RegisterOutputType(RuleDependenciesDependencyOutput{})
+	pulumi.RegisterOutputType(RuleDependenciesDependencyArrayOutput{})
 	pulumi.RegisterOutputType(RuleScriptDependenciesDependencyOutput{})
 	pulumi.RegisterOutputType(RuleScriptDependenciesDependencyArrayOutput{})
 	pulumi.RegisterOutputType(RuleTestCaseAssertionOutput{})

@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "impart:index/apiBinding:ApiBinding":
 		r = &ApiBinding{}
+	case "impart:index/coreRuleConfig:CoreRuleConfig":
+		r = &CoreRuleConfig{}
 	case "impart:index/externalLink:ExternalLink":
 		r = &ExternalLink{}
 	case "impart:index/label:Label":
@@ -35,6 +37,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Monitor{}
 	case "impart:index/notificationTemplate:NotificationTemplate":
 		r = &NotificationTemplate{}
+	case "impart:index/rule:Rule":
+		r = &Rule{}
+	case "impart:index/ruleClientIdentifier:RuleClientIdentifier":
+		r = &RuleClientIdentifier{}
+	case "impart:index/ruleClientIdentifierStorage:RuleClientIdentifierStorage":
+		r = &RuleClientIdentifierStorage{}
+	case "impart:index/ruleDependencies:RuleDependencies":
+		r = &RuleDependencies{}
 	case "impart:index/ruleScript:RuleScript":
 		r = &RuleScript{}
 	case "impart:index/ruleScriptDependencies:RuleScriptDependencies":
@@ -83,6 +93,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"impart",
+		"index/coreRuleConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
 		"index/externalLink",
 		&module{version},
 	)
@@ -109,6 +124,26 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"impart",
 		"index/notificationTemplate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/rule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/ruleClientIdentifier",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/ruleClientIdentifierStorage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"impart",
+		"index/ruleDependencies",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

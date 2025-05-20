@@ -10,6 +10,11 @@ export type ApiBinding = import("./apiBinding").ApiBinding;
 export const ApiBinding: typeof import("./apiBinding").ApiBinding = null as any;
 utilities.lazyLoad(exports, ["ApiBinding"], () => require("./apiBinding"));
 
+export { CoreRuleConfigArgs, CoreRuleConfigState } from "./coreRuleConfig";
+export type CoreRuleConfig = import("./coreRuleConfig").CoreRuleConfig;
+export const CoreRuleConfig: typeof import("./coreRuleConfig").CoreRuleConfig = null as any;
+utilities.lazyLoad(exports, ["CoreRuleConfig"], () => require("./coreRuleConfig"));
+
 export { ExternalLinkArgs, ExternalLinkState } from "./externalLink";
 export type ExternalLink = import("./externalLink").ExternalLink;
 export const ExternalLink: typeof import("./externalLink").ExternalLink = null as any;
@@ -55,6 +60,26 @@ export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
+export { RuleArgs, RuleState } from "./rule";
+export type Rule = import("./rule").Rule;
+export const Rule: typeof import("./rule").Rule = null as any;
+utilities.lazyLoad(exports, ["Rule"], () => require("./rule"));
+
+export { RuleClientIdentifierArgs, RuleClientIdentifierState } from "./ruleClientIdentifier";
+export type RuleClientIdentifier = import("./ruleClientIdentifier").RuleClientIdentifier;
+export const RuleClientIdentifier: typeof import("./ruleClientIdentifier").RuleClientIdentifier = null as any;
+utilities.lazyLoad(exports, ["RuleClientIdentifier"], () => require("./ruleClientIdentifier"));
+
+export { RuleClientIdentifierStorageArgs, RuleClientIdentifierStorageState } from "./ruleClientIdentifierStorage";
+export type RuleClientIdentifierStorage = import("./ruleClientIdentifierStorage").RuleClientIdentifierStorage;
+export const RuleClientIdentifierStorage: typeof import("./ruleClientIdentifierStorage").RuleClientIdentifierStorage = null as any;
+utilities.lazyLoad(exports, ["RuleClientIdentifierStorage"], () => require("./ruleClientIdentifierStorage"));
+
+export { RuleDependenciesArgs, RuleDependenciesState } from "./ruleDependencies";
+export type RuleDependencies = import("./ruleDependencies").RuleDependencies;
+export const RuleDependencies: typeof import("./ruleDependencies").RuleDependencies = null as any;
+utilities.lazyLoad(exports, ["RuleDependencies"], () => require("./ruleDependencies"));
+
 export { RuleScriptArgs, RuleScriptState } from "./ruleScript";
 export type RuleScript = import("./ruleScript").RuleScript;
 export const RuleScript: typeof import("./ruleScript").RuleScript = null as any;
@@ -96,6 +121,8 @@ const _module = {
         switch (type) {
             case "impart:index/apiBinding:ApiBinding":
                 return new ApiBinding(name, <any>undefined, { urn })
+            case "impart:index/coreRuleConfig:CoreRuleConfig":
+                return new CoreRuleConfig(name, <any>undefined, { urn })
             case "impart:index/externalLink:ExternalLink":
                 return new ExternalLink(name, <any>undefined, { urn })
             case "impart:index/label:Label":
@@ -108,6 +135,14 @@ const _module = {
                 return new Monitor(name, <any>undefined, { urn })
             case "impart:index/notificationTemplate:NotificationTemplate":
                 return new NotificationTemplate(name, <any>undefined, { urn })
+            case "impart:index/rule:Rule":
+                return new Rule(name, <any>undefined, { urn })
+            case "impart:index/ruleClientIdentifier:RuleClientIdentifier":
+                return new RuleClientIdentifier(name, <any>undefined, { urn })
+            case "impart:index/ruleClientIdentifierStorage:RuleClientIdentifierStorage":
+                return new RuleClientIdentifierStorage(name, <any>undefined, { urn })
+            case "impart:index/ruleDependencies:RuleDependencies":
+                return new RuleDependencies(name, <any>undefined, { urn })
             case "impart:index/ruleScript:RuleScript":
                 return new RuleScript(name, <any>undefined, { urn })
             case "impart:index/ruleScriptDependencies:RuleScriptDependencies":
@@ -124,12 +159,17 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("impart", "index/apiBinding", _module)
+pulumi.runtime.registerResourceModule("impart", "index/coreRuleConfig", _module)
 pulumi.runtime.registerResourceModule("impart", "index/externalLink", _module)
 pulumi.runtime.registerResourceModule("impart", "index/label", _module)
 pulumi.runtime.registerResourceModule("impart", "index/list", _module)
 pulumi.runtime.registerResourceModule("impart", "index/logBinding", _module)
 pulumi.runtime.registerResourceModule("impart", "index/monitor", _module)
 pulumi.runtime.registerResourceModule("impart", "index/notificationTemplate", _module)
+pulumi.runtime.registerResourceModule("impart", "index/rule", _module)
+pulumi.runtime.registerResourceModule("impart", "index/ruleClientIdentifier", _module)
+pulumi.runtime.registerResourceModule("impart", "index/ruleClientIdentifierStorage", _module)
+pulumi.runtime.registerResourceModule("impart", "index/ruleDependencies", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleScript", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleScriptDependencies", _module)
 pulumi.runtime.registerResourceModule("impart", "index/ruleTestCase", _module)

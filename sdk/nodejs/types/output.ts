@@ -59,6 +59,28 @@ export interface MonitorConditionDetails {
     type: string;
 }
 
+export interface RuleClientIdentifierHashField {
+    /**
+     * The hash field.
+     */
+    field: string;
+    /**
+     * The hash field key.
+     */
+    key?: string;
+}
+
+export interface RuleDependenciesDependency {
+    /**
+     * IDs of the rule this rule depends on.
+     */
+    dependsOns: string[];
+    /**
+     * The ID of the rule
+     */
+    ruleId: string;
+}
+
 export interface RuleScriptDependenciesDependency {
     /**
      * IDs of the rule script this rule depends on.

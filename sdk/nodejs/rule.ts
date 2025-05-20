@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manage a rule script.
+ * Manage a rule.
  *
  * ## Example Usage
  *
@@ -14,29 +14,30 @@ import * as utilities from "./utilities";
  * import * as fs from "fs";
  * import * as impart from "@impart-security/pulumi-impart";
  *
- * // ⚠️ This resource is deprecated. Please migrate to `impart_rule` instead.
  * // Create a new rule script
- * const example = new impart.RuleScript("example", {
+ * const example = new impart.Rule("example", {
  *     name: "example",
  *     disabled: false,
  *     description: "Rule description",
  *     sourceFile: `${path.module}/rule.js`,
  *     sourceHash: "<sha256 hash for the source_file content>",
  *     blockingEffect: "block",
+ *     type: "script",
  * });
- * // Create a new rule script with content
- * const exampleContent = new impart.RuleScript("exampleContent", {
+ * // Create a new rule recipe with content
+ * const exampleRuleRecipe = new impart.Rule("exampleRuleRecipe", {
  *     name: "example",
  *     disabled: false,
  *     description: "Rule description",
- *     content: fs.readFileSync(`${path.module}/rule.js`, "utf8"),
+ *     content: fs.readFileSync(`${path.module}/rule.json`, "utf8"),
  *     blockingEffect: "block",
+ *     type: "recipe",
  * });
  * ```
  */
-export class RuleScript extends pulumi.CustomResource {
+export class Rule extends pulumi.CustomResource {
     /**
-     * Get an existing RuleScript resource's state with the given name, ID, and optional extra
+     * Get an existing Rule resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -44,22 +45,22 @@ export class RuleScript extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RuleScriptState, opts?: pulumi.CustomResourceOptions): RuleScript {
-        return new RuleScript(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RuleState, opts?: pulumi.CustomResourceOptions): Rule {
+        return new Rule(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'impart:index/ruleScript:RuleScript';
+    public static readonly __pulumiType = 'impart:index/rule:Rule';
 
     /**
-     * Returns true if the given object is an instance of RuleScript.  This is designed to work even
+     * Returns true if the given object is an instance of Rule.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is RuleScript {
+    public static isInstance(obj: any): obj is Rule {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === RuleScript.__pulumiType;
+        return obj['__pulumiType'] === Rule.__pulumiType;
     }
 
     /**
@@ -71,11 +72,11 @@ export class RuleScript extends pulumi.CustomResource {
      */
     public readonly content!: pulumi.Output<string | undefined>;
     /**
-     * The description for this rule script.
+     * The description for this rule.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Set true to disable the rule script.
+     * Set true to disable the rule.
      */
     public readonly disabled!: pulumi.Output<boolean>;
     /**
@@ -83,7 +84,7 @@ export class RuleScript extends pulumi.CustomResource {
      */
     public readonly labels!: pulumi.Output<string[] | undefined>;
     /**
-     * The name for this rule script.
+     * The name for this rule.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -94,20 +95,24 @@ export class RuleScript extends pulumi.CustomResource {
      * The rule source hash.
      */
     public readonly sourceHash!: pulumi.Output<string | undefined>;
+    /**
+     * The type of the rule. Allowed values: script, recipe.
+     */
+    public readonly type!: pulumi.Output<string>;
 
     /**
-     * Create a RuleScript resource with the given unique name, arguments, and options.
+     * Create a Rule resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RuleScriptArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: RuleScriptArgs | RuleScriptState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: RuleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: RuleArgs | RuleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as RuleScriptState | undefined;
+            const state = argsOrState as RuleState | undefined;
             resourceInputs["blockingEffect"] = state ? state.blockingEffect : undefined;
             resourceInputs["content"] = state ? state.content : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
@@ -116,13 +121,17 @@ export class RuleScript extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["sourceFile"] = state ? state.sourceFile : undefined;
             resourceInputs["sourceHash"] = state ? state.sourceHash : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
-            const args = argsOrState as RuleScriptArgs | undefined;
+            const args = argsOrState as RuleArgs | undefined;
             if ((!args || args.disabled === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'disabled'");
             }
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
+            }
+            if ((!args || args.type === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'type'");
             }
             resourceInputs["blockingEffect"] = args ? args.blockingEffect : undefined;
             resourceInputs["content"] = args ? args.content : undefined;
@@ -132,16 +141,17 @@ export class RuleScript extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["sourceFile"] = args ? args.sourceFile : undefined;
             resourceInputs["sourceHash"] = args ? args.sourceHash : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(RuleScript.__pulumiType, name, resourceInputs, opts);
+        super(Rule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering RuleScript resources.
+ * Input properties used for looking up and filtering Rule resources.
  */
-export interface RuleScriptState {
+export interface RuleState {
     /**
      * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
      */
@@ -151,11 +161,11 @@ export interface RuleScriptState {
      */
     content?: pulumi.Input<string>;
     /**
-     * The description for this rule script.
+     * The description for this rule.
      */
     description?: pulumi.Input<string>;
     /**
-     * Set true to disable the rule script.
+     * Set true to disable the rule.
      */
     disabled?: pulumi.Input<boolean>;
     /**
@@ -163,7 +173,7 @@ export interface RuleScriptState {
      */
     labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The name for this rule script.
+     * The name for this rule.
      */
     name?: pulumi.Input<string>;
     /**
@@ -174,12 +184,16 @@ export interface RuleScriptState {
      * The rule source hash.
      */
     sourceHash?: pulumi.Input<string>;
+    /**
+     * The type of the rule. Allowed values: script, recipe.
+     */
+    type?: pulumi.Input<string>;
 }
 
 /**
- * The set of arguments for constructing a RuleScript resource.
+ * The set of arguments for constructing a Rule resource.
  */
-export interface RuleScriptArgs {
+export interface RuleArgs {
     /**
      * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
      */
@@ -189,11 +203,11 @@ export interface RuleScriptArgs {
      */
     content?: pulumi.Input<string>;
     /**
-     * The description for this rule script.
+     * The description for this rule.
      */
     description?: pulumi.Input<string>;
     /**
-     * Set true to disable the rule script.
+     * Set true to disable the rule.
      */
     disabled: pulumi.Input<boolean>;
     /**
@@ -201,7 +215,7 @@ export interface RuleScriptArgs {
      */
     labels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The name for this rule script.
+     * The name for this rule.
      */
     name: pulumi.Input<string>;
     /**
@@ -212,4 +226,8 @@ export interface RuleScriptArgs {
      * The rule source hash.
      */
     sourceHash?: pulumi.Input<string>;
+    /**
+     * The type of the rule. Allowed values: script, recipe.
+     */
+    type: pulumi.Input<string>;
 }

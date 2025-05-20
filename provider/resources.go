@@ -1,5 +1,7 @@
 package impart
 
+//github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge.ShimProvider
+
 import (
 	"context"
 	_ "embed"
@@ -9,7 +11,7 @@ import (
 	"unicode"
 
 	"github.com/google/uuid"
-	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	pf "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
@@ -82,14 +84,18 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"impart_spec":                  {Tok: makeResource(mainMod, "Spec")},
-			"impart_api_binding":           {Tok: makeResource(mainMod, "ApiBinding")},
-			"impart_log_binding":           {Tok: makeResource(mainMod, "LogBinding")},
-			"impart_list":                  {Tok: makeResource(mainMod, "List")},
-			"impart_rule_script":           {Tok: makeResource(mainMod, "RuleScript")},
-			"impart_rule_test_case":        {Tok: makeResource(mainMod, "RuleTestCase")},
-			"impart_notification_template": {Tok: makeResource(mainMod, "NotificationTemplate")},
-			"impart_monitor":               {Tok: makeResource(mainMod, "Monitor")},
+			"impart_spec":                           {Tok: makeResource(mainMod, "Spec")},
+			"impart_api_binding":                    {Tok: makeResource(mainMod, "ApiBinding")},
+			"impart_log_binding":                    {Tok: makeResource(mainMod, "LogBinding")},
+			"impart_list":                           {Tok: makeResource(mainMod, "List")},
+			"impart_rule_script":                    {Tok: makeResource(mainMod, "RuleScript")},
+			"impart_rule":                           {Tok: makeResource(mainMod, "Rule")},
+			"impart_rule_test_case":                 {Tok: makeResource(mainMod, "RuleTestCase")},
+			"impart_notification_template":          {Tok: makeResource(mainMod, "NotificationTemplate")},
+			"impart_monitor":                        {Tok: makeResource(mainMod, "Monitor")},
+			"impart_rule_client_identifier":         {Tok: makeResource(mainMod, "RuleClientIdentifier")},
+			"impart_rule_client_identifier_storage": {Tok: makeResource(mainMod, "RuleClientIdentifierStorage")},
+			"impart_core_rule_config":               {Tok: makeResource(mainMod, "CoreRuleConfig")},
 			"impart_label": {
 				Tok: makeResource(mainMod, "Label"),
 				ComputeID: func(_ context.Context, state resource.PropertyMap) (resource.ID, error) {
@@ -110,6 +116,10 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"impart_rule_script_dependencies": {
 				Tok:       makeResource(mainMod, "RuleScriptDependencies"),
+				ComputeID: computeRuleScriptDependenciesID,
+			},
+			"impart_rule_dependencies": {
+				Tok:       makeResource(mainMod, "RuleDependencies"),
 				ComputeID: computeRuleScriptDependenciesID,
 			},
 			"impart_external_link": {Tok: makeResource(mainMod, "ExternalLink")},

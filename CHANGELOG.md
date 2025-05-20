@@ -1,6 +1,19 @@
 
 # Changelog
 
+## [0.10.0] - 2025-05-19
+
+### Added
+
+- Rule resource which allows to configure both scfrip and recipe rule types.
+- RuleClientIdentifier resource to manage client identifiers.
+- RuleClientIdentifierStorage resource to manage client identifier storages.
+- CoreRuleConfig resource to configure core rules.
+
+### Changed
+
+- Deprecated RuleScript and RuleScriptDependencies. Please migrate to Rule and RuleDependencies resources.
+
 ## [0.9.1] - 2025-04-22
 
 ### Changed

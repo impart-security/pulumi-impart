@@ -39,6 +39,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ⚠️ This resource is deprecated. Please migrate to `impart_rule` instead.
 //			// Create a new rule script
 //			_, err := impart.NewRuleScript(ctx, "example", &impart.RuleScriptArgs{
 //				Name:           pulumi.String("example"),

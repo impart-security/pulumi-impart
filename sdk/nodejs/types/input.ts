@@ -59,6 +59,28 @@ export interface MonitorConditionDetails {
     type: pulumi.Input<string>;
 }
 
+export interface RuleClientIdentifierHashField {
+    /**
+     * The hash field.
+     */
+    field: pulumi.Input<string>;
+    /**
+     * The hash field key.
+     */
+    key?: pulumi.Input<string>;
+}
+
+export interface RuleDependenciesDependency {
+    /**
+     * IDs of the rule this rule depends on.
+     */
+    dependsOns: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the rule
+     */
+    ruleId: pulumi.Input<string>;
+}
+
 export interface RuleScriptDependenciesDependency {
     /**
      * IDs of the rule script this rule depends on.
