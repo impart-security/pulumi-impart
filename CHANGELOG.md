@@ -1,6 +1,12 @@
 
 # Changelog
 
+## [0.10.1] - 2025-06-25
+
+### Changed
+
+- Updated dependencies
+
 ## [0.10.0] - 2025-05-19
 
 ### Added
