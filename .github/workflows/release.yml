@@ -75,7 +75,7 @@ jobs:
           node-version: ${{matrix.nodeversion}}
           registry-url: ${{env.NPM_REGISTRY_URL}}
       - name: Enable corepack
-        run: npm install -g corepack@0.32.0 && corepack enable
+        run: npm install -g corepack@0.34.5 && corepack enable
       - name: Setup DotNet
         uses: actions/setup-dotnet@v1
         with:
@@ -134,6 +134,6 @@ jobs:
           # - dotnet
           - go
         nodeversion:
-          - "22"
+          - "24"
         pythonversion:
           - "3.9"
