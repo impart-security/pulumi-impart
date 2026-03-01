@@ -1,6 +1,6 @@
 package impart
 
-//github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge.ShimProvider
+// github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge.ShimProvider
 
 import (
 	"context"
@@ -11,13 +11,12 @@ import (
 	"unicode"
 
 	"github.com/google/uuid"
+	"github.com/impart-security/pulumi-impart/provider/pkg/version"
+	"github.com/impart-security/terraform-provider-impart/shim"
 	pf "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-
-	"github.com/impart-security/pulumi-impart/provider/pkg/version"
-	"github.com/impart-security/terraform-provider-impart/shim"
 )
 
 // all of the impart token components used below.

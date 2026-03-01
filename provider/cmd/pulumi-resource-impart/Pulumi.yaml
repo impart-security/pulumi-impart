@@ -1,0 +1,3 @@
+name: impart
+description: A Pulumi resource provider for impart.
+language: schema

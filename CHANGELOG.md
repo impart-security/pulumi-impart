@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.11.0] - 2026-03-01
+
+### Added
+
+- Added support for Aho-Corasick, Regular Expression, and Glob list kinds.
+
+### Changed
+
+- Updated dependencies.
+
 ## [0.10.4] - 2025-12-02
 
 ### Changed

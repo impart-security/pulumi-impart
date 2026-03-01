@@ -2,9 +2,8 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
-
 	impart "github.com/impart-security/pulumi-impart/provider"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
 )
 
 func main() {

@@ -4,9 +4,8 @@ import (
 	"context"
 	_ "embed"
 
-	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
-
 	impart "github.com/impart-security/pulumi-impart/provider"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 )
 
 //go:embed schema.json
