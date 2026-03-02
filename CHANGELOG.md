@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11.1] - 2026-03-02
+
+### Fixed
+
+- Fixed CI release workflow to use OIDC trusted publishing for npm.
+
 ## [0.11.0] - 2026-03-01
 
 ### Added
