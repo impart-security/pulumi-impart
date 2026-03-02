@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11.2] - 2026-03-02
+
+### Fixed
+
+- Fixed generated Go SDK to use pulumi-std v2 module path, resolving CI worktree clean check failure.
+
 ## [0.11.1] - 2026-03-02
 
 ### Fixed

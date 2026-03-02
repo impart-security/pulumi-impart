@@ -20,7 +20,7 @@ import (
 // import (
 //
 //	"github.com/impart-security/pulumi-impart/sdk/go/impart"
-//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-std/sdk/v2/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
