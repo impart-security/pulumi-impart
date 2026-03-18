@@ -1,6 +1,6 @@
 module github.com/impart-security/pulumi-impart/provider
 
-go 1.25.7
+go 1.25.8
 
 replace (
 	github.com/impart-security/terraform-provider-impart/shim => ./shim

@@ -1,6 +1,6 @@
 module github.com/impart-security/terraform-provider-impart/shim
 
-go 1.25.7
+go 1.25.8
 
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.18.0
