@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11.4] - 2026-04-26
+
+### Changed
+
+- Updated dependencies.
+
 ## [0.11.3] - 2026-03-18
 
 ### Changed
