@@ -101,15 +101,15 @@ export interface RuleClientIdentifierStorageState {
     /**
      * The capacity for the rule client identifier storage.
      */
-    capacity?: pulumi.Input<number>;
+    capacity?: pulumi.Input<number | undefined>;
     /**
      * The description for the rule client identifier storage.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name for the rule client identifier storage.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -123,7 +123,7 @@ export interface RuleClientIdentifierStorageArgs {
     /**
      * The description for the rule client identifier storage.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name for the rule client identifier storage.
      */

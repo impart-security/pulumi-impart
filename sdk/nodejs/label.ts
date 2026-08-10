@@ -104,19 +104,19 @@ export interface LabelState {
     /**
      * The color of the label.
      */
-    color?: pulumi.Input<string>;
+    color?: pulumi.Input<string | undefined>;
     /**
      * The description of the label.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The display name of the label.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * Slug of the label.
      */
-    slug?: pulumi.Input<string>;
+    slug?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -126,15 +126,15 @@ export interface LabelArgs {
     /**
      * The color of the label.
      */
-    color?: pulumi.Input<string>;
+    color?: pulumi.Input<string | undefined>;
     /**
      * The description of the label.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The display name of the label.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * Slug of the label.
      */

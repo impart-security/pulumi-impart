@@ -14,12 +14,13 @@ import * as utilities from "./utilities";
  * import * as impart from "@impart-security/pulumi-impart";
  *
  * // Create a new notification template
+ * //
+ * // A notification template is message-only: name, subject, and payload. The connector
+ * // and destination it is delivered through are set on a monitor's notifications, not here.
  * const example = new impart.NotificationTemplate("example", {
  *     name: "notification_template_example",
- *     connectorId: "<example_connector.id>",
  *     payload: "This is a test message payload",
  *     subject: "Test subject",
- *     destinations: ["test-destination-id"],
  * });
  * ```
  */
@@ -52,14 +53,6 @@ export class NotificationTemplate extends pulumi.CustomResource {
     }
 
     /**
-     * The connector id.
-     */
-    declare public readonly connectorId: pulumi.Output<string>;
-    /**
-     * An array of destination ids to which the payloads will be sent.
-     */
-    declare public readonly destinations: pulumi.Output<string[]>;
-    /**
      * The name for this notification template.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -85,19 +78,11 @@ export class NotificationTemplate extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NotificationTemplateState | undefined;
-            resourceInputs["connectorId"] = state?.connectorId;
-            resourceInputs["destinations"] = state?.destinations;
             resourceInputs["name"] = state?.name;
             resourceInputs["payload"] = state?.payload;
             resourceInputs["subject"] = state?.subject;
         } else {
             const args = argsOrState as NotificationTemplateArgs | undefined;
-            if (args?.connectorId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'connectorId'");
-            }
-            if (args?.destinations === undefined && !opts.urn) {
-                throw new Error("Missing required property 'destinations'");
-            }
             if (args?.name === undefined && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
@@ -107,8 +92,6 @@ export class NotificationTemplate extends pulumi.CustomResource {
             if (args?.subject === undefined && !opts.urn) {
                 throw new Error("Missing required property 'subject'");
             }
-            resourceInputs["connectorId"] = args?.connectorId;
-            resourceInputs["destinations"] = args?.destinations;
             resourceInputs["name"] = args?.name;
             resourceInputs["payload"] = args?.payload;
             resourceInputs["subject"] = args?.subject;
@@ -123,39 +106,23 @@ export class NotificationTemplate extends pulumi.CustomResource {
  */
 export interface NotificationTemplateState {
     /**
-     * The connector id.
-     */
-    connectorId?: pulumi.Input<string>;
-    /**
-     * An array of destination ids to which the payloads will be sent.
-     */
-    destinations?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * The name for this notification template.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The payload message that will be sent to the Third Party API.
      */
-    payload?: pulumi.Input<string>;
+    payload?: pulumi.Input<string | undefined>;
     /**
      * The subject message that will be sent to the Third Party API.
      */
-    subject?: pulumi.Input<string>;
+    subject?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a NotificationTemplate resource.
  */
 export interface NotificationTemplateArgs {
-    /**
-     * The connector id.
-     */
-    connectorId: pulumi.Input<string>;
-    /**
-     * An array of destination ids to which the payloads will be sent.
-     */
-    destinations: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name for this notification template.
      */

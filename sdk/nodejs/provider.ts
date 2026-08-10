@@ -69,11 +69,11 @@ export interface ProviderArgs {
     /**
      * The Impart api endpoint
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * The Impart api token
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

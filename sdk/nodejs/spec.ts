@@ -106,19 +106,19 @@ export interface SpecState {
     /**
      * Configuration for spec learning.
      */
-    learningConfig?: pulumi.Input<inputs.SpecLearningConfig>;
+    learningConfig?: pulumi.Input<inputs.SpecLearningConfig | undefined>;
     /**
      * The name for this specification.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The specification file.
      */
-    sourceFile?: pulumi.Input<string>;
+    sourceFile?: pulumi.Input<string | undefined>;
     /**
      * The specification source hash.
      */
-    sourceHash?: pulumi.Input<string>;
+    sourceHash?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -128,7 +128,7 @@ export interface SpecArgs {
     /**
      * Configuration for spec learning.
      */
-    learningConfig?: pulumi.Input<inputs.SpecLearningConfig>;
+    learningConfig?: pulumi.Input<inputs.SpecLearningConfig | undefined>;
     /**
      * The name for this specification.
      */
@@ -140,5 +140,5 @@ export interface SpecArgs {
     /**
      * The specification source hash.
      */
-    sourceHash?: pulumi.Input<string>;
+    sourceHash?: pulumi.Input<string | undefined>;
 }

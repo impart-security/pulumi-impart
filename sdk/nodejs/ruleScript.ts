@@ -118,35 +118,35 @@ export interface RuleScriptState {
     /**
      * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
      */
-    blockingEffect?: pulumi.Input<string>;
+    blockingEffect?: pulumi.Input<string | undefined>;
     /**
      * The rule body content.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * The description for this rule script.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Set true to disable the rule script.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for this rule script.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The rule source file.
      */
-    sourceFile?: pulumi.Input<string>;
+    sourceFile?: pulumi.Input<string | undefined>;
     /**
      * The rule source hash.
      */
-    sourceHash?: pulumi.Input<string>;
+    sourceHash?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -156,15 +156,15 @@ export interface RuleScriptArgs {
     /**
      * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
      */
-    blockingEffect?: pulumi.Input<string>;
+    blockingEffect?: pulumi.Input<string | undefined>;
     /**
      * The rule body content.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * The description for this rule script.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Set true to disable the rule script.
      */
@@ -172,7 +172,7 @@ export interface RuleScriptArgs {
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for this rule script.
      */
@@ -180,9 +180,9 @@ export interface RuleScriptArgs {
     /**
      * The rule source file.
      */
-    sourceFile?: pulumi.Input<string>;
+    sourceFile?: pulumi.Input<string | undefined>;
     /**
      * The rule source hash.
      */
-    sourceHash?: pulumi.Input<string>;
+    sourceHash?: pulumi.Input<string | undefined>;
 }

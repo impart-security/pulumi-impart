@@ -136,31 +136,31 @@ export interface ExternalLinkState {
     /**
      * The description of the external link.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The entity to which the links should be applied.
      */
-    entity?: pulumi.Input<string>;
+    entity?: pulumi.Input<string | undefined>;
     /**
      * A JSONPath to the element for which this link should apply (e.g. $.client_ip.address).
      */
-    jsonPathElement?: pulumi.Input<string>;
+    jsonPathElement?: pulumi.Input<string | undefined>;
     /**
      * The name of the external link.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A list of spec IDs this external link applies to (empty means all).
      */
-    specIds?: pulumi.Input<pulumi.Input<string>[]>;
+    specIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The external URL template with JSONPath element variables.
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * The vendor for the external link.
      */
-    vendor?: pulumi.Input<string>;
+    vendor?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -170,7 +170,7 @@ export interface ExternalLinkArgs {
     /**
      * The description of the external link.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The entity to which the links should be applied.
      */
@@ -186,7 +186,7 @@ export interface ExternalLinkArgs {
     /**
      * A list of spec IDs this external link applies to (empty means all).
      */
-    specIds?: pulumi.Input<pulumi.Input<string>[]>;
+    specIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The external URL template with JSONPath element variables.
      */

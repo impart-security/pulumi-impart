@@ -104,7 +104,7 @@ export interface GetConnectorOutputArgs {
     /**
      * ID of the connector type (eg. ID for our Slack or Jira connector types).
      */
-    connectorTypeId?: pulumi.Input<string>;
+    connectorTypeId?: pulumi.Input<string | undefined>;
     /**
      * Identifier for this connector.
      */
@@ -112,9 +112,9 @@ export interface GetConnectorOutputArgs {
     /**
      * Whether or not the connector is authenticated via OAuth2.
      */
-    isConnected?: pulumi.Input<boolean>;
+    isConnected?: pulumi.Input<boolean | undefined>;
     /**
      * Name for this connector.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

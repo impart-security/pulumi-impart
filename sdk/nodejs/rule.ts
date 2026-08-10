@@ -127,39 +127,39 @@ export interface RuleState {
     /**
      * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
      */
-    blockingEffect?: pulumi.Input<string>;
+    blockingEffect?: pulumi.Input<string | undefined>;
     /**
      * The rule body content.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * The description for this rule.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Set true to disable the rule.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for this rule.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The rule source file.
      */
-    sourceFile?: pulumi.Input<string>;
+    sourceFile?: pulumi.Input<string | undefined>;
     /**
      * The rule source hash.
      */
-    sourceHash?: pulumi.Input<string>;
+    sourceHash?: pulumi.Input<string | undefined>;
     /**
      * The type of the rule. Allowed values: script, recipe.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -169,15 +169,15 @@ export interface RuleArgs {
     /**
      * The rule blocking effect. Allowed values: block, simulate. If not set effect will be block.
      */
-    blockingEffect?: pulumi.Input<string>;
+    blockingEffect?: pulumi.Input<string | undefined>;
     /**
      * The rule body content.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * The description for this rule.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Set true to disable the rule.
      */
@@ -185,7 +185,7 @@ export interface RuleArgs {
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for this rule.
      */
@@ -193,11 +193,11 @@ export interface RuleArgs {
     /**
      * The rule source file.
      */
-    sourceFile?: pulumi.Input<string>;
+    sourceFile?: pulumi.Input<string | undefined>;
     /**
      * The rule source hash.
      */
-    sourceHash?: pulumi.Input<string>;
+    sourceHash?: pulumi.Input<string | undefined>;
     /**
      * The type of the rule. Allowed values: script, recipe.
      */

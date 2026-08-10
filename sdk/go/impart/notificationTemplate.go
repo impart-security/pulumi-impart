@@ -29,14 +29,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a new notification template
+//			//
+//			// A notification template is message-only: name, subject, and payload. The connector
+//			// and destination it is delivered through are set on a monitor's notifications, not here.
 //			_, err := impart.NewNotificationTemplate(ctx, "example", &impart.NotificationTemplateArgs{
-//				Name:        pulumi.String("notification_template_example"),
-//				ConnectorId: pulumi.String("<example_connector.id>"),
-//				Payload:     pulumi.String("This is a test message payload"),
-//				Subject:     pulumi.String("Test subject"),
-//				Destinations: pulumi.StringArray{
-//					pulumi.String("test-destination-id"),
-//				},
+//				Name:    pulumi.String("notification_template_example"),
+//				Payload: pulumi.String("This is a test message payload"),
+//				Subject: pulumi.String("Test subject"),
 //			})
 //			if err != nil {
 //				return err
@@ -49,10 +48,6 @@ import (
 type NotificationTemplate struct {
 	pulumi.CustomResourceState
 
-	// The connector id.
-	ConnectorId pulumi.StringOutput `pulumi:"connectorId"`
-	// An array of destination ids to which the payloads will be sent.
-	Destinations pulumi.StringArrayOutput `pulumi:"destinations"`
 	// The name for this notification template.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The payload message that will be sent to the Third Party API.
@@ -68,12 +63,6 @@ func NewNotificationTemplate(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.ConnectorId == nil {
-		return nil, errors.New("invalid value for required argument 'ConnectorId'")
-	}
-	if args.Destinations == nil {
-		return nil, errors.New("invalid value for required argument 'Destinations'")
-	}
 	if args.Name == nil {
 		return nil, errors.New("invalid value for required argument 'Name'")
 	}
@@ -106,10 +95,6 @@ func GetNotificationTemplate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NotificationTemplate resources.
 type notificationTemplateState struct {
-	// The connector id.
-	ConnectorId *string `pulumi:"connectorId"`
-	// An array of destination ids to which the payloads will be sent.
-	Destinations []string `pulumi:"destinations"`
 	// The name for this notification template.
 	Name *string `pulumi:"name"`
 	// The payload message that will be sent to the Third Party API.
@@ -119,10 +104,6 @@ type notificationTemplateState struct {
 }
 
 type NotificationTemplateState struct {
-	// The connector id.
-	ConnectorId pulumi.StringPtrInput
-	// An array of destination ids to which the payloads will be sent.
-	Destinations pulumi.StringArrayInput
 	// The name for this notification template.
 	Name pulumi.StringPtrInput
 	// The payload message that will be sent to the Third Party API.
@@ -136,10 +117,6 @@ func (NotificationTemplateState) ElementType() reflect.Type {
 }
 
 type notificationTemplateArgs struct {
-	// The connector id.
-	ConnectorId string `pulumi:"connectorId"`
-	// An array of destination ids to which the payloads will be sent.
-	Destinations []string `pulumi:"destinations"`
 	// The name for this notification template.
 	Name string `pulumi:"name"`
 	// The payload message that will be sent to the Third Party API.
@@ -150,10 +127,6 @@ type notificationTemplateArgs struct {
 
 // The set of arguments for constructing a NotificationTemplate resource.
 type NotificationTemplateArgs struct {
-	// The connector id.
-	ConnectorId pulumi.StringInput
-	// An array of destination ids to which the payloads will be sent.
-	Destinations pulumi.StringArrayInput
 	// The name for this notification template.
 	Name pulumi.StringInput
 	// The payload message that will be sent to the Third Party API.
@@ -247,16 +220,6 @@ func (o NotificationTemplateOutput) ToNotificationTemplateOutput() NotificationT
 
 func (o NotificationTemplateOutput) ToNotificationTemplateOutputWithContext(ctx context.Context) NotificationTemplateOutput {
 	return o
-}
-
-// The connector id.
-func (o NotificationTemplateOutput) ConnectorId() pulumi.StringOutput {
-	return o.ApplyT(func(v *NotificationTemplate) pulumi.StringOutput { return v.ConnectorId }).(pulumi.StringOutput)
-}
-
-// An array of destination ids to which the payloads will be sent.
-func (o NotificationTemplateOutput) Destinations() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *NotificationTemplate) pulumi.StringArrayOutput { return v.Destinations }).(pulumi.StringArrayOutput)
 }
 
 // The name for this notification template.

@@ -91,15 +91,15 @@ export interface CoreRuleConfigState {
     /**
      * the core rule configuration.
      */
-    config?: pulumi.Input<string>;
+    config?: pulumi.Input<string | undefined>;
     /**
      * Set true to disable the core rule.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The slug for the core rule.
      */
-    slug?: pulumi.Input<string>;
+    slug?: pulumi.Input<string | undefined>;
 }
 
 /**

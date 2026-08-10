@@ -32,8 +32,12 @@ import (
 //			_, err := impart.NewMonitor(ctx, "test_event", &impart.MonitorArgs{
 //				Name:        pulumi.String("terraform_event_monitor"),
 //				Description: pulumi.String("test event monitor"),
-//				NotificationTemplateIds: pulumi.StringArray{
-//					pulumi.String("<notification_template_id>"),
+//				Notifications: impart.MonitorNotificationArray{
+//					&impart.MonitorNotificationArgs{
+//						NotificationTemplateId: pulumi.Any(impartNotificationTemplate.Example.Id),
+//						ConnectorId:            pulumi.String("<example_connector.id>"),
+//						Destination:            pulumi.String("<example_destination>"),
+//					},
 //				},
 //				Conditions: impart.MonitorConditionArray{
 //					&impart.MonitorConditionArgs{
@@ -57,8 +61,12 @@ import (
 //			_, err = impart.NewMonitor(ctx, "test_metric", &impart.MonitorArgs{
 //				Name:        pulumi.String("terraform_event_monitor"),
 //				Description: pulumi.String("test event monitor"),
-//				NotificationTemplateIds: pulumi.StringArray{
-//					pulumi.String("<notification_template_id>"),
+//				Notifications: impart.MonitorNotificationArray{
+//					&impart.MonitorNotificationArgs{
+//						NotificationTemplateId: pulumi.Any(impartNotificationTemplate.Example.Id),
+//						ConnectorId:            pulumi.String("<example_connector.id>"),
+//						Destination:            pulumi.String("<example_destination>"),
+//					},
 //				},
 //				Conditions: impart.MonitorConditionArray{
 //					&impart.MonitorConditionArgs{
@@ -92,8 +100,8 @@ type Monitor struct {
 	Labels pulumi.StringArrayOutput `pulumi:"labels"`
 	// The name for this monitor.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// An array of notification template ids for the templates that will send notifications to their respective connectors.
-	NotificationTemplateIds pulumi.StringArrayOutput `pulumi:"notificationTemplateIds"`
+	// Each message this monitor sends when it fires, and its destination.
+	Notifications MonitorNotificationArrayOutput `pulumi:"notifications"`
 }
 
 // NewMonitor registers a new resource with the given unique name, arguments, and options.
@@ -111,9 +119,6 @@ func NewMonitor(ctx *pulumi.Context,
 	}
 	if args.Name == nil {
 		return nil, errors.New("invalid value for required argument 'Name'")
-	}
-	if args.NotificationTemplateIds == nil {
-		return nil, errors.New("invalid value for required argument 'NotificationTemplateIds'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Monitor
@@ -146,8 +151,8 @@ type monitorState struct {
 	Labels []string `pulumi:"labels"`
 	// The name for this monitor.
 	Name *string `pulumi:"name"`
-	// An array of notification template ids for the templates that will send notifications to their respective connectors.
-	NotificationTemplateIds []string `pulumi:"notificationTemplateIds"`
+	// Each message this monitor sends when it fires, and its destination.
+	Notifications []MonitorNotification `pulumi:"notifications"`
 }
 
 type MonitorState struct {
@@ -159,8 +164,8 @@ type MonitorState struct {
 	Labels pulumi.StringArrayInput
 	// The name for this monitor.
 	Name pulumi.StringPtrInput
-	// An array of notification template ids for the templates that will send notifications to their respective connectors.
-	NotificationTemplateIds pulumi.StringArrayInput
+	// Each message this monitor sends when it fires, and its destination.
+	Notifications MonitorNotificationArrayInput
 }
 
 func (MonitorState) ElementType() reflect.Type {
@@ -176,8 +181,8 @@ type monitorArgs struct {
 	Labels []string `pulumi:"labels"`
 	// The name for this monitor.
 	Name string `pulumi:"name"`
-	// An array of notification template ids for the templates that will send notifications to their respective connectors.
-	NotificationTemplateIds []string `pulumi:"notificationTemplateIds"`
+	// Each message this monitor sends when it fires, and its destination.
+	Notifications []MonitorNotification `pulumi:"notifications"`
 }
 
 // The set of arguments for constructing a Monitor resource.
@@ -190,8 +195,8 @@ type MonitorArgs struct {
 	Labels pulumi.StringArrayInput
 	// The name for this monitor.
 	Name pulumi.StringInput
-	// An array of notification template ids for the templates that will send notifications to their respective connectors.
-	NotificationTemplateIds pulumi.StringArrayInput
+	// Each message this monitor sends when it fires, and its destination.
+	Notifications MonitorNotificationArrayInput
 }
 
 func (MonitorArgs) ElementType() reflect.Type {
@@ -301,9 +306,9 @@ func (o MonitorOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Monitor) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// An array of notification template ids for the templates that will send notifications to their respective connectors.
-func (o MonitorOutput) NotificationTemplateIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *Monitor) pulumi.StringArrayOutput { return v.NotificationTemplateIds }).(pulumi.StringArrayOutput)
+// Each message this monitor sends when it fires, and its destination.
+func (o MonitorOutput) Notifications() MonitorNotificationArrayOutput {
+	return o.ApplyT(func(v *Monitor) MonitorNotificationArrayOutput { return v.Notifications }).(MonitorNotificationArrayOutput)
 }
 
 type MonitorArrayOutput struct{ *pulumi.OutputState }

@@ -164,31 +164,31 @@ export interface ListState {
     /**
      * The description for this list.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The list functionality. Allowed values are add, add/remove, and none (cloud managed).
      */
-    functionality?: pulumi.Input<string>;
+    functionality?: pulumi.Input<string | undefined>;
     /**
      * The list items.
      */
-    items?: pulumi.Input<pulumi.Input<inputs.ListItem>[]>;
+    items?: pulumi.Input<pulumi.Input<inputs.ListItem>[] | undefined>;
     /**
      * The list kind.
      */
-    kind?: pulumi.Input<string>;
+    kind?: pulumi.Input<string | undefined>;
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for this list.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The list subkind.
      */
-    subkind?: pulumi.Input<string>;
+    subkind?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -198,15 +198,15 @@ export interface ListArgs {
     /**
      * The description for this list.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The list functionality. Allowed values are add, add/remove, and none (cloud managed).
      */
-    functionality?: pulumi.Input<string>;
+    functionality?: pulumi.Input<string | undefined>;
     /**
      * The list items.
      */
-    items?: pulumi.Input<pulumi.Input<inputs.ListItem>[]>;
+    items?: pulumi.Input<pulumi.Input<inputs.ListItem>[] | undefined>;
     /**
      * The list kind.
      */
@@ -214,7 +214,7 @@ export interface ListArgs {
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for this list.
      */
@@ -222,5 +222,5 @@ export interface ListArgs {
     /**
      * The list subkind.
      */
-    subkind?: pulumi.Input<string>;
+    subkind?: pulumi.Input<string | undefined>;
 }

@@ -122,23 +122,23 @@ export interface LogBindingState {
     /**
      * The logstream id for this log binding.
      */
-    logstreamId?: pulumi.Input<string>;
+    logstreamId?: pulumi.Input<string | undefined>;
     /**
      * The name for this log binding.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The grok/json pattern for this log binding.
      */
-    pattern?: pulumi.Input<string>;
+    pattern?: pulumi.Input<string | undefined>;
     /**
      * The pattern type for this log binding. Accepted values: grok, json
      */
-    patternType?: pulumi.Input<string>;
+    patternType?: pulumi.Input<string | undefined>;
     /**
      * The specification id.
      */
-    specId?: pulumi.Input<string>;
+    specId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -148,7 +148,7 @@ export interface LogBindingArgs {
     /**
      * The logstream id for this log binding.
      */
-    logstreamId?: pulumi.Input<string>;
+    logstreamId?: pulumi.Input<string | undefined>;
     /**
      * The name for this log binding.
      */

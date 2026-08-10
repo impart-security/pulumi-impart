@@ -111,23 +111,23 @@ export interface TagMetadataState {
     /**
      * The description for the tag.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The external URL for the tag.
      */
-    externalUrl?: pulumi.Input<string>;
+    externalUrl?: pulumi.Input<string | undefined>;
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The tag name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The risk statement for the tag.
      */
-    riskStatement?: pulumi.Input<string>;
+    riskStatement?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -137,15 +137,15 @@ export interface TagMetadataArgs {
     /**
      * The description for the tag.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The external URL for the tag.
      */
-    externalUrl?: pulumi.Input<string>;
+    externalUrl?: pulumi.Input<string | undefined>;
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The tag name.
      */
@@ -153,5 +153,5 @@ export interface TagMetadataArgs {
     /**
      * The risk statement for the tag.
      */
-    riskStatement?: pulumi.Input<string>;
+    riskStatement?: pulumi.Input<string | undefined>;
 }

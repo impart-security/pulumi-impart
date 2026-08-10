@@ -9,7 +9,7 @@ export interface ListItem {
     /**
      * The list item expiration.
      */
-    expiration?: pulumi.Input<string>;
+    expiration?: pulumi.Input<string | undefined>;
     /**
      * The list item value.
      */
@@ -40,23 +40,38 @@ export interface MonitorConditionDetails {
     /**
      * Strictly for event type monitors. A slug of the action the monitor is tracking.
      */
-    action?: pulumi.Input<string>;
+    action?: pulumi.Input<string | undefined>;
     /**
      * Strictly for event type monitors. A slug of the actor type the monitor is tracking.
      */
-    actorType?: pulumi.Input<string>;
+    actorType?: pulumi.Input<string | undefined>;
     /**
      * Strictly for event type monitors. A slug of the subject type the monitor is tracking.
      */
-    subjectType?: pulumi.Input<string>;
+    subjectType?: pulumi.Input<string | undefined>;
     /**
      * Strictly for metric type monitors. The tag the monitor is tracking.
      */
-    tag?: pulumi.Input<string>;
+    tag?: pulumi.Input<string | undefined>;
     /**
      * The type of monitor (should be one of 'event' or 'metric'
      */
     type: pulumi.Input<string>;
+}
+
+export interface MonitorNotification {
+    /**
+     * The id of the connector to send the notification through.
+     */
+    connectorId: pulumi.Input<string>;
+    /**
+     * Where the notification is delivered (for example, a channel or address). Interpreted by the connector.
+     */
+    destination?: pulumi.Input<string | undefined>;
+    /**
+     * The id of the notification template to send.
+     */
+    notificationTemplateId: pulumi.Input<string>;
 }
 
 export interface RuleClientIdentifierHashField {
@@ -67,7 +82,7 @@ export interface RuleClientIdentifierHashField {
     /**
      * The hash field key.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
 }
 
 export interface RuleDependenciesDependency {
@@ -105,11 +120,11 @@ export interface RuleTestCaseAssertion {
      * **status_code**: equal, not*equal, greater*than, less*than, one*of.
      * **block**: N/A
      */
-    condition?: pulumi.Input<string>;
+    condition?: pulumi.Input<string | undefined>;
     /**
      * The description of the assertion.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The expected value of the assertion.
      * It is a string value, and the format it must satisfy depends on the assertion type:
@@ -122,7 +137,7 @@ export interface RuleTestCaseAssertion {
     /**
      * The location of the assertion. Allowed values: req, res. Not applicable for assertion type output.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * The indexes of the messages in the test case the assertion applies to.
      */
@@ -133,19 +148,19 @@ export interface RuleTestCaseMessage {
     /**
      * The number of times to include the message in the test case.
      */
-    count?: pulumi.Input<number>;
+    count?: pulumi.Input<number | undefined>;
     /**
      * The delay in milliseconds between message iterations.
      */
-    delay?: pulumi.Input<number>;
+    delay?: pulumi.Input<number | undefined>;
     /**
      * The description of the test case message.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The delay in milliseconds after a set of message iterations.
      */
-    postDelay?: pulumi.Input<number>;
+    postDelay?: pulumi.Input<number | undefined>;
     /**
      * A payload sent to the inspector to inspect an HTTP request.
      */
@@ -160,23 +175,23 @@ export interface RuleTestCaseMessageReq {
     /**
      * The base64 encoded HTTP request body.
      */
-    body?: pulumi.Input<string>;
+    body?: pulumi.Input<string | undefined>;
     /**
      * The HTTP request cookie keys.
      */
-    cookieKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    cookieKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The HTTP request cookie values.
      */
-    cookieValues?: pulumi.Input<pulumi.Input<string>[]>;
+    cookieValues?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The HTTP request header keys.
      */
-    headerKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    headerKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The HTTP request header values.
      */
-    headerValues?: pulumi.Input<pulumi.Input<string>[]>;
+    headerValues?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The method of the request.
      */
@@ -184,11 +199,11 @@ export interface RuleTestCaseMessageReq {
     /**
      * The remote address of the request.
      */
-    remoteAddr?: pulumi.Input<string>;
+    remoteAddr?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the request body was truncated.
      */
-    truncatedBody?: pulumi.Input<boolean>;
+    truncatedBody?: pulumi.Input<boolean | undefined>;
     /**
      * The URL of the request.
      */
@@ -199,15 +214,15 @@ export interface RuleTestCaseMessageRes {
     /**
      * The base64 encoded HTTP response body.
      */
-    body?: pulumi.Input<string>;
+    body?: pulumi.Input<string | undefined>;
     /**
      * The HTTP response header keys.
      */
-    headerKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    headerKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The HTTP response header values.
      */
-    headerValues?: pulumi.Input<pulumi.Input<string>[]>;
+    headerValues?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The HTTP response status code.
      */
@@ -215,30 +230,30 @@ export interface RuleTestCaseMessageRes {
     /**
      * Indicates whether the response body was truncated.
      */
-    truncatedBody?: pulumi.Input<boolean>;
+    truncatedBody?: pulumi.Input<boolean | undefined>;
 }
 
 export interface SpecLearningConfig {
     /**
      * Include query parameters during spec learning.
      */
-    includeQueryParams?: pulumi.Input<boolean>;
+    includeQueryParams?: pulumi.Input<boolean | undefined>;
     /**
      * Include request body during spec learning.
      */
-    includeRequestBody?: pulumi.Input<boolean>;
+    includeRequestBody?: pulumi.Input<boolean | undefined>;
     /**
      * Include request headers during spec learning.
      */
-    includeRequestHeaders?: pulumi.Input<boolean>;
+    includeRequestHeaders?: pulumi.Input<boolean | undefined>;
     /**
      * Include response body during spec learning.
      */
-    includeResponseBody?: pulumi.Input<boolean>;
+    includeResponseBody?: pulumi.Input<boolean | undefined>;
     /**
      * Include response headers during spec learning.
      */
-    includeResponseHeaders?: pulumi.Input<boolean>;
+    includeResponseHeaders?: pulumi.Input<boolean | undefined>;
     /**
      * Spec learning mode configuration options. Valid values: all, paths*only, paths*custom. Note: When using 'all' or 'paths*only' modes, the include** flags will be preserved in state but are not applicable as the mode overrides these settings.
      */

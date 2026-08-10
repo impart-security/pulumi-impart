@@ -65,7 +65,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:           "Apache-2.0",
 		Homepage:          "https://www.impart.security/",
 		GitHubOrg:         "impart-security",
-		LogoURL:           "https://console.impartsecurity.net/logo-blue-black.svg",
+		LogoURL:           "https://console.impartsecurity.net/logomark-brand-background.png",
 		Repository:        "https://github.com/impart-security/pulumi-impart",
 		PluginDownloadURL: "github://api.github.com/impart-security",
 		Publisher:         "Impart Security",
@@ -151,7 +151,7 @@ func Provider() tfbridge.ProviderInfo {
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
 			// Overlay: &tfbridge.OverlayInfo{},
-			TypeScriptVersion: "^5.4.3",
+			TypeScriptVersion: "^6.0.3",
 		},
 	}
 }

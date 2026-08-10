@@ -337,6 +337,121 @@ func (o MonitorConditionDetailsOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v MonitorConditionDetails) string { return v.Type }).(pulumi.StringOutput)
 }
 
+type MonitorNotification struct {
+	// The id of the connector to send the notification through.
+	ConnectorId string `pulumi:"connectorId"`
+	// Where the notification is delivered (for example, a channel or address). Interpreted by the connector.
+	Destination *string `pulumi:"destination"`
+	// The id of the notification template to send.
+	NotificationTemplateId string `pulumi:"notificationTemplateId"`
+}
+
+// MonitorNotificationInput is an input type that accepts MonitorNotificationArgs and MonitorNotificationOutput values.
+// You can construct a concrete instance of `MonitorNotificationInput` via:
+//
+//	MonitorNotificationArgs{...}
+type MonitorNotificationInput interface {
+	pulumi.Input
+
+	ToMonitorNotificationOutput() MonitorNotificationOutput
+	ToMonitorNotificationOutputWithContext(context.Context) MonitorNotificationOutput
+}
+
+type MonitorNotificationArgs struct {
+	// The id of the connector to send the notification through.
+	ConnectorId pulumi.StringInput `pulumi:"connectorId"`
+	// Where the notification is delivered (for example, a channel or address). Interpreted by the connector.
+	Destination pulumi.StringPtrInput `pulumi:"destination"`
+	// The id of the notification template to send.
+	NotificationTemplateId pulumi.StringInput `pulumi:"notificationTemplateId"`
+}
+
+func (MonitorNotificationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MonitorNotification)(nil)).Elem()
+}
+
+func (i MonitorNotificationArgs) ToMonitorNotificationOutput() MonitorNotificationOutput {
+	return i.ToMonitorNotificationOutputWithContext(context.Background())
+}
+
+func (i MonitorNotificationArgs) ToMonitorNotificationOutputWithContext(ctx context.Context) MonitorNotificationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MonitorNotificationOutput)
+}
+
+// MonitorNotificationArrayInput is an input type that accepts MonitorNotificationArray and MonitorNotificationArrayOutput values.
+// You can construct a concrete instance of `MonitorNotificationArrayInput` via:
+//
+//	MonitorNotificationArray{ MonitorNotificationArgs{...} }
+type MonitorNotificationArrayInput interface {
+	pulumi.Input
+
+	ToMonitorNotificationArrayOutput() MonitorNotificationArrayOutput
+	ToMonitorNotificationArrayOutputWithContext(context.Context) MonitorNotificationArrayOutput
+}
+
+type MonitorNotificationArray []MonitorNotificationInput
+
+func (MonitorNotificationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MonitorNotification)(nil)).Elem()
+}
+
+func (i MonitorNotificationArray) ToMonitorNotificationArrayOutput() MonitorNotificationArrayOutput {
+	return i.ToMonitorNotificationArrayOutputWithContext(context.Background())
+}
+
+func (i MonitorNotificationArray) ToMonitorNotificationArrayOutputWithContext(ctx context.Context) MonitorNotificationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MonitorNotificationArrayOutput)
+}
+
+type MonitorNotificationOutput struct{ *pulumi.OutputState }
+
+func (MonitorNotificationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MonitorNotification)(nil)).Elem()
+}
+
+func (o MonitorNotificationOutput) ToMonitorNotificationOutput() MonitorNotificationOutput {
+	return o
+}
+
+func (o MonitorNotificationOutput) ToMonitorNotificationOutputWithContext(ctx context.Context) MonitorNotificationOutput {
+	return o
+}
+
+// The id of the connector to send the notification through.
+func (o MonitorNotificationOutput) ConnectorId() pulumi.StringOutput {
+	return o.ApplyT(func(v MonitorNotification) string { return v.ConnectorId }).(pulumi.StringOutput)
+}
+
+// Where the notification is delivered (for example, a channel or address). Interpreted by the connector.
+func (o MonitorNotificationOutput) Destination() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MonitorNotification) *string { return v.Destination }).(pulumi.StringPtrOutput)
+}
+
+// The id of the notification template to send.
+func (o MonitorNotificationOutput) NotificationTemplateId() pulumi.StringOutput {
+	return o.ApplyT(func(v MonitorNotification) string { return v.NotificationTemplateId }).(pulumi.StringOutput)
+}
+
+type MonitorNotificationArrayOutput struct{ *pulumi.OutputState }
+
+func (MonitorNotificationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MonitorNotification)(nil)).Elem()
+}
+
+func (o MonitorNotificationArrayOutput) ToMonitorNotificationArrayOutput() MonitorNotificationArrayOutput {
+	return o
+}
+
+func (o MonitorNotificationArrayOutput) ToMonitorNotificationArrayOutputWithContext(ctx context.Context) MonitorNotificationArrayOutput {
+	return o
+}
+
+func (o MonitorNotificationArrayOutput) Index(i pulumi.IntInput) MonitorNotificationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MonitorNotification {
+		return vs[0].([]MonitorNotification)[vs[1].(int)]
+	}).(MonitorNotificationOutput)
+}
+
 type RuleClientIdentifierHashField struct {
 	// The hash field.
 	Field string `pulumi:"field"`
@@ -1419,6 +1534,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionInput)(nil)).Elem(), MonitorConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionArrayInput)(nil)).Elem(), MonitorConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MonitorConditionDetailsInput)(nil)).Elem(), MonitorConditionDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MonitorNotificationInput)(nil)).Elem(), MonitorNotificationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MonitorNotificationArrayInput)(nil)).Elem(), MonitorNotificationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleClientIdentifierHashFieldInput)(nil)).Elem(), RuleClientIdentifierHashFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleClientIdentifierHashFieldArrayInput)(nil)).Elem(), RuleClientIdentifierHashFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleDependenciesDependencyInput)(nil)).Elem(), RuleDependenciesDependencyArgs{})
@@ -1438,6 +1555,8 @@ func init() {
 	pulumi.RegisterOutputType(MonitorConditionOutput{})
 	pulumi.RegisterOutputType(MonitorConditionArrayOutput{})
 	pulumi.RegisterOutputType(MonitorConditionDetailsOutput{})
+	pulumi.RegisterOutputType(MonitorNotificationOutput{})
+	pulumi.RegisterOutputType(MonitorNotificationArrayOutput{})
 	pulumi.RegisterOutputType(RuleClientIdentifierHashFieldOutput{})
 	pulumi.RegisterOutputType(RuleClientIdentifierHashFieldArrayOutput{})
 	pulumi.RegisterOutputType(RuleDependenciesDependencyOutput{})

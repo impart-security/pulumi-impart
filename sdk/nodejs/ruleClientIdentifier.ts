@@ -116,19 +116,19 @@ export interface RuleClientIdentifierState {
     /**
      * The description for the rule client identifier.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The hash fields for the rule client identifier.
      */
-    hashFields?: pulumi.Input<pulumi.Input<inputs.RuleClientIdentifierHashField>[]>;
+    hashFields?: pulumi.Input<pulumi.Input<inputs.RuleClientIdentifierHashField>[] | undefined>;
     /**
      * The name for the rule client identifier.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The storage id for the rule client identifier.
      */
-    storageId?: pulumi.Input<string>;
+    storageId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -138,7 +138,7 @@ export interface RuleClientIdentifierArgs {
     /**
      * The description for the rule client identifier.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The hash fields for the rule client identifier.
      */
@@ -150,5 +150,5 @@ export interface RuleClientIdentifierArgs {
     /**
      * The storage id for the rule client identifier.
      */
-    storageId?: pulumi.Input<string>;
+    storageId?: pulumi.Input<string | undefined>;
 }

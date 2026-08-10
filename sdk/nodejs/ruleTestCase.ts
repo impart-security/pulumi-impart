@@ -168,27 +168,27 @@ export interface RuleTestCaseState {
     /**
      * The assertions of the test case.
      */
-    assertions?: pulumi.Input<pulumi.Input<inputs.RuleTestCaseAssertion>[]>;
+    assertions?: pulumi.Input<pulumi.Input<inputs.RuleTestCaseAssertion>[] | undefined>;
     /**
      * The description of the test case.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The messages of the test case.
      */
-    messages?: pulumi.Input<pulumi.Input<inputs.RuleTestCaseMessage>[]>;
+    messages?: pulumi.Input<pulumi.Input<inputs.RuleTestCaseMessage>[] | undefined>;
     /**
      * The name of the test case.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Sets if test case required to pass on update.
      */
-    required?: pulumi.Input<boolean>;
+    required?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -198,15 +198,15 @@ export interface RuleTestCaseArgs {
     /**
      * The assertions of the test case.
      */
-    assertions?: pulumi.Input<pulumi.Input<inputs.RuleTestCaseAssertion>[]>;
+    assertions?: pulumi.Input<pulumi.Input<inputs.RuleTestCaseAssertion>[] | undefined>;
     /**
      * The description of the test case.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The messages of the test case.
      */
@@ -218,5 +218,5 @@ export interface RuleTestCaseArgs {
     /**
      * Sets if test case required to pass on update.
      */
-    required?: pulumi.Input<boolean>;
+    required?: pulumi.Input<boolean | undefined>;
 }

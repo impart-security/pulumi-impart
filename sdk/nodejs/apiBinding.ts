@@ -173,55 +173,55 @@ export interface ApiBindingState {
     /**
      * The basePath for this api binding.
      */
-    basePath?: pulumi.Input<string>;
+    basePath?: pulumi.Input<string | undefined>;
     /**
      * The disabled for this api binding.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The forwardedFor for this api binding.
      */
-    forwardedFors?: pulumi.Input<pulumi.Input<string>[]>;
+    forwardedFors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The forwardedHost for this api binding.
      */
-    forwardedHosts?: pulumi.Input<pulumi.Input<string>[]>;
+    forwardedHosts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The forwardedId for this api binding.
      */
-    forwardedIds?: pulumi.Input<pulumi.Input<string>[]>;
+    forwardedIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The forwardedProto for this api binding.
      */
-    forwardedProtos?: pulumi.Input<pulumi.Input<string>[]>;
+    forwardedProtos?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The hops for this api binding.
      */
-    hops?: pulumi.Input<number>;
+    hops?: pulumi.Input<number | undefined>;
     /**
      * The hostname for this api binding.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * The name for this api binding.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The port for this api binding.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The specification id.
      */
-    specId?: pulumi.Input<string>;
+    specId?: pulumi.Input<string | undefined>;
     /**
      * The upstreamOrigin for this api binding.
      */
-    upstreamOrigin?: pulumi.Input<string>;
+    upstreamOrigin?: pulumi.Input<string | undefined>;
     /**
      * The useForwarded for this api binding.
      */
-    useForwarded?: pulumi.Input<boolean>;
+    useForwarded?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -235,27 +235,27 @@ export interface ApiBindingArgs {
     /**
      * The disabled for this api binding.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The forwardedFor for this api binding.
      */
-    forwardedFors?: pulumi.Input<pulumi.Input<string>[]>;
+    forwardedFors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The forwardedHost for this api binding.
      */
-    forwardedHosts?: pulumi.Input<pulumi.Input<string>[]>;
+    forwardedHosts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The forwardedId for this api binding.
      */
-    forwardedIds?: pulumi.Input<pulumi.Input<string>[]>;
+    forwardedIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The forwardedProto for this api binding.
      */
-    forwardedProtos?: pulumi.Input<pulumi.Input<string>[]>;
+    forwardedProtos?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The hops for this api binding.
      */
-    hops?: pulumi.Input<number>;
+    hops?: pulumi.Input<number | undefined>;
     /**
      * The hostname for this api binding.
      */
@@ -275,9 +275,9 @@ export interface ApiBindingArgs {
     /**
      * The upstreamOrigin for this api binding.
      */
-    upstreamOrigin?: pulumi.Input<string>;
+    upstreamOrigin?: pulumi.Input<string | undefined>;
     /**
      * The useForwarded for this api binding.
      */
-    useForwarded?: pulumi.Input<boolean>;
+    useForwarded?: pulumi.Input<boolean | undefined>;
 }

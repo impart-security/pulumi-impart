@@ -19,7 +19,11 @@ import * as utilities from "./utilities";
  * const testEvent = new impart.Monitor("test_event", {
  *     name: "terraform_event_monitor",
  *     description: "test event monitor",
- *     notificationTemplateIds: ["<notification_template_id>"],
+ *     notifications: [{
+ *         notificationTemplateId: impartNotificationTemplate.example.id,
+ *         connectorId: "<example_connector.id>",
+ *         destination: "<example_destination>",
+ *     }],
  *     conditions: [{
  *         threshold: 1,
  *         comparator: "gt",
@@ -37,7 +41,11 @@ import * as utilities from "./utilities";
  * const testMetric = new impart.Monitor("test_metric", {
  *     name: "terraform_event_monitor",
  *     description: "test event monitor",
- *     notificationTemplateIds: ["<notification_template_id>"],
+ *     notifications: [{
+ *         notificationTemplateId: impartNotificationTemplate.example.id,
+ *         connectorId: "<example_connector.id>",
+ *         destination: "<example_destination>",
+ *     }],
  *     conditions: [{
  *         threshold: 1,
  *         comparator: "lt",
@@ -96,9 +104,9 @@ export class Monitor extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * An array of notification template ids for the templates that will send notifications to their respective connectors.
+     * Each message this monitor sends when it fires, and its destination.
      */
-    declare public readonly notificationTemplateIds: pulumi.Output<string[]>;
+    declare public readonly notifications: pulumi.Output<outputs.MonitorNotification[] | undefined>;
 
     /**
      * Create a Monitor resource with the given unique name, arguments, and options.
@@ -117,7 +125,7 @@ export class Monitor extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
-            resourceInputs["notificationTemplateIds"] = state?.notificationTemplateIds;
+            resourceInputs["notifications"] = state?.notifications;
         } else {
             const args = argsOrState as MonitorArgs | undefined;
             if (args?.conditions === undefined && !opts.urn) {
@@ -129,14 +137,11 @@ export class Monitor extends pulumi.CustomResource {
             if (args?.name === undefined && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            if (args?.notificationTemplateIds === undefined && !opts.urn) {
-                throw new Error("Missing required property 'notificationTemplateIds'");
-            }
             resourceInputs["conditions"] = args?.conditions;
             resourceInputs["description"] = args?.description;
             resourceInputs["labels"] = args?.labels;
             resourceInputs["name"] = args?.name;
-            resourceInputs["notificationTemplateIds"] = args?.notificationTemplateIds;
+            resourceInputs["notifications"] = args?.notifications;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Monitor.__pulumiType, name, resourceInputs, opts);
@@ -150,23 +155,23 @@ export interface MonitorState {
     /**
      * An array of conditions for which the monitor will trigger.
      */
-    conditions?: pulumi.Input<pulumi.Input<inputs.MonitorCondition>[]>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.MonitorCondition>[] | undefined>;
     /**
      * The description for this monitor.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for this monitor.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
-     * An array of notification template ids for the templates that will send notifications to their respective connectors.
+     * Each message this monitor sends when it fires, and its destination.
      */
-    notificationTemplateIds?: pulumi.Input<pulumi.Input<string>[]>;
+    notifications?: pulumi.Input<pulumi.Input<inputs.MonitorNotification>[] | undefined>;
 }
 
 /**
@@ -184,13 +189,13 @@ export interface MonitorArgs {
     /**
      * The applied labels.
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for this monitor.
      */
     name: pulumi.Input<string>;
     /**
-     * An array of notification template ids for the templates that will send notifications to their respective connectors.
+     * Each message this monitor sends when it fires, and its destination.
      */
-    notificationTemplateIds: pulumi.Input<pulumi.Input<string>[]>;
+    notifications?: pulumi.Input<pulumi.Input<inputs.MonitorNotification>[] | undefined>;
 }

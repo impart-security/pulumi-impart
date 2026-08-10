@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.0] - 2026-08-10
+
+### Changed
+
+- **Breaking:** `Monitor` now sends its notifications through a `notifications` property — an array of `MonitorNotification` objects, each with `notificationTemplateId`, `connectorId`, and an optional `destination` — replacing the removed `notificationTemplateIds` property.
+- **Breaking:** notification templates are now message-only. `NotificationTemplate` no longer accepts (or exports) `connectorId` or `destinations`; a template carries just `name`, `subject`, and `payload`. Reference the template from a monitor's `notifications` entries instead.
+- Updated dependencies.
+
 ## [0.11.6] - 2026-05-21
 
 ### Changed

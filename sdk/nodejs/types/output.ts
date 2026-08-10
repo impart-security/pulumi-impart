@@ -59,6 +59,21 @@ export interface MonitorConditionDetails {
     type: string;
 }
 
+export interface MonitorNotification {
+    /**
+     * The id of the connector to send the notification through.
+     */
+    connectorId: string;
+    /**
+     * Where the notification is delivered (for example, a channel or address). Interpreted by the connector.
+     */
+    destination?: string;
+    /**
+     * The id of the notification template to send.
+     */
+    notificationTemplateId: string;
+}
+
 export interface RuleClientIdentifierHashField {
     /**
      * The hash field.

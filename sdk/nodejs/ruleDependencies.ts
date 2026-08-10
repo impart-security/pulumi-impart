@@ -87,7 +87,7 @@ export interface RuleDependenciesState {
     /**
      * An array of rules and the other ids of the rules they depend on before executing.
      */
-    dependencies?: pulumi.Input<pulumi.Input<inputs.RuleDependenciesDependency>[]>;
+    dependencies?: pulumi.Input<pulumi.Input<inputs.RuleDependenciesDependency>[] | undefined>;
 }
 
 /**
