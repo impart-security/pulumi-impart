@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0] - 2026-09-23
+
+### Changed
+
+- `CoreRuleConfig` manages whether a core rule is installed, not just its configuration: create installs the rule, destroy uninstalls it instead of resetting it to defaults, and changing `slug` replaces the resource. Pulumi can now manage a core rule the organization hasn't installed yet, and one it is not entitled to is refused on apply.
+- Updated dependencies.
+
 ## [0.12.0] - 2026-08-10
 
 ### Changed
